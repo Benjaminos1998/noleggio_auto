@@ -1,16 +1,38 @@
 package noleggioAuto.entities;
 
 import java.util.*;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "utente")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Utente {
 
 	private String nome;
 	private String cognome;
+	
+	@Id
+	@SequenceGenerator(name = "utente_sequence",sequenceName = "utente_sequence",allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "utente_sequence")
 	private Integer id;
+	
+	@Column(unique = true)
 	private Integer numeroPatente;
 	private Integer eta;
-	private Set<Auto> auto = new HashSet<>();
-	private Set<Noleggio> noleggi = new HashSet<>();
+	
+	@OneToMany
+	private List<Auto> auto = new ArrayList<>();
+	@OneToMany
+	private List<Noleggio> noleggi = new ArrayList<>();
+	
+	public Utente() {
+		
+	}
+	
+	public Utente(String nome, String cognome) {
+		this.nome=nome;
+		this.cognome=cognome;
+	}
 
 	public String getNome() {
 		return nome;
@@ -32,11 +54,11 @@ public abstract class Utente {
 		return eta;
 	}
 
-	public Set<Auto> getAuto() {
+	public List<Auto> getAuto() {
 		return auto;
 	}
 
-	public Set<Noleggio> getNoleggi() {
+	public List<Noleggio> getNoleggi() {
 		return noleggi;
 	}
 
@@ -58,38 +80,6 @@ public abstract class Utente {
 
 	public void setEta(Integer eta) {
 		this.eta = eta;
-	}
-
-	public void linkAuto(Auto _auto) {
-		if (_auto != null) {
-			getAuto().add(_auto);
-		}
-	}
-
-	public void linkNoleggi(Noleggio _noleggi) {
-		if (_noleggi != null) {
-			getNoleggi().add(_noleggi);
-		}
-	}
-
-	public void unlinkAuto(Auto _auto) {
-		if (_auto != null) {
-			getAuto().remove(_auto);
-		}
-	}
-
-	public void unlinkAuto(Iterator<Auto> it) {
-		it.remove();
-	}
-
-	public void unlinkNoleggi(Noleggio _noleggi) {
-		if (_noleggi != null) {
-			getNoleggi().remove(_noleggi);
-		}
-	}
-
-	public void unlinkNoleggi(Iterator<Noleggio> it) {
-		it.remove();
 	}
 
 }

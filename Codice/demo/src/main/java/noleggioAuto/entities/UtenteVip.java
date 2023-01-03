@@ -1,9 +1,21 @@
 package noleggioAuto.entities;
 
+import javax.persistence.*;
+
+@Entity
 public class UtenteVip extends Utente {
 
+	
 	private Integer idCarta;
 	private Integer numeroPunti;
+
+	public UtenteVip() {
+	}
+
+	public UtenteVip(Integer idCarta, Integer numeroPunti) {
+		this.idCarta = idCarta;
+		this.numeroPunti = numeroPunti;
+	}
 
 	public Integer getIdCarta() {
 		return idCarta;

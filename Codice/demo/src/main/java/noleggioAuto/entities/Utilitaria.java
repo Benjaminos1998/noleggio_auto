@@ -1,19 +1,24 @@
-package noleggioAuto.entities;
-
-public class Utilitaria extends Auto {
-
-	public Utilitaria(String modello, String targa) {
-		super(modello, targa);
-	}
-
-	private double prezzo;
-
-	public double getPrezzo() {
-		return prezzo;
-	}
-
-	public void setPrezzo(double prezzo) {
-		this.prezzo = prezzo;
-	}
-
-}
+//package noleggioAuto.entities;
+//
+//
+//public class Utilitaria extends Auto {
+//
+//	// CAMPI
+//
+//	private static final Integer puntiBonus = 50;
+//	private String prezzo;
+//
+//	// COSTRUTTORI
+//	
+//
+//	public Utilitaria(String targa, String modello) {
+//		super(targa, modello);
+//	}
+//	
+//	public Utilitaria(String targa,String modello,String prezzo) {
+//		this(targa, modello);
+//		this.prezzo=prezzo;
+//	}
+//	
+//
+//}
