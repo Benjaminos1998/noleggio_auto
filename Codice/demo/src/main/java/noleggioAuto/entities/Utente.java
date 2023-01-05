@@ -1,39 +1,60 @@
 package noleggioAuto.entities;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "utente")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Utente {
+public class Utente {
 
+	// CAMPI 
+	
+	@Column(nullable = false)
 	private String nome;
+	@Column(nullable = false)
 	private String cognome;
 	
 	@Id
 	@SequenceGenerator(name = "utente_sequence",sequenceName = "utente_sequence",allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "utente_sequence")
 	private Integer id;
-	
-	@Column(unique = true)
+	@Column(nullable = false)
 	private Integer numeroPatente;
-	private Integer eta;
+	@Column(nullable = true)
+	private LocalDate dob;
 	
+	@Transient
+	private Integer eta;
 	@OneToMany
 	private List<Auto> auto = new ArrayList<>();
 	@OneToMany
 	private List<Noleggio> noleggi = new ArrayList<>();
 	
+	
+	// COSTRUTTORI 
+	
 	public Utente() {
-		
+		super();
 	}
 	
-	public Utente(String nome, String cognome) {
+	public Utente(String nome, String cognome,Integer numeroPatente,LocalDate dob) {
 		this.nome=nome;
 		this.cognome=cognome;
+		this.numeroPatente=numeroPatente;
+		this.dob=dob;
+	}
+	
+	public Utente(Integer id,String nome, String cognome,Integer numeroPatente,LocalDate dob) {
+		this(nome,cognome,numeroPatente,dob);
+		this.id=id;
 	}
 
+	
+	//METODI
+	
 	public String getNome() {
 		return nome;
 	}
@@ -51,7 +72,11 @@ public abstract class Utente {
 	}
 
 	public Integer getEta() {
-		return eta;
+		return Period.between(this.dob, LocalDate.now()).getYears();
+	}
+	
+	public LocalDate getDob() {
+		return dob;
 	}
 
 	public List<Auto> getAuto() {
@@ -80,6 +105,21 @@ public abstract class Utente {
 
 	public void setEta(Integer eta) {
 		this.eta = eta;
+	}
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
+	}
+	
+	@Override
+	public String toString() {
+		return "Utente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", data di nascita= " + dob +
+                ", età=" + eta +
+                ", numero patente=" + numeroPatente+
+                '}';
 	}
 
 }

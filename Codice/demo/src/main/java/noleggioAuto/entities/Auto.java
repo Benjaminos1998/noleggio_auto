@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "auto")
-public  class Auto {
+public class Auto {
 
 	// CAMPI
 
@@ -12,7 +12,9 @@ public  class Auto {
 	@SequenceGenerator(name = "auto_sequence", sequenceName = "auto_sequence", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "auto_sequence")
 	private Integer id;
+	@Column(nullable = false)
 	private String targa;
+	@Column(nullable = false)
 	private String modello;
 
 	// COSTRUTTORI
@@ -58,7 +60,6 @@ public  class Auto {
 	}
 
 	public String toString() {
-
 		return this.modello + "Targa: " + this.targa;
 	}
 

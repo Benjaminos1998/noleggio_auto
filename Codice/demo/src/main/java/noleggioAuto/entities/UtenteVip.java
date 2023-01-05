@@ -10,6 +10,7 @@ public class UtenteVip extends Utente {
 	private Integer numeroPunti;
 
 	public UtenteVip() {
+		super();
 	}
 
 	public UtenteVip(Integer idCarta, Integer numeroPunti) {
