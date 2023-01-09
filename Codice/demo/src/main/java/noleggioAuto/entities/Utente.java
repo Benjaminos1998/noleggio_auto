@@ -18,7 +18,7 @@ public class Utente {
 	private String cognome;
 	
 	@Id
-	@SequenceGenerator(name = "utente_sequence",sequenceName = "utente_sequence",allocationSize = 1)
+	@SequenceGenerator(name = "utente_sequence",sequenceName = "utente_sequence",allocationSize = 0)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "utente_sequence")
 	private Integer id;
 	@Column(nullable = false)

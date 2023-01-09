@@ -19,14 +19,12 @@ public class Noleggio {
 	public Noleggio() {
 	}
 
-	
 	public Noleggio(double prezzo, Integer idNoleggio) {
 		this.prezzo = prezzo;
 		this.idNoleggio = idNoleggio;
 	}
 
 	// METODI 
-	
 	public double getPrezzo() {
 		return prezzo;
 	}

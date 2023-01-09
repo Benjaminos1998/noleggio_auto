@@ -13,21 +13,29 @@ import noleggioAuto.repository.UtenteRepository;
 public class UtenteService {
 
 	UtenteRepository utenteRepository;
-	
+
 	@Autowired
 	public UtenteService(UtenteRepository utenteRepository) {
-		this.utenteRepository=utenteRepository;
+		this.utenteRepository = utenteRepository;
 	}
-	
-	public List<Utente> getUtenti(){
+
+	public List<Utente> getUtenti() {
 		return utenteRepository.findAll();
 	}
-	
+
 	public void addNewUtente(Utente utente) throws IllegalAccessException {
 		Optional<Utente> utenteByNumeroPatente = utenteRepository.findByNumeroPatente(utente.getNumeroPatente());
-		if(utenteByNumeroPatente.isPresent()) {
+		if (utenteByNumeroPatente.isPresent()) {
 			throw new IllegalAccessException("Utente già registrato");
 		}
 		utenteRepository.save(utente);
+	}
+
+	public void deleteUtente(Integer id) throws IllegalAccessException {
+		boolean exist = utenteRepository.existsById(id);
+		if (!exist) {
+			throw new IllegalAccessException("Utente con id " + id + " non esiste");
+		}
+		utenteRepository.deleteById(id);
 	}
 }

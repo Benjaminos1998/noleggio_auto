@@ -12,6 +12,12 @@ public class UtenteVip extends Utente {
 	public UtenteVip() {
 		super();
 	}
+	
+
+	public UtenteVip(Integer idCarta) {
+		super();
+		this.idCarta = idCarta;
+	}
 
 	public UtenteVip(Integer idCarta, Integer numeroPunti) {
 		this.idCarta = idCarta;
@@ -33,5 +39,4 @@ public class UtenteVip extends Utente {
 	public void setNumeroPunti(Integer numeroPunti) {
 		this.numeroPunti = numeroPunti;
 	}
-
 }
