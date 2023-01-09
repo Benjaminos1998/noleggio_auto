@@ -1,17 +1,15 @@
 package noleggioAuto.repository;
 
-
-
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import noleggioAuto.entities.Utente;
+import noleggioAuto.entities.Noleggio;
 
 @Repository
-public interface UtenteRepository extends JpaRepository<Utente, Integer>{
+public interface NoleggioRepository extends JpaRepository<Noleggio, Integer> {
 
-	Optional<Utente> findByNumeroPatente(Integer numeroPatente);
+	Optional<Noleggio> findById(Integer id);
 	
 }

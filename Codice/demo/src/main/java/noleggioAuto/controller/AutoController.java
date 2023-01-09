@@ -12,17 +12,15 @@ import noleggioAuto.services.AutoService;
 @RequestMapping(path = "auto")
 public class AutoController {
 
-	
 	private AutoService autoService;
 
 	@Autowired
 	public AutoController(AutoService autoService) {
 		this.autoService = autoService;
 	}
-	
-	
+
 	@GetMapping
-	public List<Auto> getAuto(){
+	public List<Auto> getAuto() {
 		return autoService.getAuto();
 	}
 	
@@ -30,15 +28,9 @@ public class AutoController {
 	public void RegisterNewAutoUtilitaria(@RequestBody Auto auto) throws IllegalAccessException {
 		autoService.addNewAuto(auto);
 	}
-	
-	@DeleteMapping(path = "{targa}")
-	public void deleteAuto(@PathVariable("targa")String targa) {
-		autoService.deleteAuto(targa);
+
+	@DeleteMapping(path = "{id}")
+	public void deleteAuto(@PathVariable("id") Integer id) {
+		autoService.deleteAuto(id);
 	}
-	
-	
-	
-
-	
-
 }

@@ -13,29 +13,29 @@ import noleggioAuto.repository.AutoRepository;
 public class AutoService {
 
 	private final AutoRepository autoRepository;
-	
+
 	@Autowired
 	public AutoService(AutoRepository autoRepository) {
 		this.autoRepository = autoRepository;
 	}
-	
-	public List<Auto> getAuto(){
+
+	public List<Auto> getAuto() {
 		return autoRepository.findAll();
 	}
-	
+
 	public void addNewAuto(Auto auto) throws IllegalAccessException {
 		Optional<Auto> autoByTarga = autoRepository.findAutoByTarga(auto.getTarga());
-		if(autoByTarga.isPresent()){
+		if (autoByTarga.isPresent()) {
 			throw new IllegalAccessException("Auto già inserita");
 		}
 		autoRepository.save(auto);
 	}
-	
-	public void deleteAuto(String targa) {
-		boolean exist = autoRepository.existsById(targa);
-		if(!exist) {
-			throw new IllegalStateException("L'auto con targa "+targa+" non esiste");	
+
+	public void deleteAuto(Integer id) {
+		boolean exist = autoRepository.existsById(id);
+		if (!exist) {
+			throw new IllegalStateException("L'auto con id " +  id+ " non esiste");
 		}
-		autoRepository.deleteById(targa);
+		autoRepository.deleteById(id);
 	}
 }

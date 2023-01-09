@@ -9,7 +9,7 @@ public class Auto {
 	// CAMPI
 
 	@Id
-	@SequenceGenerator(name = "auto_sequence", sequenceName = "auto_sequence", allocationSize = 1)
+	@SequenceGenerator(name = "auto_sequence", sequenceName = "auto_sequence", allocationSize = 0)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "auto_sequence")
 	private Integer id;
 	@Column(nullable = false)
@@ -24,21 +24,22 @@ public class Auto {
 	}
 
 	public Auto(Integer id, String targa, String modello) {
-		this.id=id;
+		this.id = id;
 		this.targa = targa;
 		this.modello = modello;
 	}
 
-	public Auto(String targa,String modello) {
-		this.targa=targa;
+	public Auto(String targa, String modello) {
+		this.targa = targa;
 		this.modello = modello;
 	}
 
 	// METODI
-	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -62,5 +63,4 @@ public class Auto {
 	public String toString() {
 		return this.modello + "Targa: " + this.targa;
 	}
-
 }
