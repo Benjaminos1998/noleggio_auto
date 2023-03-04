@@ -97,7 +97,7 @@ TABELLA MOSCOW
 MODELING
 
 Per la realizzazione dei diagrammi UML abbiamo utilizzato il tool StarUML
-Tutti i diagrammi UML sono stati inseriti all'interno del file "UML_Diagrams_v1.mdj" nella cartella "Documentazione"
+Tutti i diagrammi UML sono stati inseriti all'interno del file "UML_Diagrams_v1.mdj" nella cartella "Diagrammi UML"
 
 SOFTWARE ARCHITECTURE
 
