@@ -1,3 +1,6 @@
+APPLICAZIONE NOLEGGI AUTO
+
+
 SOFTWARE LIFE CYCLE
 
 Si è scelto di procedere seguendo uno dei metodi Agile: Extreme Programming. Questo promuove lo sviluppo iterativo ed incrementale organizzato in brevi cicli di sviluppo, detti interazioni.
