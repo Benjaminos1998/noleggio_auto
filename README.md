@@ -112,5 +112,5 @@ MVC è caratterizzato da tre componenti:
 
 SOFTWARE TESTING
 
-L' Extreme Programming viene riconosciuto come un Test Driven Developement ed appunto per questo il nostro è stato un approccio orientato al testing. Ogni modifica che è stata effettuata veniva testata manualmente, e quindi senza la costruzione di casi di test specifici.
+L' Extreme Programming viene riconosciuto come un Test Driven Developement ed appunto per questo il nostro è stato un approccio orientato al testing. Ogni modifica che è stata effettuata veniva testata manualmente e solo dopo sono stati implementati alcuni casi di test con JUnit.
 
