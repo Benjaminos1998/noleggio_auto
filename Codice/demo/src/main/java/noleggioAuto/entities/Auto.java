@@ -13,9 +13,9 @@ public class Auto {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "auto_sequence")
 	private Integer id;
 	@Column(nullable = false)
-	private String targa;
+	public String targa;
 	@Column(nullable = false)
-	private String modello;
+	public String modello;
 
 	// COSTRUTTORI
 

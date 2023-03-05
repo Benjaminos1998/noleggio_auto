@@ -13,18 +13,18 @@ public class Utente {
 	// CAMPI 
 	
 	@Column(nullable = false)
-	private String nome;
+	public String nome;
 	@Column(nullable = false)
-	private String cognome;
+	public String cognome;
 	
 	@Id
 	@SequenceGenerator(name = "utente_sequence",sequenceName = "utente_sequence",allocationSize = 0)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "utente_sequence")
 	private Integer id;
 	@Column(nullable = false)
-	private Integer numeroPatente;
+	public Integer numeroPatente;
 	@Column(nullable = true)
-	private LocalDate dob;
+	public LocalDate dob;
 	
 	@Transient
 	private Integer eta;

@@ -6,8 +6,8 @@ import javax.persistence.*;
 public class UtenteVip extends Utente {
 
 	
-	private Integer idCarta;
-	private Integer numeroPunti;
+	public Integer idCarta;
+	public Integer numeroPunti;
 
 	public UtenteVip() {
 		super();

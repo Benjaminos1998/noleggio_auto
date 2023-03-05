@@ -8,11 +8,11 @@ public class Noleggio {
 
 	// CAMPI
 	
-	private double prezzo;
+	public double prezzo;
 	@Id
 	@SequenceGenerator(sequenceName = "noleggio_sequence", allocationSize = 1, name = "noleggio_sequence")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "noleggio_sequence")
-	private Integer idNoleggio;
+	public Integer idNoleggio;
 
 	// COSTRUTTORI
 	
