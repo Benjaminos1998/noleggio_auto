@@ -17,7 +17,21 @@ public class Utilitaria extends Auto {
 	
 	public Utilitaria(String targa,String modello,String prezzo) {
 		this(targa, modello);
-		this.prezzo=prezzo;
+		this.setPrezzo(prezzo);
+	}
+
+	
+	public static Integer getPuntibonus() {
+		return puntiBonus;
+	}
+
+
+	public String getPrezzo() {
+		return prezzo;
+	}
+
+	public void setPrezzo(String prezzo) {
+		this.prezzo = prezzo;
 	}
 	
 

@@ -28,10 +28,6 @@ public class UtenteController {
 	public void RegisterNewUtente(@RequestBody Utente utente) throws IllegalAccessException {
 		utenteService.addNewUtente(utente);
 	}
-//	@PostMapping(path = "vip")
-//	public void RegisterNewUtenteVip(@RequestBody UtenteVip utente) throws IllegalAccessException {
-//		utenteService.addNewUtente(utente);
-//	}
 
 	@DeleteMapping(path = "{id}")
 	public void deleteUtente(@PathVariable Integer id) throws IllegalAccessException {

@@ -11,5 +11,9 @@ public class Business extends Auto {
 	public Business(String targa, String modello) {
 		super(targa, modello);
 	}
+
+	public static Integer getPuntibonus() {
+		return puntiBonus;
+	}
 	
 }

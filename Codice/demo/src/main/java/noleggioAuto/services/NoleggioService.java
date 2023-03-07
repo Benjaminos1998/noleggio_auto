@@ -31,4 +31,11 @@ public class NoleggioService {
 		}
 		noleggioRepository.save(noleggio);
 	}
+	public void deleteUtente(Integer id) throws IllegalAccessException {
+		boolean exist = noleggioRepository.existsById(id);
+		if (!exist) {
+			throw new IllegalAccessException("Utente con id " + id + " non esiste");
+		}
+		noleggioRepository.deleteById(id);
+	}
 }

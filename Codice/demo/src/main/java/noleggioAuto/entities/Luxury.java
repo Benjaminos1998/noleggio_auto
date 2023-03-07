@@ -23,4 +23,9 @@ public class Luxury extends Auto {
 		this.prezzo = prezzo;
 	}
 
+
+	public static Integer getPuntibonus() {
+		return puntiBonus;
+	}
+
 }
