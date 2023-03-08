@@ -9,65 +9,37 @@ import noleggioAuto.entities.Auto;
 public class AutoTest {
 
 	/**
-	 * Test sul costruttore con argomenti targa e modello dell'auto
+	 * Test per il costruttore di Auto senza argomenti
 	 */
 	@Test
 	public void testAuto() {
-		Auto auto = new Auto("CS123SA", "Panda");
-		assertEquals("CS123SA", auto.getTarga());
+		Auto auto = new Auto();
+		auto.setTarga("CA123DA");
+		auto.setModello("Panda");
+		auto.setId(1);
+		assertEquals("CA123DA", auto.getTarga());
 		assertEquals("Panda", auto.getModello());
+		assertEquals(1, auto.getId(), 0);
+
 	}
 
 	/**
-	 * Test per il costruttore che ha come argomenti id, targa e modello dell'auto
+	 * Test per il costruttore di Auto con argomenti
 	 */
 	@Test
 	public void testAuto2() {
 		Auto auto = new Auto(1, "DA123DE", "Bmw");
-		assertTrue(auto.getId() == 1);
+		assertEquals(1, auto.getId(), 0);
 		assertEquals("DA123DE", auto.getTarga());
 		assertEquals("Bmw", auto.getModello());
 	}
 
+	/**
+	 * Test per il metodo toString di Auto
+	 */
 	@Test
-	public void testAutoUtilitaria() {
-		Auto a = new Auto();
-		a.setModello("Utilitaria");
-		assertEquals("Utilitaria", a.getModello());
-	}
-
-	@Test
-	public void testAutoUtilitaria2() {
-		Auto a = new Auto();
-		a.setModello("Business");
-		assertEquals("Utilitaria", a.getModello());
-	}
-
-	@Test
-	public void testAutoBusiness() {
-		Auto a = new Auto();
-		a.setModello("Business");
-		assertEquals("Business", a.getModello());
-	}
-
-	@Test
-	public void testAutoBusiness2() {
-		Auto a = new Auto();
-		a.setModello("Luxury");
-		assertEquals("Business", a.getModello());
-	}
-
-	@Test
-	public void testAutoLuxury() {
-		Auto a = new Auto();
-		a.setModello("Luxury");
-		assertEquals("Luxury", a.getModello());
-	}
-
-	@Test
-	public void testAutoLuxury2() {
-		Auto a = new Auto();
-		a.setModello("Business");
-		assertEquals("Luxury", a.getModello());
+	public void testAuto3() {
+		Auto auto = new Auto("CA123DA", "Panda");
+		assertEquals("Panda Targa: CA123DA", auto.toString());
 	}
 }

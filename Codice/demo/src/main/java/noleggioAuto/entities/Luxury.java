@@ -5,6 +5,9 @@ public class Luxury extends Auto {
 
 	private double prezzo;
 	private static final Integer puntiBonus = 150;
+	
+	public Luxury() {
+	}
 
 	public Luxury(String targa,String modello) {
 	super(targa, modello);
@@ -13,7 +16,7 @@ public class Luxury extends Auto {
 	public Luxury(String targa, String modello, double prezzo) {
 		this(targa, modello);
 		this.prezzo = prezzo;
-	}
+	} 
 
 	public double getPrezzo() {
 		return prezzo;

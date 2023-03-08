@@ -59,6 +59,6 @@ public class Auto {
 	}
 
 	public String toString() {
-		return this.modello + "Targa: " + this.targa;
+		return this.modello + " Targa: " + this.targa;
 	}
 }
