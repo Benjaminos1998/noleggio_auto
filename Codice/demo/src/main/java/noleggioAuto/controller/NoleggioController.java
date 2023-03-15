@@ -23,4 +23,14 @@ public class NoleggioController {
 	public List<Noleggio> getNoleggi(){
 		return noleggioService.getNoleggi();
 	}
+	
+	@PostMapping
+	public void RegisterNewNoleggio(@RequestBody Noleggio noleggio) throws IllegalAccessException {
+		noleggioService.addNoleggio(noleggio);
+	}
+	
+	@DeleteMapping(path = "{id}")
+	public void deleteUtente(@PathVariable Integer id) throws IllegalAccessException {
+		noleggioService.deleteUtente(id);
+	}
 }

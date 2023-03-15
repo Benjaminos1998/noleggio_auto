@@ -20,18 +20,16 @@ public class Auto {
 	// COSTRUTTORI
 
 	public Auto() {
-
-	}
-
-	public Auto(Integer id, String targa, String modello) {
-		this.id = id;
-		this.targa = targa;
-		this.modello = modello;
 	}
 
 	public Auto(String targa, String modello) {
 		this.targa = targa;
 		this.modello = modello;
+	}
+
+	public Auto(Integer id, String targa, String modello) {
+		this(targa, modello);
+		this.id = id;
 	}
 
 	// METODI
@@ -61,6 +59,6 @@ public class Auto {
 	}
 
 	public String toString() {
-		return this.modello + "Targa: " + this.targa;
+		return this.modello + " Targa: " + this.targa;
 	}
 }
