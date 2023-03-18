@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import noleggioAuto.entities.Noleggio;
+import noleggioAuto.gestione.TipologiaNoleggio;
 import noleggioAuto.repository.NoleggioRepository;
 
 @Service
@@ -18,10 +19,9 @@ public class NoleggioService {
 	public NoleggioService(NoleggioRepository noleggioRepository) {
 		this.noleggioRepository = noleggioRepository;
 	}
-	
-	public List<Noleggio> getNoleggi(){
+
+	public List<Noleggio> getNoleggi() {
 		return noleggioRepository.findAll();
-		
 	}
 
 	public void addNoleggio(Noleggio noleggio) throws IllegalAccessException {
@@ -29,8 +29,24 @@ public class NoleggioService {
 		if (noleggioById.isPresent()) {
 			throw new IllegalAccessException("Noleggio con id " + noleggio.getIdNoleggio() + " è già presente");
 		}
+		String carsharing = "CarSharing";
+		String breveperiodo = "BrevePeriodo";
+		String lungoperiodo = "LungoPeriodo";
+		if (noleggio.getSceltaNoleggio().equalsIgnoreCase(carsharing)) {
+			noleggio.noleggio = TipologiaNoleggio.CarSharing;
+		} else if (noleggio.getSceltaNoleggio().equalsIgnoreCase(breveperiodo)) {
+			noleggio.noleggio = TipologiaNoleggio.BrevePeriodo;
+		} else if (noleggio.getSceltaNoleggio().equalsIgnoreCase(lungoperiodo)) {
+			noleggio.noleggio = TipologiaNoleggio.LungoPerido;
+		} else {
+			throw new IllegalAccessException("Tipologia noleggio non valido");
+		}
+		if (noleggio.noleggio == null)
+			throw new IllegalAccessException("Noleggio non valido");
+
 		noleggioRepository.save(noleggio);
 	}
+
 	public void deleteUtente(Integer id) throws IllegalAccessException {
 		boolean exist = noleggioRepository.existsById(id);
 		if (!exist) {

@@ -16,6 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "utenti")
 public class Utente {
 
 	@Id

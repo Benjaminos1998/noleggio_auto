@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "Auto")
+@Table(name = "automobili")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Auto {
 
