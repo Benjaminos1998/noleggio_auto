@@ -1,42 +1,24 @@
 package noleggioAuto.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class UtenteVip extends Utente {
-
 	
+
+	@Column(name = "numerocarta")
 	public Integer idCarta;
-	public Integer numeroPunti;
+//	public Integer numeroPunti;
 
-	public UtenteVip() {
-		super();
-	}
-	
 
-	public UtenteVip(Integer idCarta) {
-		super();
-		this.idCarta = idCarta;
-	}
-
-	public UtenteVip(Integer idCarta, Integer numeroPunti) {
-		this.idCarta = idCarta;
-		this.numeroPunti = numeroPunti;
-	}
-
-	public Integer getIdCarta() {
-		return idCarta;
-	}
-
-	public Integer getNumeroPunti() {
-		return numeroPunti;
-	}
-
-	public void setIdCarta(Integer idCarta) {
-		this.idCarta = idCarta;
-	}
-
-	public void setNumeroPunti(Integer numeroPunti) {
-		this.numeroPunti = numeroPunti;
-	}
 }
