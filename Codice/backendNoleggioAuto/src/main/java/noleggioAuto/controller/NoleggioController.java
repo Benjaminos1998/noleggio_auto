@@ -19,12 +19,12 @@ public class NoleggioController {
 		this.noleggioService=noleggioService;
 	}
 	
-	@GetMapping
+	@GetMapping(path = "noleggi")
 	public List<Noleggio> getNoleggi(){
 		return noleggioService.getNoleggi();
 	}
 	
-	@PostMapping
+	@PostMapping(path = "add")
 	public void RegisterNewNoleggio(@RequestBody Noleggio noleggio) throws IllegalAccessException {
 		noleggioService.addNoleggio(noleggio);
 	}

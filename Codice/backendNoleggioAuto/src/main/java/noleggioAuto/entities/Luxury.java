@@ -1,31 +1,20 @@
 package noleggioAuto.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
 public class Luxury extends Auto {
 
-	private double prezzo;
+	@Column(insertable = false)
 	private static final Integer puntiBonus = 150;
-	
-	public Luxury() {
-	}
-
-	public Luxury(String targa,String modello) {
-	super(targa, modello);
-	}
-
-	public Luxury(String targa, String modello, double prezzo) {
-		this(targa, modello);
-		this.prezzo = prezzo;
-	} 
-
-	public double getPrezzo() {
-		return prezzo;
-	}
-
-	public void setPrezzo(double prezzo) {
-		this.prezzo = prezzo;
-	}
-
 
 	public static Integer getPuntibonus() {
 		return puntiBonus;

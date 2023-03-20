@@ -19,12 +19,12 @@ public class UtenteController {
 		this.utenteService = utenteService;
 	}
 
-	@GetMapping
+	@GetMapping(path = "utenti")
 	public List<Utente> getUtenti() {
 		return utenteService.getUtenti();
 	}
 
-	@PostMapping
+	@PostMapping(path = "addUtente")
 	public void RegisterNewUtente(@RequestBody Utente utente) throws IllegalAccessException {
 		utenteService.addNewUtente(utente);
 	}

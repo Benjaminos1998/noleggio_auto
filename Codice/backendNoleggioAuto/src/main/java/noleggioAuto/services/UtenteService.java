@@ -22,6 +22,7 @@ public class UtenteService {
 	public List<Utente> getUtenti() {
 		return utenteRepository.findAll();
 	}
+	
 
 	public void addNewUtente(Utente utente) throws IllegalAccessException {
 		Optional<Utente> utenteByNumeroPatente = utenteRepository.findByNumeroPatente(utente.getNumeroPatente());

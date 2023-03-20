@@ -1,36 +1,23 @@
 package noleggioAuto.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
 public class Utilitaria extends Auto {
 
-	// CAMPI
-
+	@Column(insertable = false)
 	private static final Integer puntiBonus = 50;
-	private double prezzo;
-
-	// COSTRUTTORI
-
-	public Utilitaria() {
-	}
-
-	public Utilitaria(String targa, String modello) {
-		super(targa, modello);
-	}
-
-	public Utilitaria(String targa, String modello, double prezzo) {
-		this(targa, modello);
-		this.setPrezzo(prezzo);
-	}
 
 	public static Integer getPuntibonus() {
 		return puntiBonus;
-	}
-
-	public double getPrezzo() {
-		return prezzo;
-	}
-
-	public void setPrezzo(double prezzo) {
-		this.prezzo = prezzo;
 	}
 
 }
