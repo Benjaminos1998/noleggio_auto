@@ -1,15 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environmet } from '../environments/environment';
 import { UtenteVip } from '../interfacce/utenteVip';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtenteVipService {
-
-  private apiServerUrl = environmet.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
 

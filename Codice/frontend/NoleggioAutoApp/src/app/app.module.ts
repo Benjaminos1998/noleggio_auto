@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,13 +14,21 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { UtenteComponent } from './componenti/utente/utente.component';
+import { UtenteVipComponent } from './componenti/utente-vip/utente-vip.component';
+import { NoleggioComponent } from './componenti/noleggio/noleggio.component';
+import { AutoComponent } from './componenti/auto/auto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    RegistrazioneComponent
+    RegistrazioneComponent,
+    UtenteComponent,
+    UtenteVipComponent,
+    NoleggioComponent,
+    AutoComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +39,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatCardModule,
     MatInputModule,
     MatSidenavModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
