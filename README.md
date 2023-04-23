@@ -67,7 +67,7 @@ il sistema deve poter girare su diversi OS.
 REQUIREMENTS ENGINIEERING
 
 Si vuole realizzare un sistema che gestisca il noleggio di auto. 
-L’utente dovrà come prima cosa registrarsi al servizio per poi effettuare l’accesso  mediante un classico servizio di autenticazione (emali e password).
+L’utente dovrà come prima cosa registrarsi al servizio per poi effettuare l’accesso  mediante un classico servizio di autenticazione (email e password).
 Durante la fase di registrazione verrà offerta la possibilità di scegliere o meno di partecipare al programma fedeltà che includerà diversi vantaggi che verranno spiegati in seguito.
 
 Vengono offerti tre tipi di noleggi: 
@@ -92,7 +92,7 @@ TABELLA MOSCOW
 •	MUST HAVE: un sistema che permetta la creazione di un noleggio e che permetta di scegliere un’auto
 •	SHOULD HAVE: un sistema di registrazione ed autenticazione
 •	COULD HAVE: una lista che mostra lo storico dei noleggi per singolo utente
-•	WON’T HAVE: 
+•	WON’T HAVE: la consegna del veicolo a domicilio
 
 MODELING
 
@@ -104,13 +104,13 @@ SOFTWARE ARCHITECTURE
 Per l’architettura del nostro software si è scelto di adottare un approccio di tipo Model View Controller (MVC). Questo modello permette di gestire direttamente i dati, la logica e le regole dell’applicazione.
 MVC è caratterizzato da tre componenti:
 
-•	MODEL: fornisce i metodi per accedere ai dati utili dell’applicazione
+•	MODEL: rappresenta la logica del sistema fornisce i metodi per accedere ai dati utili dell’applicazione
 
-•	VIEW: visualizza i dati contenuti nel Model e si occupa dell’interazione con utenti e agenti
+•	VIEW: visualizza i dati contenuti nel Model graficamente  e si occupa dell’interazione con utenti e agenti
 
 •	CONTROLLER: riceve i comandi dell’utente, generalmente dall’interfaccia grafica (View) e li attua modificando lo stato delle altre due componenti
 
 SOFTWARE TESTING
 
-L' Extreme Programming viene riconosciuto come un Test Driven Developement ed appunto per questo il nostro è stato un approccio orientato al testing. Ogni modifica che è stata effettuata veniva testata manualmente e solo dopo sono stati implementati alcuni casi di test con JUnit.
+L' Extreme Programming viene riconosciuto come un Test Driven Developement ed appunto per questo il nostro è stato un approccio orientato al testing. Ogni modifica che è stata guidata dai Test con JUnit e solo dopo vengono implementati al sistema.
 
