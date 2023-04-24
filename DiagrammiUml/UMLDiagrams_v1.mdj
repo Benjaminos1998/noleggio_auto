@@ -20029,7 +20029,7 @@
 													"_parent": {
 														"$ref": "AAAAAAGHpJjmFFVrf+s="
 													},
-													"font": "Arial;13;3",
+													"font": "Arial;13;1",
 													"left": 613,
 													"top": 455,
 													"width": 141.53369140625,
@@ -20653,13 +20653,30 @@
 													"height": 13,
 													"text": "+dataNascita: LocalDate",
 													"horizontalAlignment": 0
+												},
+												{
+													"_type": "UMLAttributeView",
+													"_id": "AAAAAAGHtNKwg104U2c=",
+													"_parent": {
+														"$ref": "AAAAAAGHpJjmFFWNE8I="
+													},
+													"model": {
+														"$ref": "AAAAAAGHtNKwb101gdc="
+													},
+													"font": "Arial;13;0",
+													"left": 973,
+													"top": 537,
+													"width": 142.00341796875,
+													"height": 13,
+													"text": "+numeroPatente: String",
+													"horizontalAlignment": 0
 												}
 											],
 											"font": "Arial;13;0",
 											"left": 968,
 											"top": 457,
 											"width": 152.00341796875,
-											"height": 83
+											"height": 98
 										},
 										{
 											"_type": "UMLOperationCompartmentView",
@@ -20682,7 +20699,7 @@
 													},
 													"font": "Arial;13;0",
 													"left": 973,
-													"top": 545,
+													"top": 560,
 													"width": 142.00341796875,
 													"height": 13,
 													"text": "+noleggiaAuto()",
@@ -20691,7 +20708,7 @@
 											],
 											"font": "Arial;13;0",
 											"left": 968,
-											"top": 540,
+											"top": 555,
 											"width": 152.00341796875,
 											"height": 23
 										},
@@ -20733,7 +20750,7 @@
 									"left": 968,
 									"top": 432,
 									"width": 152.00341796875,
-									"height": 131,
+									"height": 146,
 									"showProperty": false,
 									"nameCompartment": {
 										"$ref": "AAAAAAGHpJjmFFWITkY="
@@ -23910,8 +23927,7 @@
 									"visibility": "private",
 									"type": "boolean"
 								}
-							],
-							"isAbstract": true
+							]
 						},
 						{
 							"_type": "UMLClass",
@@ -24058,6 +24074,15 @@
 									},
 									"name": "dataNascita",
 									"type": "LocalDate"
+								},
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAGHtNKwb101gdc=",
+									"_parent": {
+										"$ref": "AAAAAAGHpJjmFlZn85Q="
+									},
+									"name": "numeroPatente",
+									"type": "String"
 								}
 							],
 							"operations": [

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import noleggioAuto.entities.Noleggio;
-import noleggioAuto.gestione.TipologiaNoleggio;
+import noleggioAuto.entities.TipologiaNoleggio;
 import noleggioAuto.repository.NoleggioRepository;
 
 @Service

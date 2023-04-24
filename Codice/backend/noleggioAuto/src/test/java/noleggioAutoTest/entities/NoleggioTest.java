@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import noleggioAuto.entities.Noleggio;
-import noleggioAuto.gestione.TipologiaNoleggio;
+import noleggioAuto.entities.TipologiaNoleggio;
 
 public class NoleggioTest {
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import noleggioAuto.entities.Auto;
 
 @Repository
-public interface AutoRepository extends JpaRepository<Auto, Integer> {
+public interface AutoRepository extends JpaRepository<Auto, Long> {
 
 	@Query
 	Optional<Auto> findAutoByTarga(String targa);

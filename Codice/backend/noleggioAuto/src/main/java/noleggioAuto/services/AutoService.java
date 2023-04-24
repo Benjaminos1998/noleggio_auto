@@ -19,8 +19,16 @@ public class AutoService {
 		this.autoRepository = autoRepository;
 	}
 
-	public List<Auto> getAuto() {
+	public List<Auto> getAllAuto() {
 		return autoRepository.findAll();
+	}
+	
+	public Auto getAutoById(Long idAuto) {
+		try {
+		return autoRepository.findById(idAuto);
+		}catch() {
+			
+		}
 	}
 
 	public void addNewAuto(Auto auto) throws IllegalAccessException {
@@ -28,9 +36,6 @@ public class AutoService {
 		Optional<Auto> autoByTarga = autoRepository.findAutoByTarga(auto.getTarga());
 		if (autoByTarga.isPresent()) {
 			throw new IllegalAccessException("Auto già inserita");
-		}
-		if (auto.prezzo <= 0) {
-			throw new IllegalAccessException("Non puoi inserire un prezzo minore o uguale a 0");
 		}
 		if (!(auto.targa.length() == 7)) {
 			throw new IllegalAccessException("Targa non valida");
@@ -55,11 +60,11 @@ public class AutoService {
 		autoRepository.save(auto);
 	}
 
-	public void deleteAuto(Integer id) {
-		boolean exist = autoRepository.existsById(id);
+	public void deleteAuto(Long idAuto) {
+		boolean exist = autoRepository.existsById(idAuto);
 		if (!exist) {
-			throw new IllegalStateException("L'auto con id " + id + " non esiste");
+			throw new IllegalStateException("L'auto con id " + idAuto + " non esiste");
 		}
-		autoRepository.deleteById(id);
+		autoRepository.deleteById(idAuto);
 	}
 }

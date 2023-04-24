@@ -1,39 +1,68 @@
 package noleggioAuto.entities;
 
-import javax.persistence.*;
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import noleggioAuto.gestione.TipologiaNoleggio;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "noleggi")
 public class Noleggio {
 
-	public double prezzo;
 	@Id
-	@SequenceGenerator(sequenceName = "noleggio_sequence", allocationSize = 1, name = "noleggio_sequence")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "noleggio_sequence")
-	public Integer idNoleggio;
-	@Transient
-	public TipologiaNoleggio noleggio;
-	@Transient
-	private String sceltaNoleggio;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idNoleggio;
+	@Column(name = "data_inizio")
+	private LocalDate dataInizio;
+	@Column(name = "data_fine")
+	private LocalDate dataFine;
+	@Column(name = "prezzo")
+	private double prezzo;
+	@Column(name = "tipologia_noleggio")
+	private TipologiaNoleggio tipologiaNoleggio;
+	@ManyToOne
+	private Auto auto;
+	@ManyToOne
+	private UtenteRegistrato utenteRegistrato;
 
-	public Noleggio(Integer idNoleggio, double prezzo, String sceltaNoleggio) {
+	public Noleggio(LocalDate dataInizio, LocalDate dataFine, double prezzo, TipologiaNoleggio tipologiaNoleggio,
+			Auto auto, UtenteRegistrato utenteRegistrato) {
+		this.dataInizio = dataInizio;
+		this.dataFine = dataFine;
 		this.prezzo = prezzo;
-		this.idNoleggio = idNoleggio;
-		this.sceltaNoleggio = sceltaNoleggio;
+		this.tipologiaNoleggio = tipologiaNoleggio;
+		this.auto = auto;
+		this.utenteRegistrato = utenteRegistrato;
 	}
 
-	public double calcolaPrezzo() {
-		return 0;
+	@Override
+	public String toString() {
+		return "Noleggio{" + "idNoleggio=" + this.idNoleggio + ", dataInizio=" + this.dataInizio + ", dataFine="
+				+ this.dataFine + ", prezzo=" + this.prezzo + ", tipologiaNoleggio=" + this.tipologiaNoleggio
+				+ ", auto=" + this.auto.getTarga() + ", utenteRegistrato=" + this.utenteRegistrato.getUsername() + '}';
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof Noleggio))
+			return false;
+		Noleggio noleggio = (Noleggio) o;
+		return this.idNoleggio == noleggio.idNoleggio;
+	}
 }

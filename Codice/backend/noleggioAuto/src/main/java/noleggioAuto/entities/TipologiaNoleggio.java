@@ -1,4 +1,4 @@
-package noleggioAuto.gestione;
+package noleggioAuto.entities;
 
 public enum TipologiaNoleggio {
 	CarSharing(50), BrevePeriodo(100), LungoPerido(200);
@@ -11,6 +11,6 @@ public enum TipologiaNoleggio {
 
 	@Override
 	public String toString() {
-		return "";
+		return String.valueOf(valore);
 	}
 }

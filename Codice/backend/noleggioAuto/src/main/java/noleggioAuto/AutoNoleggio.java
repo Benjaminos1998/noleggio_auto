@@ -10,10 +10,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @SpringBootApplication
-public class NoleggioAuto {
+public class AutoNoleggio {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NoleggioAuto.class, args);
+		SpringApplication.run(AutoNoleggio.class, args);
 	}
 
 	@Bean

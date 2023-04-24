@@ -6,26 +6,26 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import noleggioAuto.entities.UtenteVip;
-import noleggioAuto.repository.UtenteVipRepository;
+import noleggioAuto.entities.UtenteRegistrato;
+import noleggioAuto.repository.UtenteRegistratoRepository;
 
 @Service
 public class UtenteVipService {
 
-	UtenteVipRepository utenteVipRepository;
+	UtenteRegistratoRepository utenteVipRepository;
 
 	@Autowired
-	public UtenteVipService(UtenteVipRepository utenteVipRepository) {
+	public UtenteVipService(UtenteRegistratoRepository utenteVipRepository) {
 		this.utenteVipRepository = utenteVipRepository;
 	}
 
-	public List<UtenteVip> getUtentiVip() {
+	public List<UtenteRegistrato> getUtentiVip() {
 		return utenteVipRepository.findAll();
 	}
 
-	public void addNewUtenteVip(UtenteVip utenteVip) throws IllegalAccessException {
-		Optional<UtenteVip> utenteByIdCarta = utenteVipRepository.findByIdCarta(utenteVip.getIdCarta());
-		Optional<UtenteVip> utenteByNumeroPatente = utenteVipRepository.findByNumeroPatente(utenteVip.getNumeroPatente());
+	public void addNewUtenteVip(UtenteRegistrato utenteVip) throws IllegalAccessException {
+		Optional<UtenteRegistrato> utenteByIdCarta = utenteVipRepository.findByIdCarta(utenteVip.getIdCarta());
+		Optional<UtenteRegistrato> utenteByNumeroPatente = utenteVipRepository.findByNumeroPatente(utenteVip.getNumeroPatente());
 		if (utenteByIdCarta.isPresent()) {
 			throw new IllegalAccessException("UtenteVip: Numero carta fedeltà già in uso");
 		}

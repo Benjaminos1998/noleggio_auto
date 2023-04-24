@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import noleggioAuto.entities.UtenteVip;
+import noleggioAuto.entities.UtenteRegistrato;
 import noleggioAuto.services.UtenteVipService;
 
 @RestController
@@ -26,12 +26,12 @@ public class UtenteVipController {
 	}
 
 	@GetMapping(path = "utentiVip")
-	public List<UtenteVip> getUtentiVip() {
+	public List<UtenteRegistrato> getUtentiVip() {
 		return utenteVipService.getUtentiVip();
 	}
 
 	@PostMapping(path = "addUtenteVip")
-	public void RegisterNewUtenteVip(@RequestBody UtenteVip utenteVip) throws IllegalAccessException {
+	public void RegisterNewUtenteVip(@RequestBody UtenteRegistrato utenteVip) throws IllegalAccessException {
 		utenteVipService.addNewUtenteVip(utenteVip);
 	}
 
