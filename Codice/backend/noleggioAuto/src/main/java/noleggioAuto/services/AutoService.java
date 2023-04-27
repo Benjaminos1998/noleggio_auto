@@ -1,12 +1,17 @@
 package noleggioAuto.services;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import noleggioAuto.entities.Auto;
+import noleggioAuto.entities.TipologiaAuto;
+import noleggioAuto.exception.AutoNonTrovataException;
+import noleggioAuto.exception.TipologiaAutoNonValidaException;
 import noleggioAuto.repository.AutoRepository;
 
 @Service
@@ -22,42 +27,33 @@ public class AutoService {
 	public List<Auto> getAllAuto() {
 		return autoRepository.findAll();
 	}
-	
-	public Auto getAutoById(Long idAuto) {
-		try {
-		return autoRepository.findById(idAuto);
-		}catch() {
-			
-		}
+
+	public Auto getAutoById(Long idAuto) throws AutoNonTrovataException {
+		Optional<Auto> auto = this.autoRepository.findById(idAuto);
+		if (auto.isPresent())
+			return auto.get();
+		else
+			throw new AutoNonTrovataException("Auto non trovata con id " + idAuto);
 	}
 
-	public void addNewAuto(Auto auto) throws IllegalAccessException {
-		auto.targa.toUpperCase();
-		Optional<Auto> autoByTarga = autoRepository.findAutoByTarga(auto.getTarga());
-		if (autoByTarga.isPresent()) {
-			throw new IllegalAccessException("Auto già inserita");
-		}
-		if (!(auto.targa.length() == 7)) {
-			throw new IllegalAccessException("Targa non valida");
-		}
+	public Auto getAutoByTarga(String targa) throws AutoNonTrovataException {
+		Optional<Auto> auto = this.autoRepository.findAutoByTarga(targa);
+		if (auto.isPresent())
+			return auto.get();
+		else
+			throw new AutoNonTrovataException("Auto non trovata con targa " + targa);
+	}
 
-		String lettere1 = auto.targa.substring(0, 2);
-		String lettere2 = auto.targa.substring(5, 7);
-		String numeri = auto.targa.substring(2, 5);
-		String lettere = lettere1.concat(lettere2);
-
-		for (int i = 0; i < lettere.length(); i++) {
-			if (!(Character.isLetter(lettere.charAt(i)) && !(Character.isLowerCase(lettere.charAt(i))))) {
-				throw new IllegalAccessException("Targa non valida");
-			}
-
+	public void addAuto(String targa, String modello, String tipologiaAuto) throws TipologiaAutoNonValidaException {
+		Auto.controlloTarga(targa);
+		//controllo tipologia Auto
+		String tipologiaFormatted = tipologiaAuto.toLowerCase();
+		if (!Arrays.stream(TipologiaAuto.values()).map(Enum::toString).map(String::toLowerCase)
+				.collect(Collectors.toList()).contains(tipologiaFormatted)) {
+			throw new TipologiaAutoNonValidaException("La tipologia " + tipologiaAuto + " non è valida");
 		}
-		for (int i = 0; i < numeri.length(); i++) {
-			if (!(Character.isDigit(numeri.charAt(i)))) {
-				throw new IllegalAccessException("Targa non valida");
-			}
-		}
-		autoRepository.save(auto);
+		Auto nuovaAuto = new Auto(null, targa, modello, TipologiaAuto.valueOf(tipologiaAuto));
+		autoRepository.save(nuovaAuto);
 	}
 
 	public void deleteAuto(Long idAuto) {
