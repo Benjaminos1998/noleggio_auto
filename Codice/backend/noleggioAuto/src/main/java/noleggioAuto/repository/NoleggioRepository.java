@@ -11,8 +11,8 @@ import noleggioAuto.entities.Noleggio;
 @Repository
 public interface NoleggioRepository extends JpaRepository<Noleggio, Long> {
 
-	List<Noleggio> findByAutoIdAuto(Long idAuto);
-	List<Noleggio> findByUtenteRegistratoIdUtente(Long idUtente);
-	Optional<Noleggio> findByIdNoleggio(Long idNoleggio);
+	List<Noleggio> findNoleggioByIdAuto(Long idAuto);
+	List<Noleggio> findNoleggioByIdUtenteRegistrato(Long idUtenteRegistrato);
+	Optional<Noleggio> findNoleggioById(Long idNoleggio);
 
 }

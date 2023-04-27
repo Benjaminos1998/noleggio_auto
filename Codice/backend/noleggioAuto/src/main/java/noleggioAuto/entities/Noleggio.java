@@ -1,6 +1,7 @@
 package noleggioAuto.entities;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,6 +50,10 @@ public class Noleggio {
 		this.utenteRegistrato = utenteRegistrato;
 	}
 
+	public static int durataNoleggio(Noleggio noleggio) {
+		return (int) ChronoUnit.DAYS.between(noleggio.dataInizio, noleggio.dataFine);
+	}
+
 	@Override
 	public String toString() {
 		return "Noleggio{" + "idNoleggio=" + this.idNoleggio + ", dataInizio=" + this.dataInizio + ", dataFine="
@@ -64,5 +69,10 @@ public class Noleggio {
 			return false;
 		Noleggio noleggio = (Noleggio) o;
 		return this.idNoleggio == noleggio.idNoleggio;
+	}
+
+	public static void controlloPrezzoNoleggio(double prezzoNoleggio) {
+		if (prezzoNoleggio <= 0)
+			throw new IllegalArgumentException("Hai inserito un prezzo non valido");
 	}
 }

@@ -1,5 +1,8 @@
 package noleggioAuto.entities;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +14,7 @@ import javax.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 import noleggioAuto.exception.TargaAutoNonValidaException;
+import noleggioAuto.exception.TipologiaAutoNonValidaException;
 
 @Getter
 @Setter
@@ -37,10 +41,18 @@ public class Auto {
 		this.tipoAuto = tipoAuto;
 	}
 
-	public static void controlloTarga(String targa) throws TargaAutoNonValidaException{
+	public static void controlloTarga(String targa) throws TargaAutoNonValidaException {
 		String formato = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
-		if(!(targa.matches(formato))) {
+		if (!(targa.matches(formato))) {
 			throw new TargaAutoNonValidaException("La targa inserita non è valida!");
+		}
+	}
+
+	public static void controlloTipologiaAuto(String tipologiaAuto) throws TipologiaAutoNonValidaException {
+		String tipologiaFormatted = tipologiaAuto.toLowerCase();
+		if (!Arrays.stream(TipologiaAuto.values()).map(Enum::toString).map(String::toLowerCase)
+				.collect(Collectors.toList()).contains(tipologiaFormatted)) {
+			throw new TipologiaAutoNonValidaException("La tipologia " + tipologiaAuto + " non è valida");
 		}
 	}
 

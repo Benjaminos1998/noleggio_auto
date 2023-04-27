@@ -1,9 +1,7 @@
 package noleggioAuto.services;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 import noleggioAuto.entities.Auto;
 import noleggioAuto.entities.TipologiaAuto;
 import noleggioAuto.exception.AutoNonTrovataException;
-import noleggioAuto.exception.TipologiaAutoNonValidaException;
 import noleggioAuto.repository.AutoRepository;
 
 @Service
@@ -24,11 +21,22 @@ public class AutoService {
 		this.autoRepository = autoRepository;
 	}
 
+	/**
+	 * Metodo che restituisce la lista di automobili presenti.
+	 * 
+	 * @return la lista di auto
+	 */
 	public List<Auto> getAllAuto() {
 		return autoRepository.findAll();
 	}
 
-	public Auto getAutoById(Long idAuto) throws AutoNonTrovataException {
+	/**
+	 * Metodo che restituisce l'automobile passando l'identificativo come parametro.
+	 * 
+	 * @param idAuto, l'identificativo dell'automobile
+	 * @return l'auto
+	 */
+	public Auto getAutoById(Long idAuto) {
 		Optional<Auto> auto = this.autoRepository.findById(idAuto);
 		if (auto.isPresent())
 			return auto.get();
@@ -36,7 +44,13 @@ public class AutoService {
 			throw new AutoNonTrovataException("Auto non trovata con id " + idAuto);
 	}
 
-	public Auto getAutoByTarga(String targa) throws AutoNonTrovataException {
+	/**
+	 * Metodo che resituisce l'automobile passando la targa come paramentro. 
+	 * 
+	 * @param targa dell'automobile
+	 * @return l'auto
+	 */
+	public Auto getAutoByTarga(String targa) {
 		Optional<Auto> auto = this.autoRepository.findAutoByTarga(targa);
 		if (auto.isPresent())
 			return auto.get();
@@ -44,22 +58,34 @@ public class AutoService {
 			throw new AutoNonTrovataException("Auto non trovata con targa " + targa);
 	}
 
-	public void addAuto(String targa, String modello, String tipologiaAuto) throws TipologiaAutoNonValidaException {
+	/**
+	 * Metodo che aggiunge un automobile. Per farlo è necessario inserire come
+	 * parametri la targa dell'auto, il modello e scegliere la tipologia tra quelle
+	 * presenti. Bisogna inserire una targa che rispetti la seguente sequenza:
+	 * lettera|lettera|numero|numero|numero|lettera|lettera (esempio CA123DA).
+	 * Altrimenti verrà lanciata un'eccezione. Bisogna inserire una tipologia di
+	 * auto tra quelle disponibili che sono: 1)Utilitaria 2)Business 3)Luxury;
+	 * altrimenti verrà lanciata un'eccezione
+	 * 
+	 * @param targa         dell'automobile
+	 * @param modello       dell'automobile
+	 * @param tipologiaAuto
+	 */
+	public void addAuto(String targa, String modello, String tipologiaAuto) {
 		Auto.controlloTarga(targa);
-		//controllo tipologia Auto
-		String tipologiaFormatted = tipologiaAuto.toLowerCase();
-		if (!Arrays.stream(TipologiaAuto.values()).map(Enum::toString).map(String::toLowerCase)
-				.collect(Collectors.toList()).contains(tipologiaFormatted)) {
-			throw new TipologiaAutoNonValidaException("La tipologia " + tipologiaAuto + " non è valida");
-		}
+		Auto.controlloTipologiaAuto(tipologiaAuto);
 		Auto nuovaAuto = new Auto(null, targa, modello, TipologiaAuto.valueOf(tipologiaAuto));
 		autoRepository.save(nuovaAuto);
 	}
 
+	/**
+	 * Metodo che cancella un automobile 
+	 * @param id dell'automobile 
+	 */
 	public void deleteAuto(Long idAuto) {
 		boolean exist = autoRepository.existsById(idAuto);
 		if (!exist) {
-			throw new IllegalStateException("L'auto con id " + idAuto + " non esiste");
+			throw new AutoNonTrovataException("L'auto con id " + idAuto + " non esiste");
 		}
 		autoRepository.deleteById(idAuto);
 	}
