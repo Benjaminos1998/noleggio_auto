@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import noleggioAuto.entities.Auto;
 import noleggioAuto.entities.TipologiaAuto;
 import noleggioAuto.exception.AutoNonTrovataException;
+import noleggioAuto.exception.UtenteNonTrovatoException;
 import noleggioAuto.repository.AutoRepository;
 
 @Service
@@ -27,7 +28,7 @@ public class AutoService {
 	 * @return la lista di auto
 	 */
 	public List<Auto> getAllAuto() {
-		return autoRepository.findAll();
+		return this.autoRepository.findAll();
 	}
 
 	/**
@@ -37,15 +38,12 @@ public class AutoService {
 	 * @return l'auto
 	 */
 	public Auto getAutoById(Long idAuto) {
-		Optional<Auto> auto = this.autoRepository.findById(idAuto);
-		if (auto.isPresent())
-			return auto.get();
-		else
-			throw new AutoNonTrovataException("Auto non trovata con id " + idAuto);
+		return this.autoRepository.findById(idAuto)
+				.orElseThrow(() -> new AutoNonTrovataException("Auto non trovata con id " + idAuto));
 	}
 
 	/**
-	 * Metodo che resituisce l'automobile passando la targa come paramentro. 
+	 * Metodo che resituisce l'automobile passando la targa come paramentro.
 	 * 
 	 * @param targa dell'automobile
 	 * @return l'auto
@@ -75,18 +73,19 @@ public class AutoService {
 		Auto.controlloTarga(targa);
 		Auto.controlloTipologiaAuto(tipologiaAuto);
 		Auto nuovaAuto = new Auto(null, targa, modello, TipologiaAuto.valueOf(tipologiaAuto));
-		autoRepository.save(nuovaAuto);
+		this.autoRepository.save(nuovaAuto);
 	}
 
 	/**
-	 * Metodo che cancella un automobile 
-	 * @param id dell'automobile 
+	 * Metodo che cancella un automobile
+	 * 
+	 * @param id dell'automobile
 	 */
 	public void deleteAuto(Long idAuto) {
 		boolean exist = autoRepository.existsById(idAuto);
 		if (!exist) {
 			throw new AutoNonTrovataException("L'auto con id " + idAuto + " non esiste");
 		}
-		autoRepository.deleteById(idAuto);
+		this.autoRepository.deleteById(idAuto);
 	}
 }

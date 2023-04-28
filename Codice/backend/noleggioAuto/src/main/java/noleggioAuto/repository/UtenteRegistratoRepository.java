@@ -11,6 +11,7 @@ import noleggioAuto.entities.UtenteRegistrato;
 public interface UtenteRegistratoRepository extends JpaRepository<UtenteRegistrato, Long> {
 
 	Optional<UtenteRegistrato> findByIdCarta(Integer idCarta);
-	Optional<UtenteRegistrato> findByNumeroPatente(Integer numeroPatente);
+	Optional<UtenteRegistrato> findByNumeroPatente(String numeroPatente);
+	Optional<UtenteRegistrato> findByUsername(String username);
 	
 }

@@ -35,26 +35,34 @@ public class UtenteRegistrato extends Utente {
 	private String password;
 	@Column(name = "numero_punti")
 	private Integer numeroPunti;
-	@Column(name = "id_carta")
-	private Integer idCarta;
 	@Column(name = "data_di_nascita")
 	@Temporal(TemporalType.DATE)
 	private LocalDate dataDiNascita;
 	@Column(name = "numero_patente")
 	private String numeroPatente;
 	@Transient
-	private int eta;
+	private int eta = getEta();
 
-	public Integer getEta() {
-		return Period.between(this.dataDiNascita, LocalDate.now()).getYears();
+	public UtenteRegistrato(String nome, String cognome, String username, String password, LocalDate dataDiNascita,
+			String numeroPatente) {
+		super(nome, cognome);
+		this.username = username;
+		this.password = password;
+		this.numeroPunti = 0;
+		this.dataDiNascita = dataDiNascita;
+		this.numeroPatente = numeroPatente;
+	}
+
+	public static int getEta(LocalDate dataDiNascita) {
+		return Period.between(dataDiNascita, LocalDate.now()).getYears();
 	}
 
 	@Override
 	public String toString() {
 		return "UtenteRegistrato{" + "id=" + this.idUtente + ", nome='" + this.nome + '\'' + ", cognome='"
 				+ this.cognome + '\'' + ", username='" + this.username + '\'' + ", password='" + this.password + '\''
-				+ ", numeroPunti=" + this.numeroPunti + ", idCarta=" + this.idCarta + ", dataDiNascita="
-				+ this.dataDiNascita + ", numeroPatente='" + this.numeroPatente + '\'' + ", eta=" + getEta() + '}';
+				+ ", numeroPunti=" + this.numeroPunti + ", dataDiNascita=" + this.dataDiNascita + ", numeroPatente='"
+				+ this.numeroPatente + '\'' + ", eta=" + getEta() + '}';
 	}
 
 	@Override

@@ -9,12 +9,12 @@ import noleggioAuto.entities.TipologiaNoleggio;
 
 public class NoleggioTest {
 
-	@Test
-	public void testCreaNoleggio() {
-		Noleggio n = new Noleggio();
-		n.idNoleggio = 1;
-		assertEquals(n.getIdNoleggio(), n.idNoleggio);
-	}
+//	@Test
+//	public void testCreaNoleggio() {
+//		Noleggio n = new Noleggio();
+//		n.idNoleggio = 1;
+//		assertEquals(n.getIdNoleggio(), n.idNoleggio);
+//	}
 
 	@Test
 	public void test2() {

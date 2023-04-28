@@ -35,7 +35,7 @@ public class NoleggioService {
 	}
 
 	public List<Noleggio> getNoleggi() {
-		return noleggioRepository.findAll();
+		return this.noleggioRepository.findAll();
 	}
 
 	public Noleggio getNoleggioById(Long idNoleggio) {
@@ -83,7 +83,7 @@ public class NoleggioService {
 		if (!exist) {
 			throw new NoleggioNonTrovatoException("Noleggio con id " + idNoleggio + " non esiste");
 		}
-		noleggioRepository.deleteById(idNoleggio);
+		this.noleggioRepository.deleteById(idNoleggio);
 	}
 
 	/**

@@ -13,24 +13,25 @@ import noleggioAuto.services.NoleggioService;
 public class NoleggioController {
 
 	private final NoleggioService noleggioService;
-	
+
 	@Autowired
 	public NoleggioController(NoleggioService noleggioService) {
-		this.noleggioService=noleggioService;
+		this.noleggioService = noleggioService;
 	}
-	
+
 	@GetMapping(path = "noleggi")
-	public List<Noleggio> getNoleggi(){
+	public List<Noleggio> getNoleggi() {
 		return noleggioService.getNoleggi();
 	}
-	
+
 	@PostMapping(path = "add")
-	public void RegisterNewNoleggio(@RequestBody Noleggio noleggio) throws IllegalAccessException {
-		noleggioService.addNoleggio(noleggio);
+	public void RegisterNewNoleggio(@RequestBody Noleggio noleggio) {
+		noleggioService.addNoleggio(noleggio.getDataInizio(), noleggio.getDataFine(), noleggio.getPrezzo(),
+				noleggio.getAuto(), noleggio.getUtenteRegistrato());
 	}
-	
+
 	@DeleteMapping(path = "{id}")
-	public void deleteUtente(@PathVariable Integer id) throws IllegalAccessException {
-		noleggioService.deleteUtente(id);
+	public void deleteUtente(@PathVariable Long id) throws IllegalAccessException {
+		noleggioService.deleteNoleggio(id);
 	}
 }

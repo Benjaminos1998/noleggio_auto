@@ -1,6 +1,6 @@
 package noleggioAuto.exception;
 
-public class UtenteNonTrovatoException extends RuntimeException {
+public class UtenteNonTrovatoException extends UtenteException {
 
 	private static final long serialVersionUID = 1L;
 
