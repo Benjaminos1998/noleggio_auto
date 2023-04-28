@@ -21,7 +21,7 @@ public class UtenteRegistratoService {
 		this.utenteRegistratoRepository = utenteRegistratoRepository;
 	}
 
-	public List<UtenteRegistrato> getUtentiVip() {
+	public List<UtenteRegistrato> getUtentiRegistrati() {
 		return this.utenteRegistratoRepository.findAll();
 	}
 
