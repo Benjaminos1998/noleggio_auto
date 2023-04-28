@@ -1,6 +1,6 @@
 package noleggioAuto.exception;
 
-public class AutoNonTrovataException extends RuntimeException {
+public class AutoNonTrovataException extends AutoException {
 
 	private static final long serialVersionUID = 1L;
 

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import noleggioAuto.entities.Auto;
 import noleggioAuto.entities.TipologiaAuto;
 import noleggioAuto.exception.AutoNonTrovataException;
-import noleggioAuto.exception.UtenteNonTrovatoException;
 import noleggioAuto.repository.AutoRepository;
 
 @Service

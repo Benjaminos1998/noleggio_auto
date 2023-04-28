@@ -11,13 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import noleggioAuto.exception.TargaAutoNonValidaException;
 import noleggioAuto.exception.TipologiaAutoNonValidaException;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "automobili")
 public class Auto {

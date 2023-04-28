@@ -41,7 +41,7 @@ public class UtenteRegistratoController {
 			return new ResponseEntity<List<UtenteRegistrato>>(utentiRegistrati, HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/utente/{id}")
 	public ResponseEntity<?> getUtenteById(@PathVariable Long id) {
 		UtenteRegistrato utenteRegistrato = this.utenteRegistratoService.getUtenteRegistrato(id);
 		if (utenteRegistrato == null) {
@@ -64,7 +64,7 @@ public class UtenteRegistratoController {
 		}
 	}
 
-	@DeleteMapping("/utente/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteUtente(@PathVariable Long id) {
 		try {
 			this.utenteRegistratoService.deleteUtenteRegistrato(id);
