@@ -1,6 +1,4 @@
-package noleggioAuto.services;
-
-import noleggioAuto.exception.UtenteException;
+package noleggioAuto.exception;
 
 public class PasswordNonValidaException extends UtenteException {
 

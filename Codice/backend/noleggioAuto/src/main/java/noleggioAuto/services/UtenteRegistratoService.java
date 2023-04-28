@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import noleggioAuto.entities.UtenteRegistrato;
+import noleggioAuto.exception.PasswordNonValidaException;
 import noleggioAuto.exception.UtenteException;
 import noleggioAuto.exception.UtenteNonTrovatoException;
 import noleggioAuto.repository.UtenteRegistratoRepository;
@@ -48,8 +49,8 @@ public class UtenteRegistratoService {
 
 		UtenteRegistrato utenteRegistrato = new UtenteRegistrato(nome, cognome, username, password, dataDiNascita,
 				numeroPatente);
+		// Salvo l'utente 
 		this.utenteRegistratoRepository.save(utenteRegistrato);
-
 	}
 
 	public void deleteUtenteRegistrato(Long idUtente) {
