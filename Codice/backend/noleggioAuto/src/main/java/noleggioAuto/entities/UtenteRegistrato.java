@@ -1,7 +1,7 @@
 package noleggioAuto.entities;
 
-import java.time.LocalDate;
 import java.time.Period;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,8 +36,8 @@ public class UtenteRegistrato extends Utente {
 	@Column(name = "numero_punti")
 	private Integer numeroPunti;
 	@Column(name = "data_di_nascita")
-	@Temporal(TemporalType.DATE)
-	private LocalDate dataDiNascita;
+	//@Temporal(TemporalType.DATE)
+	public LocalDate dataDiNascita;
 	@Column(name = "numero_patente")
 	private String numeroPatente;
 	@Transient

@@ -28,6 +28,7 @@ public class Auto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(nullable = false)
 	public Long idAuto;
 	@Column(nullable = false)
 	public String targa;

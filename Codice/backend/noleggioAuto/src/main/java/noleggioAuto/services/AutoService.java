@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import noleggioAuto.entities.Auto;
-import noleggioAuto.entities.TipologiaAuto;
+import noleggioAuto.exception.AutoException;
 import noleggioAuto.exception.AutoNonTrovataException;
 import noleggioAuto.repository.AutoRepository;
 
@@ -68,11 +68,14 @@ public class AutoService {
 	 * @param modello       dell'automobile
 	 * @param tipologiaAuto
 	 */
-	public void addAuto(String targa, String modello, String tipologiaAuto) {
-		Auto.controlloTarga(targa);
-		Auto.controlloTipologiaAuto(tipologiaAuto);
-		Auto nuovaAuto = new Auto(null, targa, modello, TipologiaAuto.valueOf(tipologiaAuto));
-		this.autoRepository.save(nuovaAuto);
+	public void addAuto(Auto auto) {
+		Auto.controlloTarga(auto.getTarga());
+		Auto.controlloTipologiaAuto(auto.getTipoAuto().toString());
+
+		Optional<Auto> autoByTarga = this.autoRepository.findAutoByTarga(auto.getTarga());
+		if (autoByTarga.isPresent())
+			throw new AutoException("Impossibile inserire un auto con una targa in uso.");
+		this.autoRepository.save(auto);
 	}
 
 	/**

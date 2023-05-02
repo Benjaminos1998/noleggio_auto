@@ -11,7 +11,8 @@ import noleggioAuto.entities.TipologiaAuto;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AutoDto {
-
+	
+	public Long idAuto;
 	public String targa;
 	public String modello;
 	public TipologiaAuto tipoAuto;
