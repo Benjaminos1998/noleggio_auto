@@ -4,6 +4,9 @@ public class UtenteNonTrovatoException extends UtenteException {
 
 	private static final long serialVersionUID = 1L;
 
+	public UtenteNonTrovatoException() {
+	}
+
 	public UtenteNonTrovatoException(String messaggio) {
 		super(messaggio);
 	}

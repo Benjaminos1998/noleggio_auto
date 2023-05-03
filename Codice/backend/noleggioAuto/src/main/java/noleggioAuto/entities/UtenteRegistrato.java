@@ -40,17 +40,18 @@ public class UtenteRegistrato extends Utente {
 	public LocalDate dataDiNascita;
 	@Column(name = "numero_patente")
 	private String numeroPatente;
-	@Transient
-	private int eta = getEta();
+	@Column(name = "età")
+	private int eta;
 
 	public UtenteRegistrato(String nome, String cognome, String username, String password, LocalDate dataDiNascita,
-			String numeroPatente) {
+			String numeroPatente, int eta) {
 		super(nome, cognome);
 		this.username = username;
 		this.password = password;
 		this.numeroPunti = 0;
 		this.dataDiNascita = dataDiNascita;
 		this.numeroPatente = numeroPatente;
+		this.eta=eta;
 	}
 
 	public static int getEta(LocalDate dataDiNascita) {

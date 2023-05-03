@@ -9,7 +9,7 @@
 //import noleggioAuto.services.NoleggioService;
 //
 //@RestController
-//@RequestMapping(path = "noleggio")
+//@RequestMapping(path = "api/noleggio")
 //public class NoleggioController {
 //
 //	private final NoleggioService noleggioService;

@@ -29,15 +29,15 @@ public class Auto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
-	public Long idAuto;
+	private Long idAuto;
 	@Column(nullable = false)
-	public String targa;
+	private String targa;
 	@Column(nullable = false)
-	public String modello;
+	private String modello;
 	@Column(name = "Tipo")
-	public TipologiaAuto tipoAuto;
+	private TipologiaAuto tipoAuto;
 	@Transient
-	public boolean inUso = false;
+	private boolean inUso = false;
 
 	public Auto(Long idAuto, String targa, String modello, TipologiaAuto tipoAuto) {
 		this.idAuto = idAuto;
@@ -49,8 +49,16 @@ public class Auto {
 	public static void controlloTarga(String targa) throws TargaAutoNonValidaException {
 		String formato = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
 		if (!(targa.matches(formato))) {
-			throw new TargaAutoNonValidaException("La targa inserita non è valida!");
+			throw new TargaAutoNonValidaException();
 		}
+	}
+
+	public static boolean targaIsValid(String targa) {
+		String formato = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
+		if (!(targa.matches(formato)))
+			return false;
+		return true;
+
 	}
 
 	public static void controlloTipologiaAuto(String tipologiaAuto) throws TipologiaAutoNonValidaException {

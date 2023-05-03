@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import noleggioAuto.entities.Auto;
 import noleggioAuto.exception.AutoException;
 import noleggioAuto.exception.AutoNonTrovataException;
+import noleggioAuto.exception.AutoPresenteException;
 import noleggioAuto.repository.AutoRepository;
 
 @Service
@@ -74,7 +75,7 @@ public class AutoService {
 
 		Optional<Auto> autoByTarga = this.autoRepository.findAutoByTarga(auto.getTarga());
 		if (autoByTarga.isPresent())
-			throw new AutoException("Impossibile inserire un auto con una targa in uso.");
+			throw new AutoPresenteException();
 		this.autoRepository.save(auto);
 	}
 
