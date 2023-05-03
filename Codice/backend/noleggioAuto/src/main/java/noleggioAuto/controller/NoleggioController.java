@@ -1,37 +1,66 @@
-//package noleggioAuto.controller;
-//
-//import java.util.List;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.*;
-//
-//import noleggioAuto.entities.Noleggio;
-//import noleggioAuto.services.NoleggioService;
-//
-//@RestController
-//@RequestMapping(path = "api/noleggio")
-//public class NoleggioController {
-//
-//	private final NoleggioService noleggioService;
-//
-//	@Autowired
-//	public NoleggioController(NoleggioService noleggioService) {
-//		this.noleggioService = noleggioService;
-//	}
-//
-//	@GetMapping(path = "noleggi")
-//	public List<Noleggio> getNoleggi() {
-//		return noleggioService.getNoleggi();
-//	}
-//
-//	@PostMapping(path = "add")
-//	public void RegisterNewNoleggio(@RequestBody Noleggio noleggio) {
-//		noleggioService.addNoleggio(noleggio.getDataInizio(), noleggio.getDataFine(), noleggio.getPrezzo(),
-//				noleggio.getAuto(), noleggio.getUtenteRegistrato());
-//	}
-//
-//	@DeleteMapping(path = "{id}")
-//	public void deleteUtente(@PathVariable Long id) throws IllegalAccessException {
-//		noleggioService.deleteNoleggio(id);
-//	}
-//}
+package noleggioAuto.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import noleggioAuto.DTO.NoleggioDTO;
+import noleggioAuto.entities.Noleggio;
+import noleggioAuto.exception.NoleggioException;
+import noleggioAuto.exception.NoleggioNonTrovatoException;
+import noleggioAuto.services.NoleggioService;
+
+@RestController
+@RequestMapping(path = "api/noleggi")
+public class NoleggioController {
+
+	private final NoleggioService noleggioService;
+
+	@Autowired
+	public NoleggioController(NoleggioService noleggioService) {
+		this.noleggioService = noleggioService;
+	}
+
+	@GetMapping("/noleggio/{id}")
+	public Noleggio getNoleggioById(@PathVariable Long id) {
+		if (this.noleggioService.getNoleggioById(id) != null)
+			return this.noleggioService.getNoleggioById(id);
+		throw new NoleggioNonTrovatoException();
+	}
+
+	@GetMapping("")
+	public ResponseEntity<?> getNoleggi() {
+		try {
+			return new ResponseEntity<List<Noleggio>>(this.noleggioService.getNoleggi(), HttpStatus.OK);
+		} catch (NoleggioException e) {
+			return new ResponseEntity<String>("Non è presente nessun noleggio.", HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@PostMapping("/addNoleggio")
+	public ResponseEntity<?> addNoleggio(@RequestBody NoleggioDTO noleggio) {
+		try {
+			this.noleggioService.addNoleggio(noleggio.getDataInizio(), noleggio.getDataFine(), noleggio.getPrezzo(),
+					noleggio.idAuto, noleggio.getIdUtenteRegistrato());
+			Noleggio noleggio1 = new Noleggio(noleggio.getDataInizio(), noleggio.getDataFine(), noleggio.getPrezzo());
+			return new ResponseEntity<Noleggio>(noleggio1, HttpStatus.CREATED);
+		} catch (NoleggioException e) {
+			return new ResponseEntity<String>("Errore durante la creazione di un nuovo noleggio",
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@DeleteMapping("/deleteNoleggio/{id}")
+	public ResponseEntity<?> deleteNoleggio(@PathVariable Long id) {
+		try {
+			this.noleggioService.deleteNoleggio(id);
+			return ResponseEntity.status(HttpStatus.OK).body("Cancellazione del noleggio avvenuta con successo");
+		} catch (NoleggioException e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Errore nella cancellazione del noleggio.");
+		}
+	}
+}

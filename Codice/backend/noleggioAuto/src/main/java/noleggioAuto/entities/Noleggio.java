@@ -40,11 +40,15 @@ public class Noleggio {
 	@ManyToOne
 	private UtenteRegistrato utenteRegistrato;
 
-	public Noleggio(LocalDate dataInizio, LocalDate dataFine, double prezzo, TipologiaNoleggio tipologiaNoleggio,
-			Auto auto, UtenteRegistrato utenteRegistrato) {
+	public Noleggio(LocalDate dataInizio, LocalDate dataFine, double prezzo) {
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
 		this.prezzo = prezzo;
+	}
+
+	public Noleggio(LocalDate dataInizio, LocalDate dataFine, double prezzo, TipologiaNoleggio tipologiaNoleggio,
+			Auto auto, UtenteRegistrato utenteRegistrato) {
+		this(dataInizio, dataFine, prezzo);
 		this.tipologiaNoleggio = tipologiaNoleggio;
 		this.auto = auto;
 		this.utenteRegistrato = utenteRegistrato;
@@ -52,6 +56,11 @@ public class Noleggio {
 
 	public static int durataNoleggio(Noleggio noleggio) {
 		return (int) ChronoUnit.DAYS.between(noleggio.dataInizio, noleggio.dataFine);
+	}
+
+	public static void controlloPrezzoNoleggio(double prezzoNoleggio) {
+		if (prezzoNoleggio <= 0)
+			throw new IllegalArgumentException("Hai inserito un prezzo non valido");
 	}
 
 	@Override
@@ -71,8 +80,4 @@ public class Noleggio {
 		return this.idNoleggio == noleggio.idNoleggio;
 	}
 
-	public static void controlloPrezzoNoleggio(double prezzoNoleggio) {
-		if (prezzoNoleggio <= 0)
-			throw new IllegalArgumentException("Hai inserito un prezzo non valido");
-	}
 }

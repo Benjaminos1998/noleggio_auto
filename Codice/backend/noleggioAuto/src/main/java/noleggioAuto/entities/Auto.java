@@ -36,7 +36,7 @@ public class Auto {
 	private String modello;
 	@Column(name = "Tipo")
 	private TipologiaAuto tipoAuto;
-	@Transient
+	@Column(name = "InUso")
 	private boolean inUso = false;
 
 	public Auto(Long idAuto, String targa, String modello, TipologiaAuto tipoAuto) {

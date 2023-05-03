@@ -1,7 +1,10 @@
 package noleggioAuto.entities;
 
+import lombok.Getter;
+
+@Getter
 public enum TipologiaNoleggio {
-	CarSharing(50), BrevePeriodo(100), LungoPerido(200);
+	CarSharing(10), BrevePeriodo(25), LungoPerido(50);
 
 	int valore;
 
