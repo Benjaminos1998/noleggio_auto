@@ -15,7 +15,6 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { UtenteComponent } from './componenti/utente/utente.component';
-import { UtenteVipComponent } from './componenti/utente-vip/utente-vip.component';
 import { NoleggioComponent } from './componenti/noleggio/noleggio.component';
 import { AutoComponent } from './componenti/auto/auto.component';
 
@@ -26,20 +25,21 @@ import { AutoComponent } from './componenti/auto/auto.component';
     LoginComponent,
     RegistrazioneComponent,
     UtenteComponent,
-    UtenteVipComponent,
     NoleggioComponent,
     AutoComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatButtonModule,
     MatCardModule,
     MatInputModule,
-    MatSidenavModule,
-    HttpClientModule,
+    MatSidenavModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

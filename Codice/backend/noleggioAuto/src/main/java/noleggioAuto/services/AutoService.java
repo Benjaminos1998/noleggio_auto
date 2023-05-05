@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import noleggioAuto.entities.Auto;
+import noleggioAuto.exception.AutoException;
+import noleggioAuto.exception.AutoNonTrovataException;
+import noleggioAuto.exception.AutoPresenteException;
 import noleggioAuto.repository.AutoRepository;
 
 @Service
@@ -19,47 +22,76 @@ public class AutoService {
 		this.autoRepository = autoRepository;
 	}
 
-	public List<Auto> getAuto() {
-		return autoRepository.findAll();
+	/**
+	 * Metodo che restituisce la lista di automobili presenti.
+	 * 
+	 * @return la lista di auto
+	 */
+	public List<Auto> getAllAuto() {
+		List<Auto> automobili = this.autoRepository.findAll();
+		if (automobili.isEmpty())
+			throw new AutoException("La lista delle automobili è vuota");
+		return automobili;
 	}
 
-	public void addNewAuto(Auto auto) throws IllegalAccessException {
-		auto.targa.toUpperCase();
-		Optional<Auto> autoByTarga = autoRepository.findAutoByTarga(auto.getTarga());
-		if (autoByTarga.isPresent()) {
-			throw new IllegalAccessException("Auto già inserita");
-		}
-		if (auto.prezzo <= 0) {
-			throw new IllegalAccessException("Non puoi inserire un prezzo minore o uguale a 0");
-		}
-		if (!(auto.targa.length() == 7)) {
-			throw new IllegalAccessException("Targa non valida");
-		}
-
-		String lettere1 = auto.targa.substring(0, 2);
-		String lettere2 = auto.targa.substring(5, 7);
-		String numeri = auto.targa.substring(2, 5);
-		String lettere = lettere1.concat(lettere2);
-
-		for (int i = 0; i < lettere.length(); i++) {
-			if (!(Character.isLetter(lettere.charAt(i)) && !(Character.isLowerCase(lettere.charAt(i))))) {
-				throw new IllegalAccessException("Targa non valida");
-			}
-
-		}
-		for (int i = 0; i < numeri.length(); i++) {
-			if (!(Character.isDigit(numeri.charAt(i)))) {
-				throw new IllegalAccessException("Targa non valida");
-			}
-		}
-		autoRepository.save(auto);
+	/**
+	 * Metodo che restituisce l'automobile passando l'identificativo come parametro.
+	 * 
+	 * @param idAuto, l'identificativo dell'automobile
+	 * @return l'auto
+	 */
+	public Auto getAutoById(Long idAuto) {
+		return this.autoRepository.findById(idAuto)
+				.orElseThrow(() -> new AutoNonTrovataException("Auto non trovata con id " + idAuto));
 	}
 
-	public void deleteAuto(Integer id) {
-		boolean exist = autoRepository.existsById(id);
+	/**
+	 * Metodo che resituisce l'automobile passando la targa come paramentro.
+	 * 
+	 * @param targa dell'automobile
+	 * @return l'auto
+	 */
+	public Auto getAutoByTarga(String targa) {
+		Optional<Auto> auto = this.autoRepository.findAutoByTarga(targa);
+		if (auto.isPresent())
+			return auto.get();
+		else
+			throw new AutoNonTrovataException("Auto non trovata con targa " + targa);
+	}
+
+	/**
+	 * Metodo che aggiunge un automobile. Per farlo è necessario inserire come
+	 * parametri la targa dell'auto, il modello e scegliere la tipologia tra quelle
+	 * presenti. Bisogna inserire una targa che rispetti la seguente sequenza:
+	 * lettera|lettera|numero|numero|numero|lettera|lettera (esempio CA123DA).
+	 * Altrimenti verrà lanciata un'eccezione. Bisogna inserire una tipologia di
+	 * auto tra quelle disponibili che sono: 1)Utilitaria 2)Business 3)Luxury;
+	 * altrimenti verrà lanciata un'eccezione
+	 * 
+	 * @param targa         dell'automobile
+	 * @param modello       dell'automobile
+	 * @param tipologiaAuto
+	 */
+	public void addAuto(Auto auto) {
+		Auto.controlloTarga(auto.getTarga());
+		Auto.controlloTipologiaAuto(auto.getTipoAuto().toString());
+
+		Optional<Auto> autoByTarga = this.autoRepository.findAutoByTarga(auto.getTarga());
+		if (autoByTarga.isPresent())
+			throw new AutoPresenteException();
+		this.autoRepository.save(auto);
+	}
+
+	/**
+	 * Metodo che cancella un automobile
+	 * 
+	 * @param id dell'automobile
+	 */
+	public void deleteAuto(Long idAuto) {
+		boolean exist = this.autoRepository.existsById(idAuto);
 		if (!exist) {
-			throw new IllegalStateException("L'auto con id " + id + " non esiste");
+			throw new AutoNonTrovataException("L'auto con id " + idAuto + " non esiste");
 		}
-		autoRepository.deleteById(id);
+		this.autoRepository.deleteById(idAuto);
 	}
 }

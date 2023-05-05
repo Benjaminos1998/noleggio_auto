@@ -1,43 +1,83 @@
 package noleggioAuto.entities;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import noleggioAuto.exception.TargaAutoNonValidaException;
+import noleggioAuto.exception.TipologiaAutoNonValidaException;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "automobili")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Auto {
+public class Auto {
 
 	@Id
-	@SequenceGenerator(name = "auto_sequence", sequenceName = "auto_sequence", allocationSize = 0)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "auto_sequence")
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
-	public String targa;
+	private Long idAuto;
 	@Column(nullable = false)
-	public String modello;
+	private String targa;
 	@Column(nullable = false)
-	public double prezzo;
-	
+	private String modello;
+	@Column(name = "Tipo")
+	private TipologiaAuto tipoAuto;
+	@Column(name = "InUso")
+	@Type(type = "yes_no")
+	private boolean inUso = false;
 
+	public Auto(Long idAuto, String targa, String modello, TipologiaAuto tipoAuto) {
+		this.idAuto = idAuto;
+		this.targa = targa;
+		this.modello = modello;
+		this.tipoAuto = tipoAuto;
+	}
+
+	public static void controlloTarga(String targa) throws TargaAutoNonValidaException {
+		String formato = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
+		if (!(targa.matches(formato))) {
+			throw new TargaAutoNonValidaException();
+		}
+	}
+
+
+	public static void controlloTipologiaAuto(String tipologiaAuto) throws TipologiaAutoNonValidaException {
+		String tipologiaFormatted = tipologiaAuto.toLowerCase();
+		if (!Arrays.stream(TipologiaAuto.values()).map(Enum::toString).map(String::toLowerCase)
+				.collect(Collectors.toList()).contains(tipologiaFormatted)) {
+			throw new TipologiaAutoNonValidaException("La tipologia " + tipologiaAuto + " non è valida");
+		}
+	}
+
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+		if (!(o instanceof Auto)) {
+			return false;
+		}
+		Auto auto = (Auto) o;
+		return this.idAuto == auto.idAuto && this.targa.equals(auto.targa);
+	}
 
 	public String toString() {
-		return this.modello + " Targa: " + this.targa;
+		return "Auto [idAuto=" + idAuto + ", targa=" + targa + ", modello=" + modello + ", tipoAuto=" + tipoAuto
+				+ ", inUso=" + inUso + "]";
 	}
+
 }

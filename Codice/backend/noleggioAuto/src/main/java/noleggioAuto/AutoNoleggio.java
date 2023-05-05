@@ -2,6 +2,7 @@ package noleggioAuto;
 
 import java.util.Arrays;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -10,12 +11,18 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @SpringBootApplication
-public class NoleggioAuto {
+public class AutoNoleggio {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NoleggioAuto.class, args);
+		SpringApplication.run(AutoNoleggio.class, args);
+	}
+	
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 
+	/*
 	@Bean
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -31,4 +38,5 @@ public class NoleggioAuto {
 		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
+	*/
 }

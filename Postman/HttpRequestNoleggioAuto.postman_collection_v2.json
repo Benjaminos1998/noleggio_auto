@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "717994d3-fa40-479d-b7a7-f155a8b3077f",
+		"name": "HttpRequestNoleggioAuto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20314066",
+		"_collection_link": "https://www.postman.com/red-shadow-543240/workspace/team-workspace/collection/20314066-717994d3-fa40-479d-b7a7-f155a8b3077f?action=share&creator=20314066&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "AutoController",
+			"item": [
+				{
+					"name": "getAllAuto",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAutoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/auto/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auto",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addNewAuto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"targa\":\"FA234KM\",\r\n    \"modello\":\"Ferrari\",\r\n    \"tipoAuto\":\"Luxury\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auto/addAuto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auto",
+								"addAuto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAuto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/auto/deleteAuto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auto",
+								"deleteAuto",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UtenteRegistratoController",
+			"item": [
+				{
+					"name": "getUtentiRegistrati",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/utentiRegistrati",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"utentiRegistrati"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUtenteById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/utentiRegistrati/utente/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"utentiRegistrati",
+								"utente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addUtenteRegistrato",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Giovanni\",\r\n    \"cognome\":\"Verdi\",\r\n    \"username\":\"giove12\",\r\n    \"password\":\"giogiogio\",\r\n    \"dataDiNascita\":\"2003-12-12\",\r\n    \"numeroPatente\":\"AB52126\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/utentiRegistrati/addUtente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"utentiRegistrati",
+								"addUtente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUtente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/utentiRegistrati/deleteUtente/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"utentiRegistrati",
+								"deleteUtente",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

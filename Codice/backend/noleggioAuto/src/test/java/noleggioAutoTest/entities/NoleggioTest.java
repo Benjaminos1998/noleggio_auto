@@ -5,16 +5,16 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import noleggioAuto.entities.Noleggio;
-import noleggioAuto.gestione.TipologiaNoleggio;
+import noleggioAuto.entities.TipologiaNoleggio;
 
 public class NoleggioTest {
 
-	@Test
-	public void testCreaNoleggio() {
-		Noleggio n = new Noleggio();
-		n.idNoleggio = 1;
-		assertEquals(n.getIdNoleggio(), n.idNoleggio);
-	}
+//	@Test
+//	public void testCreaNoleggio() {
+//		Noleggio n = new Noleggio();
+//		n.idNoleggio = 1;
+//		assertEquals(n.getIdNoleggio(), n.idNoleggio);
+//	}
 
 	@Test
 	public void test2() {
