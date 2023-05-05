@@ -11,7 +11,6 @@ import noleggioAuto.exception.EtaUtenteException;
 import noleggioAuto.exception.PasswordNonValidaException;
 import noleggioAuto.exception.PatenteUtenteException;
 import noleggioAuto.exception.UsernameUtenteException;
-import noleggioAuto.exception.UtenteException;
 import noleggioAuto.exception.UtenteNonTrovatoException;
 import noleggioAuto.repository.UtenteRegistratoRepository;
 
@@ -44,10 +43,10 @@ public class UtenteRegistratoService {
 		if (this.utenteRegistratoRepository.findByNumeroPatente(numeroPatente).isPresent())
 			throw new PatenteUtenteException();
 		// Controllo se l'utente ha almeno 18 anni
-		if (UtenteRegistrato.getEta(dataDiNascita) < 18)
+		if (UtenteRegistrato.getEta(dataDiNascita) < UtenteRegistrato.ETA)
 			throw new EtaUtenteException();
 		// Controllo se la password rispetta la lunghezza minima di 8 caratteri
-		if (password.length() < 8)
+		if (password.length() < UtenteRegistrato.LUNGHEZZA_MINIMA_PASSWORD)
 			throw new PasswordNonValidaException();
 
 		UtenteRegistrato utenteRegistrato = new UtenteRegistrato(nome, cognome, username, password, dataDiNascita,
@@ -56,6 +55,7 @@ public class UtenteRegistratoService {
 		// Salvo l'utente
 		this.utenteRegistratoRepository.save(utenteRegistrato);
 	}
+
 
 	public void deleteUtenteRegistrato(Long idUtente) {
 		boolean exist = utenteRegistratoRepository.existsById(idUtente);

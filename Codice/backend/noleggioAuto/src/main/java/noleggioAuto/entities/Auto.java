@@ -9,7 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
+import org.hibernate.annotations.Type;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,6 +38,7 @@ public class Auto {
 	@Column(name = "Tipo")
 	private TipologiaAuto tipoAuto;
 	@Column(name = "InUso")
+	@Type(type = "yes_no")
 	private boolean inUso = false;
 
 	public Auto(Long idAuto, String targa, String modello, TipologiaAuto tipoAuto) {
@@ -53,13 +55,6 @@ public class Auto {
 		}
 	}
 
-	public static boolean targaIsValid(String targa) {
-		String formato = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
-		if (!(targa.matches(formato)))
-			return false;
-		return true;
-
-	}
 
 	public static void controlloTipologiaAuto(String tipologiaAuto) throws TipologiaAutoNonValidaException {
 		String tipologiaFormatted = tipologiaAuto.toLowerCase();

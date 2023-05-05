@@ -28,7 +28,10 @@ public class AutoService {
 	 * @return la lista di auto
 	 */
 	public List<Auto> getAllAuto() {
-		return this.autoRepository.findAll();
+		List<Auto> automobili = this.autoRepository.findAll();
+		if (automobili.isEmpty())
+			throw new AutoException("La lista delle automobili è vuota");
+		return automobili;
 	}
 
 	/**
@@ -85,7 +88,7 @@ public class AutoService {
 	 * @param id dell'automobile
 	 */
 	public void deleteAuto(Long idAuto) {
-		boolean exist = autoRepository.existsById(idAuto);
+		boolean exist = this.autoRepository.existsById(idAuto);
 		if (!exist) {
 			throw new AutoNonTrovataException("L'auto con id " + idAuto + " non esiste");
 		}

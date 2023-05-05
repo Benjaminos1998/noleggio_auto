@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import noleggioAuto.DTO.NoleggioDTO;
 import noleggioAuto.entities.Noleggio;
+import noleggioAuto.exception.AutoNonDisponibilePerIlNoleggioException;
 import noleggioAuto.exception.NoleggioException;
-import noleggioAuto.exception.NoleggioNonTrovatoException;
+import noleggioAuto.exception.UtenteNonDisponeDelNoleggioException;
 import noleggioAuto.services.NoleggioService;
 
 @RestController
@@ -25,10 +26,11 @@ public class NoleggioController {
 	}
 
 	@GetMapping("/noleggio/{id}")
-	public Noleggio getNoleggioById(@PathVariable Long id) {
+	public ResponseEntity<?> getNoleggioById(@PathVariable Long id) {
 		if (this.noleggioService.getNoleggioById(id) != null)
-			return this.noleggioService.getNoleggioById(id);
-		throw new NoleggioNonTrovatoException();
+			return new ResponseEntity<Noleggio>(this.noleggioService.getNoleggioById(id), HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("Noleggio non trovato", HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping("")
@@ -47,10 +49,17 @@ public class NoleggioController {
 					noleggio.idAuto, noleggio.getIdUtenteRegistrato());
 			Noleggio noleggio1 = new Noleggio(noleggio.getDataInizio(), noleggio.getDataFine(), noleggio.getPrezzo());
 			return new ResponseEntity<Noleggio>(noleggio1, HttpStatus.CREATED);
+		} catch (AutoNonDisponibilePerIlNoleggioException e) {
+			return new ResponseEntity<String>("Auto in uso. Scegliere un'altra automobile per completare l'operazione.",
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (UtenteNonDisponeDelNoleggioException e) {
+			return new ResponseEntity<String>("L'utente non può effettuare due noleggi contemporaneamente.",
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		} catch (NoleggioException e) {
 			return new ResponseEntity<String>("Errore durante la creazione di un nuovo noleggio",
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 	}
 
 	@DeleteMapping("/deleteNoleggio/{id}")

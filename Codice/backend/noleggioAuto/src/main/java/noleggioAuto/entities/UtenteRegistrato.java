@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
@@ -26,6 +24,11 @@ import lombok.Setter;
 @Table(name = "utenti_registrati")
 public class UtenteRegistrato extends Utente {
 
+	@Transient
+	public final static int ETA = 18;
+	@Transient
+	public static final int LUNGHEZZA_MINIMA_PASSWORD = 8;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long idUtente;
@@ -34,14 +37,16 @@ public class UtenteRegistrato extends Utente {
 	@Column(name = "password")
 	private String password;
 	@Column(name = "numero_punti")
-	private Integer numeroPunti;
+	private int numeroPunti;
 	@Column(name = "data_di_nascita")
-	//@Temporal(TemporalType.DATE)
 	public LocalDate dataDiNascita;
 	@Column(name = "numero_patente")
 	private String numeroPatente;
 	@Column(name = "età")
 	private int eta;
+	@Transient
+	private boolean noleggioInCorso = false;
+	
 
 	public UtenteRegistrato(String nome, String cognome, String username, String password, LocalDate dataDiNascita,
 			String numeroPatente, int eta) {
