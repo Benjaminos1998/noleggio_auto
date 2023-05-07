@@ -16,4 +16,8 @@ public enum TipologiaNoleggio {
 	public String toString() {
 		return String.valueOf(valore);
 	}
+
+    public int getValore(){
+		return this.valore;
+	}
 }

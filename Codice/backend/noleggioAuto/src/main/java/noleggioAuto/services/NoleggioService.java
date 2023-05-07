@@ -58,11 +58,11 @@ public class NoleggioService {
 		Optional<UtenteRegistrato> utenteRegistrato = this.utenteRegistratoRepository.findById(idUtenteRegistrato);
 
 		Noleggio noleggio = new Noleggio(dataInzio, dataFine, prezzo, null, auto.get(), utenteRegistrato.get());
-
+        TipologiaNoleggio tipo; 
 		// TODO: Controllo se l'utente è iscritto al programma
 
 		int numeroPunti = noleggio.getUtenteRegistrato().getNumeroPunti();
-		numeroPunti = (int) (numeroPunti + prezzo);
+		numeroPunti = (int) (numeroPunti + prezzo + tipo.getValore());
 
 		// Verifo che non sia stato inserito un prezzo inferiore a zero.
 		Noleggio.controlloPrezzoNoleggio(noleggio.getPrezzo());
