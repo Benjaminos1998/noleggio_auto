@@ -3,15 +3,14 @@ package noleggioAuto.entities;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,9 +35,9 @@ public class Auto {
 	@Column(nullable = false)
 	private String modello;
 	@Column(name = "Tipo")
+	@Enumerated(EnumType.STRING)
 	private TipologiaAuto tipoAuto;
 	@Column(name = "InUso")
-	@Type(type = "yes_no")
 	private boolean inUso = false;
 
 	public Auto(Long idAuto, String targa, String modello, TipologiaAuto tipoAuto) {
@@ -54,7 +53,6 @@ public class Auto {
 			throw new TargaAutoNonValidaException();
 		}
 	}
-
 
 	public static void controlloTipologiaAuto(String tipologiaAuto) throws TipologiaAutoNonValidaException {
 		String tipologiaFormatted = tipologiaAuto.toLowerCase();
@@ -76,8 +74,8 @@ public class Auto {
 	}
 
 	public String toString() {
-		return "Auto [idAuto=" + idAuto + ", targa=" + targa + ", modello=" + modello + ", tipoAuto=" + tipoAuto
-				+ ", inUso=" + inUso + "]";
+		return "Auto [idAuto=" + this.idAuto + ", targa=" + this.targa + ", modello=" + this.modello + ", tipoAuto=" + this.tipoAuto
+				+ ", inUso=" + this.inUso + "]";
 	}
 
 }

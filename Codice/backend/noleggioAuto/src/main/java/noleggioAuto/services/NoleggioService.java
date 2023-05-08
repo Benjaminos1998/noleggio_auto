@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import noleggioAuto.entities.Auto;
 import noleggioAuto.entities.Noleggio;
 import noleggioAuto.entities.TipologiaNoleggio;
-import noleggioAuto.entities.UtenteRegistrato;
+import noleggioAuto.entities.Utente;
 import noleggioAuto.exception.AutoNonDisponibilePerIlNoleggioException;
 import noleggioAuto.exception.AutoNonTrovataException;
 import noleggioAuto.exception.DurataNoleggioNonValidaException;
@@ -20,21 +20,21 @@ import noleggioAuto.exception.UtenteNonDisponeDelNoleggioException;
 import noleggioAuto.exception.UtenteNonTrovatoException;
 import noleggioAuto.repository.AutoRepository;
 import noleggioAuto.repository.NoleggioRepository;
-import noleggioAuto.repository.UtenteRegistratoRepository;
+import noleggioAuto.repository.UtenteRepository;
 
 @Service
 public class NoleggioService {
 
 	private final NoleggioRepository noleggioRepository;
 	private final AutoRepository autoRepository;
-	private final UtenteRegistratoRepository utenteRegistratoRepository;
+	private final UtenteRepository utenteRepository;
 
 	@Autowired
 	public NoleggioService(NoleggioRepository noleggioRepository, AutoRepository autoRepository,
-			UtenteRegistratoRepository utenteRegistratoRepository) {
+			UtenteRepository utenteRepository) {
 		this.noleggioRepository = noleggioRepository;
 		this.autoRepository = autoRepository;
-		this.utenteRegistratoRepository = utenteRegistratoRepository;
+		this.utenteRepository = utenteRepository;
 	}
 
 	public List<Noleggio> getNoleggi() {
@@ -53,15 +53,15 @@ public class NoleggioService {
 	}
 
 	public void addNoleggio(LocalDate dataInzio, LocalDate dataFine, double prezzo, Long idAuto,
-			Long idUtenteRegistrato) {
+			Long idUtente) {
 		Optional<Auto> auto = this.autoRepository.findById(idAuto);
-		Optional<UtenteRegistrato> utenteRegistrato = this.utenteRegistratoRepository.findById(idUtenteRegistrato);
+		Optional<Utente> utente = this.utenteRepository.findById(idUtente);
 
-		Noleggio noleggio = new Noleggio(dataInzio, dataFine, prezzo, null, auto.get(), utenteRegistrato.get());
+		Noleggio noleggio = new Noleggio(dataInzio, dataFine, prezzo, null, auto.get(), utente.get());
 
 		// TODO: Controllo se l'utente è iscritto al programma
 
-		int numeroPunti = noleggio.getUtenteRegistrato().getNumeroPunti();
+		int numeroPunti = noleggio.getUtente().getNumeroPunti();
 		numeroPunti = (int) (numeroPunti + prezzo);
 
 		// Verifo che non sia stato inserito un prezzo inferiore a zero.
@@ -91,7 +91,7 @@ public class NoleggioService {
 			throw new DurataNoleggioNonValidaException("Durata del noleggio non valida.");
 
 		// Controllo che l'utente non abbia nessun noleggio in corso
-		if (noleggio.getUtenteRegistrato().isNoleggioInCorso())
+		if (noleggio.getUtente().isNoleggioInCorso())
 			throw new UtenteNonDisponeDelNoleggioException();
 
 		// Controllo che l'auto sia disponibile
@@ -102,10 +102,10 @@ public class NoleggioService {
 		updateAutoInUso(auto.get(), true);
 
 		// Aggiorno che l'utente ha affettuato un noleggio
-		updateUtenteRegistratoNoleggioAttivo(utenteRegistrato.get(), true);
+		updateUtenteNoleggioAttivo(utente.get(), true);
 
 		// Aggiorno i punti dell'utente
-		updateUtenteRegistratoNumeroPunti(utenteRegistrato.get(), numeroPunti);
+		updateUtenteNumeroPunti(utente.get(), numeroPunti);
 
 		// Salvo il noleggio
 		noleggioRepository.save(noleggio);
@@ -117,9 +117,9 @@ public class NoleggioService {
 	 * @param utenteRegistrato
 	 * @param noleggioAttivo
 	 */
-	private void updateUtenteRegistratoNoleggioAttivo(UtenteRegistrato utenteRegistrato, boolean noleggioAttivo) {
-		utenteRegistrato.setNoleggioInCorso(noleggioAttivo);
-		this.utenteRegistratoRepository.save(utenteRegistrato);
+	private void updateUtenteNoleggioAttivo(Utente utente, boolean noleggioAttivo) {
+		utente.setNoleggioInCorso(noleggioAttivo);
+		this.utenteRepository.save(utente);
 	}
 
 	/**
@@ -129,9 +129,9 @@ public class NoleggioService {
 	 * @param utente      registrato
 	 * @param numeroPunti di punti che vengono aggiunti all'utente
 	 */
-	private void updateUtenteRegistratoNumeroPunti(UtenteRegistrato utente, int numeroPunti) {
+	private void updateUtenteNumeroPunti(Utente utente, int numeroPunti) {
 		utente.setNumeroPunti(numeroPunti);
-		this.utenteRegistratoRepository.save(utente);
+		this.utenteRepository.save(utente);
 	}
 
 	/**
@@ -152,9 +152,9 @@ public class NoleggioService {
 	 * @param noleggio
 	 */
 	private void esisteUtenteRegistrato(Noleggio noleggio) {
-		this.utenteRegistratoRepository.findById(noleggio.getUtenteRegistrato().getIdUtente())
+		this.utenteRepository.findById(noleggio.getUtente().getIdUtente())
 				.orElseThrow(() -> new UtenteNonTrovatoException(
-						"Utente con id " + noleggio.getUtenteRegistrato().getIdUtente() + " non è presente nel DB."));
+						"Utente con id " + noleggio.getUtente().getIdUtente() + " non è presente nel DB."));
 	}
 
 	/**

@@ -3,21 +3,24 @@ package noleggioAuto.entities;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -34,11 +37,12 @@ public class Noleggio {
 	@Column(name = "prezzo")
 	private double prezzo;
 	@Column(name = "tipologia_noleggio")
+	@Enumerated(EnumType.STRING)
 	private TipologiaNoleggio tipologiaNoleggio;
 	@ManyToOne
 	private Auto auto;
 	@ManyToOne
-	private UtenteRegistrato utenteRegistrato;
+	private Utente utente;
 
 	public Noleggio(LocalDate dataInizio, LocalDate dataFine, double prezzo) {
 		this.dataInizio = dataInizio;
@@ -47,11 +51,11 @@ public class Noleggio {
 	}
 
 	public Noleggio(LocalDate dataInizio, LocalDate dataFine, double prezzo, TipologiaNoleggio tipologiaNoleggio,
-			Auto auto, UtenteRegistrato utenteRegistrato) {
+			Auto auto, Utente utenteRegistrato) {
 		this(dataInizio, dataFine, prezzo);
 		this.tipologiaNoleggio = tipologiaNoleggio;
 		this.auto = auto;
-		this.utenteRegistrato = utenteRegistrato;
+		this.utente = utenteRegistrato;
 	}
 
 	public static int durataNoleggio(Noleggio noleggio) {
@@ -67,7 +71,7 @@ public class Noleggio {
 	public String toString() {
 		return "Noleggio{" + "idNoleggio=" + this.idNoleggio + ", dataInizio=" + this.dataInizio + ", dataFine="
 				+ this.dataFine + ", prezzo=" + this.prezzo + ", tipologiaNoleggio=" + this.tipologiaNoleggio
-				+ ", auto=" + this.auto.getTarga() + ", utenteRegistrato=" + this.utenteRegistrato.getUsername() + '}';
+				+ ", auto=" + this.auto.getTarga() + ", utente =" + this.utente.getEmail() + '}';
 	}
 
 	@Override
