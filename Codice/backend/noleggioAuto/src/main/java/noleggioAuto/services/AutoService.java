@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import noleggioAuto.entities.Auto;
-import noleggioAuto.exception.AutoException;
 import noleggioAuto.exception.AutoNonTrovataException;
 import noleggioAuto.exception.AutoPresenteException;
 import noleggioAuto.repository.AutoRepository;

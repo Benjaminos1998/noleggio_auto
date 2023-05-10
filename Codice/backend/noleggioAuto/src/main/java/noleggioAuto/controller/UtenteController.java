@@ -19,7 +19,7 @@ import noleggioAuto.entities.Utente;
 import noleggioAuto.exception.EtaUtenteException;
 import noleggioAuto.exception.PasswordNonValidaException;
 import noleggioAuto.exception.PatenteUtenteException;
-import noleggioAuto.exception.UsernameUtenteException;
+import noleggioAuto.exception.EmailUtenteException;
 import noleggioAuto.exception.UtenteException;
 import noleggioAuto.exception.UtenteNonTrovatoException;
 import noleggioAuto.services.UtenteService;
@@ -61,7 +61,7 @@ public class UtenteController {
 					utente.getEmail(), utente.getPassword(), utente.getDataDiNascita(),
 					utente.getNumeroPatente());
 			return new ResponseEntity<>(utente, HttpStatus.CREATED);
-		} catch (UsernameUtenteException e) {
+		} catch (EmailUtenteException e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 					.body("Errore durante la creazione dell'utente: Username già inserito.");
 		}catch (PasswordNonValidaException e) {

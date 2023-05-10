@@ -28,7 +28,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/auto",
+							"raw": "http://localhost:8080/api/auto/parcoAuto",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -36,7 +36,8 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"auto"
+								"auto",
+								"parcoAuto"
 							]
 						}
 					},
@@ -48,7 +49,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/auto/4",
+							"raw": "http://localhost:8080/api/auto/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -57,7 +58,7 @@
 							"path": [
 								"api",
 								"auto",
-								"4"
+								"1"
 							]
 						}
 					},
@@ -209,6 +210,136 @@
 								"utentiRegistrati",
 								"deleteUtente",
 								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "NoleggioController",
+			"item": [
+				{
+					"name": "getNoleggi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/noleggi",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"noleggi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addNoleggio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dataInizio\":\"2023-05-04\",\r\n    \"dataFine\":\"2023-05-14\",\r\n    \"prezzo\":20,\r\n    \"idAuto\":1,\r\n    \"idUtenteRegistrato\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/noleggi/addNoleggio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"noleggi",
+								"addNoleggio"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AuthenticationController",
+			"item": [
+				{
+					"name": "registrazione",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Beniamino\",\r\n    \"cognome\":\"Infante\",\r\n    \"email\":\"benny@gmmail.it\",\r\n    \"password\":\"123ciao123\",\r\n    \"dataDiNascita\":\"2000-12-12\",\r\n    \"numeroPatente\":\"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/registrazione",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"registrazione"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZW5ueUBnbW1haWwuaXQiLCJpYXQiOjE2ODM3MzM5MDMsImV4cCI6MTY4Mzc0ODMwM30.A5IOfwsoKaqUUBebJ2w0vE0yNxEzqvEXfISCz120pfs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"benny@gmmail.it\",\r\n    \"password\":\"123ciao123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
 							]
 						}
 					},

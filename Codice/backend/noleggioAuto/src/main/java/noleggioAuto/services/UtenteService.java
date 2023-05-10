@@ -10,7 +10,7 @@ import noleggioAuto.entities.Utente;
 import noleggioAuto.exception.EtaUtenteException;
 import noleggioAuto.exception.PasswordNonValidaException;
 import noleggioAuto.exception.PatenteUtenteException;
-import noleggioAuto.exception.UsernameUtenteException;
+import noleggioAuto.exception.EmailUtenteException;
 import noleggioAuto.exception.UtenteNonTrovatoException;
 import noleggioAuto.repository.UtenteRepository;
 
@@ -37,7 +37,7 @@ public class UtenteService {
 
 		// Controllo se esiste già un utente con lo stesso username
 		if (this.utenteRepository.findByEmail(email).isPresent())
-			throw new UsernameUtenteException();
+			throw new EmailUtenteException();
 		// Controllo se esiste già un utente con lo stesso numero di patente
 		if (this.utenteRepository.findByNumeroPatente(numeroPatente).isPresent())
 			throw new PatenteUtenteException();
@@ -48,11 +48,11 @@ public class UtenteService {
 		if (password.length() < Utente.LUNGHEZZA_MINIMA_PASSWORD)
 			throw new PasswordNonValidaException();
 
-		Utente utente = new Utente(nome, cognome, email, password, dataDiNascita, numeroPatente,
-				Utente.getEta(dataDiNascita));
+//		Utente utente = new Utente(nome, cognome, email, password, dataDiNascita, numeroPatente,
+//				Utente.getEta(dataDiNascita));
 
 		// Salvo l'utente
-		this.utenteRepository.save(utente);
+//		this.utenteRepository.save(utente);
 	}
 
 	public void deleteUtente(Long idUtente) {

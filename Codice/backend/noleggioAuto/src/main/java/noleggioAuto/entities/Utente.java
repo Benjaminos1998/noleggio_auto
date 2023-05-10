@@ -60,22 +60,8 @@ public class Utente implements UserDetails {
 	private int eta;
 	@Enumerated(EnumType.STRING)
 	private Ruolo ruolo;
-
 	@Transient
 	private boolean noleggioInCorso;
-
-	public Utente(String nome, String cognome, String email, String password, LocalDate dataDiNascita,
-			String numeroPatente, int eta) {
-		this.nome = nome;
-		this.cognome = cognome;
-		this.email = email;
-		this.password = password;
-		this.numeroPunti = 0;
-		this.dataDiNascita = dataDiNascita;
-		this.numeroPatente = numeroPatente;
-		this.eta = eta;
-
-	}
 
 	public static int getEta(LocalDate dataDiNascita) {
 		return Period.between(dataDiNascita, LocalDate.now()).getYears();
