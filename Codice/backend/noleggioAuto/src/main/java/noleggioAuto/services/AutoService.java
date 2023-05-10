@@ -29,8 +29,6 @@ public class AutoService {
 	 */
 	public List<Auto> getAllAuto() {
 		List<Auto> automobili = this.autoRepository.findAll();
-		if (automobili.isEmpty())
-			throw new AutoException("La lista delle automobili è vuota");
 		return automobili;
 	}
 

@@ -27,7 +27,7 @@ import noleggioAuto.services.UtenteService;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/utenti")
-public class UtenteRegistratoController {
+public class UtenteController {
 
 	private final UtenteService utenteService;
 	private final ModelMapper modelMapper;
