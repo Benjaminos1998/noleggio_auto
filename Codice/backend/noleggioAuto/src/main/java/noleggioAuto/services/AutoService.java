@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import noleggioAuto.entities.Auto;
-import noleggioAuto.exception.AutoException;
 import noleggioAuto.exception.AutoNonTrovataException;
 import noleggioAuto.exception.AutoPresenteException;
 import noleggioAuto.repository.AutoRepository;
@@ -29,8 +28,6 @@ public class AutoService {
 	 */
 	public List<Auto> getAllAuto() {
 		List<Auto> automobili = this.autoRepository.findAll();
-		if (automobili.isEmpty())
-			throw new AutoException("La lista delle automobili è vuota");
 		return automobili;
 	}
 

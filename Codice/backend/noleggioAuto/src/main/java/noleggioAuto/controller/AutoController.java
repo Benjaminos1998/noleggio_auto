@@ -35,7 +35,7 @@ public class AutoController {
 		}
 	}
 
-	@GetMapping("")
+	@GetMapping("/parcoAuto")
 	public ResponseEntity<?> getAllAuto() {
 		List<Auto> automobili = this.autoService.getAllAuto();
 		if (!automobili.isEmpty())

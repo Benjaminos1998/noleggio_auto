@@ -6,14 +6,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import noleggioAuto.entities.Noleggio;
+import noleggioAuto.entities.Utente;
 
 @Repository
-public interface NoleggioRepository extends JpaRepository<Noleggio, Long> {
+public interface UtenteRepository extends JpaRepository<Utente, Long> {
 
 	@Query
-	Optional<Noleggio> findNoleggioByAuto(Long idAuto);
+	Optional<Utente> findByNumeroPatente(String numeroPatente);
 
 	@Query
-	Optional<Noleggio> findNoleggioByUtente(Long utenteId);
+	Optional<Utente> findByEmail(String email);
+
 }
