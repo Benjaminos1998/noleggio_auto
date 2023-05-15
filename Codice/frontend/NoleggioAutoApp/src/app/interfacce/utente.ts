@@ -1,14 +1,16 @@
-import { Auto } from "./auto";
-import { Noleggio } from "./noleggio";
+import { Ruolo } from "../enums/Ruolo";
+
 
 export interface Utente{
+  idUtente:number;
   nome:String;
   cognome:String;
-  idUtente:number;
   email:String;
   password:String;
+  numeroPunti:number;
   dataDiNascita:Date;
   numeroPatente:number;
-  listaNoleggio:Noleggio[];
-  listaAuto:Auto[];
+  eta:number;
+  ruolo:Ruolo;
+  noleggioInCorso:boolean;
 }

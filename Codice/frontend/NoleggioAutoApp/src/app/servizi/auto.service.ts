@@ -13,10 +13,16 @@ export class AutoService {
     return this.http.get<Auto[]>(url);
   }
 
-  public getAuto(url: string): Observable<Auto> {
+  public getAutoById(url: string): Observable<Auto> {
     return this.http.get<Auto>(url);
   }
+
   public addAuto(url: string, body: {}) {
     return this.http.post(url, body);
   }
+
+  public deleteAuto(url: string): Observable<any>{
+    return this.http.delete(url);
+  }
+
 }

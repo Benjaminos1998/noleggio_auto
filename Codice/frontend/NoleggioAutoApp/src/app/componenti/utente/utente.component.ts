@@ -8,8 +8,8 @@ import { UtenteService } from 'src/app/servizi/utente.service';
   templateUrl: './utente.component.html',
   styleUrls: ['./utente.component.css'],
 })
-export class UtenteComponent  {
-  private apiServerUrl = environmet.apiBaseUrl + 'utente/';
+export class UtenteComponent implements OnInit {
+  private apiServerUrl = environmet.apiBaseUrl + 'api/utenti';
   utenti?: Utente[];
 
   constructor(private utenteService: UtenteService ) {}
@@ -17,7 +17,7 @@ export class UtenteComponent  {
 
   ngOnInit(): void {
     this.utenteService
-      .getAllUtente(this.apiServerUrl + 'utenti')
+      .getUtenti(this.apiServerUrl + '')
       .subscribe((data) => {
         (this.utenti = data), console.log(this.utenti);
       });
