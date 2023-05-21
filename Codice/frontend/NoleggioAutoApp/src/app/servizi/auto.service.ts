@@ -21,7 +21,7 @@ export class AutoService {
     return this.http.post(url, body);
   }
 
-  public deleteAuto(url: string): Observable<any>{
+  public deleteAuto(url: string,id:number): Observable<any>{
     return this.http.delete(url);
   }
 

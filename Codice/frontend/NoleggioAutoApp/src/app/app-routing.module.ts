@@ -4,12 +4,14 @@ import { DashboardComponent } from './componenti/dashboard/dashboard.component';
 import { LoginComponent } from './componenti/login/login.component';
 import { RegistrazioneComponent } from './componenti/registrazione/registrazione.component';
 import { UtenteComponent } from './componenti/utente/utente.component';
+import { AutoComponent } from './componenti/auto/auto.component';
 
 const routes: Routes = [
   {path:'',component:DashboardComponent},
   {path:'login',component:LoginComponent},
   {path:'registrazione',component:RegistrazioneComponent},
-  {path:'dashboard',component: DashboardComponent}
+  {path:'dashboard',component: DashboardComponent},
+  {path:'auto',component:AutoComponent}
 
 ];
 

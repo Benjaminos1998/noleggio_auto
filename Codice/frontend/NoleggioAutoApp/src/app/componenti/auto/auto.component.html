@@ -1,1 +1,56 @@
-<p>auto works!</p>
+<mat-toolbar class="mat-toolbar">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Noleggio Auto</span>
+  <span class="example-spacer"></span>
+  <button  mat-raised-button color="">
+    Login
+  </button>
+  <button class="button-dashboard" mat-raised-button color="">
+    Registrazione
+  </button>
+</mat-toolbar>
+
+<mat-card *ngFor="let automobile of auto" class="auto-card">
+  <mat-card-header>
+    <mat-card-title> {{automobile.modello}} </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <table>
+        <p> Targa: {{automobile.targa}}</p>
+        <p> Tipologia auto: {{automobile.tipoAuto}}</p>
+      </table>
+
+    </div>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="warn" (click)="cancellaAuto(automobile.idAuto)">Elimina auto</button>
+  </mat-card-actions>
+</mat-card>
+
+
+<!-- Modulo per l'aggiunta di una nuova auto -->
+<div class="new-auto-form">
+  <h2>Aggiungi una nuova auto</h2>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Targa</mat-label>
+    <input matInput type="text" [(ngModel)]="nuovaAuto.targa">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label> Modello</mat-label>
+    <input matInput type="text" [(ngModel)]="nuovaAuto.modello">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tipo Auto</mat-label>
+    <input matInput type="text" [(ngModel)]="nuovaAuto.tipoAuto">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="aggiungiAuto()">Aggiungi Auto</button>
+
+</div>

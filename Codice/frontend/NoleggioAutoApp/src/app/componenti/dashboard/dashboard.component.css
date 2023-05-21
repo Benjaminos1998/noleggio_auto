@@ -1,0 +1,11 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.mat-toolbar{
+  color: white;
+  background-color: black;
+}
+
+.button-dashboard{
+  margin-left: 1%;
+}
