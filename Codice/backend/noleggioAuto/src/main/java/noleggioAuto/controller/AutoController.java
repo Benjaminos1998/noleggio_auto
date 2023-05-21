@@ -1,5 +1,6 @@
 package noleggioAuto.controller;
 
+
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -36,11 +37,10 @@ public class AutoController {
 	}
 
 	@GetMapping("/parcoAuto")
-	public ResponseEntity<?> getAllAuto() {
+	public List<Auto> getAllAuto() {
 		List<Auto> automobili = this.autoService.getAllAuto();
-		if (!automobili.isEmpty())
-			return new ResponseEntity<List<Auto>>(automobili, HttpStatus.OK);
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Non sono presenti automobili nella lista.");
+		return automobili;
+		
 	}
 
 	@PostMapping("/addAuto")
@@ -63,13 +63,11 @@ public class AutoController {
 	}
 
 	@DeleteMapping("/deleteAuto/{id}")
-	public ResponseEntity<String> deleteAuto(@PathVariable("id") Long id) {
+	public void deleteAuto(@PathVariable("id") Long id) {
 		try {
 			this.autoService.deleteAuto(id);
-			return ResponseEntity.status(HttpStatus.OK).body("Cancellazione avvenuta con successo.");
 		} catch (AutoNonTrovataException e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body("Errore nella cancellazione dell'automobile.");
+			
 		}
 	}
 }
