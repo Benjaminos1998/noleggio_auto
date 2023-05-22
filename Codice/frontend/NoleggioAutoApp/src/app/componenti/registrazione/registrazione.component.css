@@ -2,6 +2,10 @@
   flex: 1 1 auto;
 }
 
+.mat-toolbar{
+  color: black;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Crea due colonne di larghezza uguale */

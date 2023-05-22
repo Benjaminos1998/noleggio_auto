@@ -58,10 +58,10 @@
         <span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
         <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}"
           *ngIf="isExpanded || isShowing">expand_more</mat-icon>
-          <mat-icon>home</mat-icon>
+        <mat-icon>home</mat-icon>
       </mat-list-item>
       <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-        <a mat-list-item href="">Parco Auto</a>
+        <a mat-list-item href="http://localhost:4200/auto">Parco Auto</a>
         <a mat-list-item href="">Prenota Noleggio</a>
         <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
           <span class="full-width" *ngIf="isExpanded || isShowing">Termini e Condizioni</span>
@@ -78,11 +78,6 @@
     </mat-nav-list>
   </mat-sidenav>
   <div class="example-sidenav-content">
-
-
-
-
-
 
   </div>
 </mat-sidenav-container>

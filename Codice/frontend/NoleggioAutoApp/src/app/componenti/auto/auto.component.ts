@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { TipologiaAuto } from 'src/app/enums/TipologiaAuto';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { environmet } from 'src/app/environments/environment';
 import { Auto } from 'src/app/interfacce/auto';
 import { AutoService } from 'src/app/servizi/auto.service';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-auto',
   templateUrl: './auto.component.html',
   styleUrls: ['./auto.component.css'],
 })
-export class AutoComponent {
+export class AutoComponent implements OnInit {
   private apiServerUrl = environmet.apiBaseUrl + 'api/auto';
 
   auto?: Auto[];
@@ -49,6 +49,24 @@ export class AutoComponent {
       .subscribe((data) => {
         this.getAllAuto();
       });
+  }
+
+  @ViewChild('sidenav') sidenav?: MatSidenav;
+  isExpanded = true;
+  showSubmenu: boolean = false;
+  isShowing = false;
+  showSubSubMenu: boolean = false;
+
+  mouseenter() {
+    if (!this.isExpanded) {
+      this.isShowing = true;
+    }
+  }
+
+  mouseleave() {
+    if (!this.isExpanded) {
+      this.isShowing = false;
+    }
   }
 
 
