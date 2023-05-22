@@ -1,1 +1,53 @@
-<p>registrazione works!</p>
+<mat-toolbar color="warn" class="mat-toolbar">
+  <button mat-icon-button (click)="isExpanded = !isExpanded" class="example-icon"
+    aria-label="Example icon-button with menu icon" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Noleggio Auto</span>
+  <span class="example-spacer"></span>
+</mat-toolbar>
+
+<div class="prova">
+
+  <div class="grid-container">
+    <div class="section section-left">
+
+      Descrizione
+
+
+
+    </div>
+
+    <div class="section section-right">
+      <h1> Effettua la registrazione</h1>
+      <form #loginForm="ngForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Nome</mat-label>
+          <input matInput type="text" name="nome" required ngModel>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Cognome</mat-label>
+          <input matInput type="text" name="cognome" required ngModel>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Data di nascita</mat-label>
+          <input matInput type="date" name="dataDiNascita" required ngModel>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>NumeroPatente</mat-label>
+          <input matInput type="text" name="numeroPatente" required ngModel>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" name="email" required ngModel>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" name="password" required ngModel>
+        </mat-form-field>
+        <button type="submit" class="btn btn-dark" [disabled]="!loginForm">Registrati</button>
+      </form>
+    </div>
+
+
+  </div>

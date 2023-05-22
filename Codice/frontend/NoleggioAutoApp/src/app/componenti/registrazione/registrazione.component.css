@@ -1,0 +1,43 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Crea due colonne di larghezza uguale */
+  grid-gap: 1px; /* Spaziatura tra le colonne */
+}
+
+.section {
+  background-color: #f2f2f2; /* Esempio di sfondo per le sezioni */
+  padding: 10px; /* Esempio di padding per spaziatura interna delle sezioni */
+}
+
+.section-left {
+  grid-column: 1; /* Posiziona la sezione nella prima colonna */
+}
+
+.section-right {
+  grid-column: 2;
+  overflow-y: auto; /* Abilita la scrollbar verticale solo se necessario */
+  max-height: 450px; /* Imposta l'altezza massima desiderata */
+}
+
+.prova{
+  padding-top: 0.2%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 220px;
+}
+
+h1{
+  display: flex;
+  align-items: center;
+  display: inline;
+  padding: 28%;
+  margin-bottom: 10%;
+}
