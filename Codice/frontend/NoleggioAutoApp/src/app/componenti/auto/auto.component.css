@@ -7,14 +7,15 @@
 }
 
 .example-container {
-  height: 500px;
+  height: auto;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 .example-sidenav-content {
   display: flex;
-  height: 100%;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
+  align-content: flex-start;
+  padding: 12px;
 }
 .example-sidenav {
    user-select: none;
@@ -38,4 +39,25 @@
 }
 .submenu.expanded {
   transform: scaleY(1);
+}
+
+
+
+/* css per card */
+
+.example-card {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.card {
+  margin-bottom: 0.5px;
+}
+
+button{
+  margin: 3px;
 }

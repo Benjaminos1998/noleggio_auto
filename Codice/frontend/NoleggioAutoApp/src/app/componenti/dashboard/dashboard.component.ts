@@ -4,9 +4,12 @@ import { MatSidenav } from '@angular/material/sidenav';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
+  /*
+Logica per la gestione del menu
+*/
 
   @ViewChild('sidenav') sidenav?: MatSidenav;
   isExpanded = true;
@@ -25,5 +28,4 @@ export class DashboardComponent {
       this.isShowing = false;
     }
   }
-
 }

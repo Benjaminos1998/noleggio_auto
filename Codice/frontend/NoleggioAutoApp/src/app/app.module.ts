@@ -12,6 +12,8 @@ import { NoleggioComponent } from './componenti/noleggio/noleggio.component';
 import { AutoComponent } from './componenti/auto/auto.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
