@@ -16,7 +16,7 @@
 
     <div class="section section-right">
       <h1> Effettua la registrazione</h1>
-      <form #loginForm="ngForm">
+      <form #registrazioneForm="ngForm">
         <mat-form-field appearance="fill">
           <mat-label>Nome</mat-label>
           <input matInput type="text" name="nome" required ngModel>
@@ -41,7 +41,7 @@
           <mat-label>Password</mat-label>
           <input matInput type="password" name="password" required ngModel>
         </mat-form-field>
-        <button type="submit" class="btn btn-dark" [disabled]="!loginForm">Registrati</button>
+        <button type="submit" class="btn btn-dark" [disabled]="!registrazioneForm">Registrati</button>
       </form>
     </div>
 

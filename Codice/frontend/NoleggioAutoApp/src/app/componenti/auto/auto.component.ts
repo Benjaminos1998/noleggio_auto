@@ -57,15 +57,15 @@ export class AutoComponent implements OnInit {
     let imagePath ='';
 
     if(modello == 'Ferrari'){
-      imagePath = 'https://p4.wallpaperbetter.com/wallpaper/703/793/124/ferrari-backgrounds-desktop-wallpaper-preview.jpg';
+      imagePath = 'assets/images/ferrari.jpg';
     }else if (modello == 'Bmw' || modello == "BMW"){
       imagePath = 'https://www.motornet.it/img/modelli/auto/BMW/Serie%208%20Gran%20Coupe_1.jpg';
     }else if (modello == 'Tesla'){
-      imagePath = 'https://www.pngplay.com/wp-content/uploads/13/Tesla-Transparent-Image.png';
+      imagePath = 'assets/images/tesla.png';
     }else if (modello == 'Fiat'){
       imagePath = 'https://www.garageromasnc.com/wp-content/uploads/2021/05/Panda.jpg';
     }else if (modello == 'Alfa Romeo' || modello == 'AlfaRomeo'){
-      imagePath = 'https://www.alfaromeo.it/content/dam/alfa/it/homepage/trim/AR-Home-Trim-Figurini-Stelvio-MCA-Veloce.png';
+      imagePath = 'assets/images/alfaromeo.png';
     }
 
     return imagePath;

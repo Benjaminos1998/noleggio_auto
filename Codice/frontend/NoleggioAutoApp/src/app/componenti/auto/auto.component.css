@@ -15,7 +15,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-start;
-  padding: 12px;
+  padding: 16px;
 }
 .example-sidenav {
    user-select: none;
@@ -42,22 +42,24 @@
 }
 
 
-
 /* css per card */
-
-.example-card {
-  max-width: 150px;
-  max-height: 150px;
-}
-
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
 .card {
+  height: 92%;
+  width: 92%;
   margin-bottom: 0.5px;
+  margin-right: 0;
 }
+
+
+img {
+  object-fit: cover;
+}
+
 
 button{
   margin: 3px;
+}
+
+h2{
+  text-align: center;
 }
