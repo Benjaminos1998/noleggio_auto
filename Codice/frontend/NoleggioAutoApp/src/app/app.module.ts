@@ -24,6 +24,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { HomeComponent } from './componenti/home/home.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     UtenteComponent,
     NoleggioComponent,
     AutoComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatIconModule,
     MatListModule,
     MatDatepickerModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

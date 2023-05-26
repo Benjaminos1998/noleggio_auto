@@ -1,0 +1,148 @@
+<mat-toolbar color="warn" class="mat-toolbar">
+  <button mat-icon-button (click)="isExpanded = !isExpanded" class="example-icon"
+    aria-label="Example icon-button with menu icon" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Noleggio Auto</span>
+  <span class="example-spacer"></span>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel"> Accedi al tuo account </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <input matInput type="email" name="email" class="form-control" id="floatingInput"
+                placeholder="name@example.com" required>
+              <label for="floatingInput">Indirizzo Email</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password"
+                required>
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="checkbox mb-3">
+              <label>
+                <input type="checkbox" value="remember-me"> Ricordarmi
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="w-100 btn btn-lg btn-dark" type="submit">Accedi</button>
+            <hr class="my-4">
+            <small class="text-body-secondary"></small>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</mat-toolbar>
+
+
+<mat-sidenav-container class="example-container" autosize>
+  <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
+    (mouseleave)="mouseleave()">
+    <mat-nav-list>
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+        <span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
+        <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}"
+          *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+        <mat-icon>home</mat-icon>
+      </mat-list-item>
+      <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+        <a mat-list-item href="http://localhost:4200/auto">Parco Auto</a>
+        <a mat-list-item href="">Prenota Noleggio</a>
+        <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Termini e Condizioni</span>
+          <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}"
+            *ngIf="isExpanded || isShowing">expand_more</mat-icon>
+        </mat-list-item>
+        <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
+          <mat-list-item>SubSubmenu Item 1</mat-list-item>
+          <mat-list-item>SubSubmenu Item 2</mat-list-item>
+        </div>
+      </div>
+    </mat-nav-list>
+    <mat-nav-list>
+    </mat-nav-list>
+  </mat-sidenav>
+  <div class="example-sidenav-content">
+
+
+
+    <div class="elementor-row">
+      <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-fdbf703"
+        data-id="fdbf703" data-element_type="column">
+        <div class="elementor-column-wrap elementor-element-populated">
+          <div class="elementor-widget-wrap">
+            <div
+              class="elementor-element elementor-element-0efde60 elementor-position-top dce_masking-none elementor-vertical-align-top elementor-widget elementor-widget-image-box"
+              data-id="0efde60" data-element_type="widget" data-widget_type="image-box.default">
+              <div class="elementor-widget-container">
+                <div class="elementor-image-box-wrapper">
+                  <div class="elementor-image-box-content">
+                    <h3 class="elementor-image-box-title"> Noleggio a breve termine</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="elementor-element elementor-element-5fa6783 elementor-widget elementor-widget-text-editor"
+              data-id="5fa6783" data-element_type="widget" data-widget_type="text-editor.default">
+              <div class="elementor-widget-container">
+                <div class="elementor-text-editor elementor-clearfix">
+                  <p>Un servizio di noleggio <strong>auto e furgoni</strong> che risponde alle tue esigenze personali o
+                    lavorative. Le sedi Noleggiare ti offrono un servizio di noleggio a breve e medio termine con
+                    <strong>tariffe convenienti</strong>, un’ampia gamma di auto e veicoli commerciali sempre nuovi e
+                    pronti per la consegna. Contratti chiari, soluzioni e servizi flessibili, assistenza clienti sempre
+                    a disposizione per ogni richiesta: il noleggio a breve termine su misura ti attende nelle nostre
+                    location.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-f932f5f"
+        data-id="f932f5f" data-element_type="column">
+        <div class="elementor-column-wrap elementor-element-populated">
+          <div class="elementor-widget-wrap">
+            <div
+              class="elementor-element elementor-element-db0630e elementor-position-top dce_masking-none elementor-vertical-align-top elementor-widget elementor-widget-image-box"
+              data-id="db0630e" data-element_type="widget" data-widget_type="image-box.default">
+              <div class="elementor-widget-container">
+                <div class="elementor-image-box-wrapper">
+                  <div class="elementor-image-box-content">
+                    <h3 class="elementor-image-box-title"> Noleggio a lungo termine</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="elementor-element elementor-element-362773c elementor-widget elementor-widget-text-editor"
+              data-id="362773c" data-element_type="widget" data-widget_type="text-editor.default">
+              <div class="elementor-widget-container">
+                <div class="elementor-text-editor elementor-clearfix">
+                  <p>Tutte le comodità di un’auto sempre a tua disposizione, abbattendo i costi dell’acquisto, della
+                    proprietà e della manutenzione. Il noleggio a lungo termine è una soluzione intelligente che
+                    presenta molti vantaggi, tra cui un<strong> unico canone mensile fisso concordato</strong>. Puoi
+                    scegliere il modello
+                    auto che preferisci tra tutti quelli presenti sul mercato: studieremo insieme le migliori
+                    condizioni per il noleggio, con o senza anticipo, per <strong>privati</strong>, <strong>aziende
+                    </strong>e <strong>professionisti con partita IVA</strong>.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</mat-sidenav-container>

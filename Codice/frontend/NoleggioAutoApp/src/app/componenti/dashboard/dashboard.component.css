@@ -39,3 +39,10 @@
 .submenu.expanded {
   transform: scaleY(1);
 }
+
+
+/* Contenuto sidenav-content */
+
+mat-grid-tile {
+  background: coral;
+}

@@ -43,7 +43,7 @@ export class RegistrazioneComponent {
       .subscribe((result) => {
         if (result != null) {
           // this.modalService.dismissAll();
-          this.router.navigateByUrl('');
+          this.router.navigateByUrl('/home');
         } else {
           alert('username già utilizzato');
         }

@@ -1,0 +1,99 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar {
+  color: black;
+}
+
+.example-container {
+  height: 500px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  user-select: none;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.menu-button {
+  transition: 300ms ease-in-out;
+  transform: rotate(0deg);
+}
+
+.menu-button.rotated {
+  transform: rotate(180deg);
+}
+
+.submenu {
+  overflow-y: hidden;
+  transition: transform 300ms ease;
+  transform: scaleY(0);
+  transform-origin: top;
+  padding-left: 30px;
+}
+
+.submenu.expanded {
+  transform: scaleY(1);
+}
+
+
+
+/* Contenuto sidenav-content */
+
+
+
+/* Stili per il layout della riga */
+.elementor-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -15px;
+  /* Spaziatura tra le colonne */
+}
+
+/* Stili per le colonne */
+.elementor-column {
+  width: 50%;
+  /* La larghezza desiderata per ogni colonna */
+  padding: 15px;
+  /* Spaziatura interna delle colonne */
+  box-sizing: border-box;
+}
+
+/* Stili per l'immagine e il titolo del primo box */
+.elementor-element-0efde60 .elementor-image-box-content h3 {
+  color: #000;
+  font-size: 18px;
+  /* Aggiungi altri stili desiderati */
+}
+
+/* Stili per il testo del primo box */
+.elementor-element-5fa6783 p {
+  color: #333;
+  font-size: 14px;
+  /* Aggiungi altri stili desiderati */
+}
+
+/* Stili per l'immagine e il titolo del secondo box */
+.elementor-element-db0630e .elementor-image-box-content h3 {
+  color: #000;
+  font-size: 18px;
+  /* Aggiungi altri stili desiderati */
+}
+
+/* Stili per il testo del secondo box */
+.elementor-element-362773c p {
+  color: #333;
+  font-size: 14px;
+  /* Aggiungi altri stili desiderati */
+}
