@@ -1,6 +1,7 @@
 <mat-toolbar color="warn" class="mat-toolbar">
-  <button  mat-icon-button (click)="isExpanded = !isExpanded" class="example-icon"
-    aria-label="Example icon-button with menu icon" type="button" data-bs-toggle="dropdown" aria-expanded="false"  role="listitem" routerLink="" [routerLinkActive]="'active'">
+  <button mat-icon-button (click)="isExpanded = !isExpanded" class="example-icon"
+    aria-label="Example icon-button with menu icon" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+    role="listitem" routerLink="" [routerLinkActive]="'active'">
     <mat-icon>arrow_back</mat-icon>
   </button>
   <span>Noleggio Auto</span>
@@ -19,29 +20,30 @@
       <form #registrazioneForm="ngForm">
         <mat-form-field appearance="fill">
           <mat-label>Nome</mat-label>
-          <input matInput type="text" name="nome" required ngModel>
+          <input matInput type="text" name="nome" [(ngModel)]="nuovoUtente.nome" [ngModelOptions]="{standalone:true}" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Cognome</mat-label>
-          <input matInput type="text" name="cognome" required ngModel>
+          <input matInput type="text" name="cognome"  [(ngModel)]="nuovoUtente.cognome" [ngModelOptions]="{standalone:true}" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Data di nascita</mat-label>
-          <input matInput type="date" name="dataDiNascita" required ngModel>
+          <input matInput type="date" name="dataDiNascita" [(ngModel)]="nuovoUtente.dataDiNascita" [ngModelOptions]="{standalone:true}" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>NumeroPatente</mat-label>
-          <input matInput type="text" name="numeroPatente" required ngModel>
+          <input matInput type="text" name="numeroPatente" [(ngModel)]="nuovoUtente.numeroPatente" [ngModelOptions]="{standalone:true}" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput type="email" name="email" required ngModel>
+          <input matInput type="email" name="email" [(ngModel)]="nuovoUtente.email" [ngModelOptions]="{standalone:true}" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
-          <input matInput type="password" name="password" required ngModel>
+          <input matInput type="password" name="password" [(ngModel)]="nuovoUtente.password" [ngModelOptions]="{standalone:true}" required>
         </mat-form-field>
-        <button type="submit" class="btn btn-dark" [disabled]="!registrazioneForm">Registrati</button>
+        <button type="submit" class="btn btn-dark" (click)="registraUtente(registrazioneForm)"
+          [disabled]="!registrazioneForm">Registrati</button>
       </form>
     </div>
 

@@ -1,8 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { environmet } from 'src/app/environments/environment';
+import { RegistrazioneService } from 'src/app/servizi/registrazione.service';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UrlHandlingStrategy } from '@angular/router';
 
 @Component({
   selector: 'app-registrazione',
@@ -12,29 +16,39 @@ import { environmet } from 'src/app/environments/environment';
 export class RegistrazioneComponent {
   private apiServerUrl = environmet.apiBaseUrl + 'api/auth/registrazione';
 
-  constructor(private http: HttpClient) {}
+  nuovoUtente = {
+    nome:'',
+    cognome: '',
+    dataDiNascita: '',
+    numeroPatente:'',
+    email:'',
+    password:''
+  };
 
-  registrazioneUtente(registrazioneForm: NgForm) : void{
-    const Utente = {
-      nome: registrazioneForm.value.nome,
-      cognome: registrazioneForm.value.cognome,
-      dataDiNascita: registrazioneForm.value.dataDiNascita,
-      numeroPatente: registrazioneForm.value.numeroPatente,
-      email: registrazioneForm.value.email,
-      password: registrazioneForm.value.password,
-    };
+  constructor(
+    private http: HttpClient,
+    private registrazioneService: RegistrazioneService,
+    private router: Router,
+    // private modalService: NgbModal
+  ) {}
 
-    this.http.post(this.apiServerUrl,Utente)
-      .subscribe(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          console.error("Impossibile registrarsi. Riprova!")
+  registraUtente(registrazioneForm: NgForm): void {
+
+    let headers: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    this.registrazioneService
+      .registrazioneUtente(this.apiServerUrl, this.nuovoUtente, headers)
+      .subscribe((result) => {
+        if (result != null) {
+          // this.modalService.dismissAll();
+          this.router.navigateByUrl('');
+        } else {
+          alert('username già utilizzato');
         }
-      )
+      });
   }
-
 
   @ViewChild('sidenav') sidenav?: MatSidenav;
   isExpanded = true;
