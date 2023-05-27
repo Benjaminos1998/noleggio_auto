@@ -7,10 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class RegistrazioneService {
   constructor(private http: HttpClient) {}
 
-  registrazioneUtente(url: string, body: {},headers:HttpHeaders) {
-
-
-
-    return this.http.post(url, body,{headers});
+  registrazioneUtente(url: string, body: {}, headers: HttpHeaders) {
+    return this.http.post(url, body, { headers });
   }
 }

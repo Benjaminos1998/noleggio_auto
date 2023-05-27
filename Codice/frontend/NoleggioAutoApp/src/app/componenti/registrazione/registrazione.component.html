@@ -20,32 +20,36 @@
       <form #registrazioneForm="ngForm">
         <mat-form-field appearance="fill">
           <mat-label>Nome</mat-label>
-          <input matInput type="text" name="nome" [(ngModel)]="nuovoUtente.nome" [ngModelOptions]="{standalone:true}" required>
+          <input matInput type="text" name="nome" [(ngModel)]="nuovoUtente.nome" [ngModelOptions]="{standalone:true}"
+            required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Cognome</mat-label>
-          <input matInput type="text" name="cognome"  [(ngModel)]="nuovoUtente.cognome" [ngModelOptions]="{standalone:true}" required>
+          <input matInput type="text" name="cognome" [(ngModel)]="nuovoUtente.cognome"
+            [ngModelOptions]="{standalone:true}" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Data di nascita</mat-label>
-          <input matInput type="date" name="dataDiNascita" [(ngModel)]="nuovoUtente.dataDiNascita" [ngModelOptions]="{standalone:true}" required>
+          <input matInput type="date" name="dataDiNascita" [(ngModel)]="nuovoUtente.dataDiNascita"
+            [ngModelOptions]="{standalone:true}" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>NumeroPatente</mat-label>
-          <input matInput type="text" name="numeroPatente" [(ngModel)]="nuovoUtente.numeroPatente" [ngModelOptions]="{standalone:true}" required>
+          <input matInput type="text" name="numeroPatente" [(ngModel)]="nuovoUtente.numeroPatente"
+            [ngModelOptions]="{standalone:true}" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput type="email" name="email" [(ngModel)]="nuovoUtente.email" [ngModelOptions]="{standalone:true}" required>
+          <input matInput type="email" name="email" [(ngModel)]="nuovoUtente.email" [ngModelOptions]="{standalone:true}"
+            required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
-          <input matInput type="password" name="password" [(ngModel)]="nuovoUtente.password" [ngModelOptions]="{standalone:true}" required>
+          <input matInput type="password" name="password" [(ngModel)]="nuovoUtente.password"
+            [ngModelOptions]="{standalone:true}" required>
         </mat-form-field>
         <button type="submit" class="btn btn-dark" (click)="registraUtente(registrazioneForm)"
           [disabled]="!registrazioneForm">Registrati</button>
       </form>
     </div>
-
-
   </div>

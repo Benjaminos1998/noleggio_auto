@@ -8,7 +8,6 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class DashboardComponent {
 
-
   /*
 Logica per la gestione del menu
 */

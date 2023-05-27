@@ -13,19 +13,20 @@
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+        <form #loginForm="ngForm" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel"> Accedi al tuo account </h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <div class="form-floating mb-3">
-              <input matInput type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-                required>
+              <input matInput type="email" name="email" class="form-control" id="floatingInput"
+                placeholder="name@example.com" required>
               <label for="floatingInput">Indirizzo Email</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+              <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password"
+                required>
               <label for="floatingPassword">Password</label>
             </div>
             <div class="checkbox mb-3">
@@ -52,7 +53,7 @@
 
 <mat-sidenav-container class="example-container" autosize>
   <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
-    (mouseleave)="mouseleave()">
+    (mouseleave)="mouseleave()" ngDraggable>
     <mat-nav-list>
       <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
         <span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
