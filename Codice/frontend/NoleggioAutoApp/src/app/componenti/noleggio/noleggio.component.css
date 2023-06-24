@@ -56,6 +56,15 @@ Header
   visibility: hidden;
 }
 
+/*-----------------------
+Contenuto Pagina
+-----------------------*/
+.content{
+  margin-top: 78px;
+  margin-bottom: 3px;
+  height: 390px;
+}
+
 
 
 

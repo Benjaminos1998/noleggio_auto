@@ -1,47 +1,137 @@
-.example-spacer {
-  flex: 1 1 auto;
+/*------------------
+General
+-------------------*/
+html {
+  background-color: #e7e5e5;
+  height: auto
 }
 
-.mat-toolbar{
-  color: black;
+p {
+  font-size: 18px;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Crea due colonne di larghezza uguale */
-  grid-gap: 1px; /* Spaziatura tra le colonne */
+/*------------------
+Header
+-------------------*/
+
+.header {
+  background-color: #d8ccbb;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  border-bottom: 1.5px solid black;
+}
+.color_button{
+  background-color: #333;
+  border-color: #333;
 }
 
-.section {
-  background-color: #f2f2f2; /* Esempio di sfondo per le sezioni */
-  padding: 10px; /* Esempio di padding per spaziatura interna delle sezioni */
+.prova {
+  margin: 5px;
 }
 
-.section-left {
-  grid-column: 1; /* Posiziona la sezione nella prima colonna */
+.prova1 {
+  margin-left: 1px;
 }
 
-.section-right {
-  grid-column: 2;
-  overflow-y: auto; /* Abilita la scrollbar verticale solo se necessario */
-  max-height: 450px; /* Imposta l'altezza massima desiderata */
+.prova2 {
+  margin-left: 35px;
+  background-color: #000;
+  border-color: #000;
 }
 
-.prova{
-  padding-top: 0.2%;
+
+.login {
+  padding: 5px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 220px;
+.registrazione {
+  padding: 5px;
 }
 
-h1{
-  display: flex;
-  align-items: center;
-  display: inline;
-  padding: 28%;
-  margin-bottom: 10%;
+.titolo{
+  visibility: hidden;
 }
+
+
+
+/*-----------------------
+Contenuto Pagina
+-----------------------*/
+.content{
+  margin-top: 78px;
+  margin-bottom: 3px;
+  height: 390px;
+}
+
+
+
+
+
+/*-----------------------
+Footer
+-----------------------*/
+.footer{
+  background-color: #d8ccbb;
+  color: #000;
+  border-top: 1.5px solid #000;
+}
+
+.text{
+  text-align: center;
+}
+.text_p{
+  font-size: 12px;
+}
+.text_h5{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+}
+.text_copy{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.link{
+  text-decoration: none;
+  color: #000;
+}
+
+
+
+
+/*-----------------------
+Smatphone
+-----------------------*/
+@media (max-width:767px) {
+
+
+  .titolo{
+   visibility: visible;
+   text-align: center;
+   margin: auto;
+  }
+
+
+
+ }
+
+
+
+ .clearfix:after {
+   visibility: hidden;
+   display: block;
+   font-size: 0;
+   content: " ";
+   clear: both;
+   height: 0;
+ }
+
+ * html .clearfix {
+   zoom: 1;
+ }
+
+ *:first-child+html .clearfix {
+   zoom: 1;
+ }

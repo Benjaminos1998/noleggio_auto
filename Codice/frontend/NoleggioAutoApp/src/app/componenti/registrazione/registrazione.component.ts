@@ -12,62 +12,62 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './registrazione.component.html',
   styleUrls: ['./registrazione.component.css'],
 })
-export class RegistrazioneComponent implements OnInit {
-  private apiServerUrl = environmet.apiBaseUrl + 'api/auth/registrazione';
+export class RegistrazioneComponent {
+  // private apiServerUrl = environmet.apiBaseUrl + 'api/auth/registrazione';
 
-  nuovoUtente = {
-    nome: '',
-    cognome: '',
-    dataDiNascita: '',
-    numeroPatente: '',
-    email: '',
-    password: '',
-  };
+  // nuovoUtente = {
+  //   nome: '',
+  //   cognome: '',
+  //   dataDiNascita: '',
+  //   numeroPatente: '',
+  //   email: '',
+  //   password: '',
+  // };
 
-  constructor(
-    private http: HttpClient,
-    private registrazioneService: RegistrazioneService,
-    private router: Router,
-    private modalService: NgbModal
-  ) {}
-  ngOnInit(): void {}
+  // constructor(
+  //   private http: HttpClient,
+  //   private registrazioneService: RegistrazioneService,
+  //   private router: Router,
+  //   private modalService: NgbModal
+  // ) {}
+  // ngOnInit(): void {}
 
-  registraUtente(registrazioneForm: NgForm): void {
-    let headers: HttpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
+  // registraUtente(registrazioneForm: NgForm): void {
+  //   let headers: HttpHeaders = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //   });
 
-    this.registrazioneService
-      .registrazioneUtente(this.apiServerUrl, this.nuovoUtente, headers)
-      .subscribe((result) => {
-        if (result != null) {
-          this.modalService.dismissAll();
-          this.router.navigateByUrl('/home');
-        } else {
-          alert('username già utilizzato');
-        }
-      });
-  }
+  //   this.registrazioneService
+  //     .registrazioneUtente(this.apiServerUrl, this.nuovoUtente, headers)
+  //     .subscribe((result) => {
+  //       if (result != null) {
+  //         this.modalService.dismissAll();
+  //         this.router.navigateByUrl('/home');
+  //       } else {
+  //         alert('username già utilizzato');
+  //       }
+  //     });
+  // }
 
-  @ViewChild('sidenav') sidenav?: MatSidenav;
-  isExpanded = true;
-  showSubmenu: boolean = false;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
+  // @ViewChild('sidenav') sidenav?: MatSidenav;
+  // isExpanded = true;
+  // showSubmenu: boolean = false;
+  // isShowing = false;
+  // showSubSubMenu: boolean = false;
 
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
-  }
+  // mouseenter() {
+  //   if (!this.isExpanded) {
+  //     this.isShowing = true;
+  //   }
+  // }
 
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
-  }
+  // mouseleave() {
+  //   if (!this.isExpanded) {
+  //     this.isShowing = false;
+  //   }
+  // }
 
-  open(content: any) {
-    this.modalService.open(content);
-  }
+  // open(content: any) {
+  //   this.modalService.open(content);
+  // }
 }

@@ -1,4 +1,4 @@
-<html>
+<html class="clearfix">
 <!-- Header -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary header clearfix">
   <div class="container-fluid">
@@ -72,59 +72,66 @@
 </nav>
 
 
-<mat-sidenav-container class="example-container" autosize>
-
-  <div class="example-sidenav-content">
-    <!-- Codice delle card delle automobili -->
-
-    <div class="row">
-      <div class="col-md-4 mb-4" *ngFor="let automobile of auto">
-        <div class="card-title">
-          <h2> {{automobile.modello}}</h2>
-        </div>
-        <div class="card">
-          <!-- <img [src]="getCarImage(automobile.modello)" class="card-img-top" alt="Immagine non disponibile">-->
-          <img [src]=" getCarImage(automobile.modello)" class="card-img-top" alt="Immagine non disponibile">
-          <div class="card-body">
-            <p class="card-text">Targa: {{ automobile.targa }}</p>
-            <p class="card-text">Tipologia auto: {{ automobile.tipoAuto }}</p>
-          </div>
-          <div class="card-footer">
-            <button class="btn btn-danger" (click)="cancellaAuto(automobile.idAuto)">Noleggia auto</button>
-            <button class="btn btn-danger" (click)="cancellaAuto(automobile.idAuto)">Elimina auto</button>
-          </div>
-        </div>
-      </div>
+<section class="content clearfix">
+  <div class="card">
+    <img src="assets/images/ferrari.jpg" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="assets/images/ferrari.jpg" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="assets/images/ferrari.jpg" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="assets/images/ferrari.jpg" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="assets/images/BMW.jpg" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="assets/images/alfaromeo.png" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="assets/images/ferrari.jpg" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
     </div>
   </div>
 
-</mat-sidenav-container>
 
-
-<!-- Modulo per l'aggiunta di una nuova auto -->
-<div class="new-auto-form">
-  <h2>Aggiungi una nuova auto</h2>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Targa</mat-label>
-    <input matInput type="text" [(ngModel)]="nuovaAuto.targa">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label> Modello</mat-label>
-    <input matInput type="text" [(ngModel)]="nuovaAuto.modello">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Tipo Auto</mat-label>
-    <input matInput type="text" [(ngModel)]="nuovaAuto.tipoAuto">
-  </mat-form-field>
-
-  <button mat-raised-button color="primary" (click)="aggiungiAuto()">Aggiungi Auto</button>
-
-</div>
-
-
+</section>
 
 
 <!-- Footer -->

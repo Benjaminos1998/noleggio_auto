@@ -58,27 +58,35 @@ Header
 
 
 
-
-/* css per card */
-.card {
-  height: 92%;
-  width: 92%;
-  margin-bottom: 0.5px;
-  margin-right: 0;
+/*-----------------------
+Cards
+-----------------------*/
+.content{
+  margin-top: 78px;
+  margin-bottom: 1px;
 }
 
 
-img {
-  object-fit: cover;
+.card{
+  border: 1.5px solid black;
+  margin: 10px;
+  float: left;
+  width: 23%;
+  align-items: center;
+  height: auto;
+}
+.card-body{
+  border-top: 1px solid black;
 }
 
-
-button{
-  margin: 3px;
-}
-
-h2{
+.card-title{
   text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 18px;
+}
+
+.card-text{
+  font-size: 12px;
 }
 
 
