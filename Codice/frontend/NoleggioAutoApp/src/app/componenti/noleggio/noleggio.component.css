@@ -1,0 +1,125 @@
+/*------------------
+General
+-------------------*/
+html {
+  background-color: #e7e5e5;
+  height: auto
+}
+
+p {
+  font-size: 18px;
+}
+
+/*------------------
+Header
+-------------------*/
+
+.header {
+  background-color: #d8ccbb;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  border-bottom: 1.5px solid black;
+}
+.color_button{
+  background-color: #333;
+  border-color: #333;
+}
+
+.prova {
+  margin: 5px;
+}
+
+.prova1 {
+  margin-left: 1px;
+}
+
+.prova2 {
+  margin-left: 35px;
+  background-color: #000;
+  border-color: #000;
+}
+
+
+.login {
+  padding: 5px;
+}
+
+.registrazione {
+  padding: 5px;
+}
+
+.titolo{
+  visibility: hidden;
+}
+
+
+
+
+/*-----------------------
+Footer
+-----------------------*/
+.footer{
+  background-color: #d8ccbb;
+  color: #000;
+  border-top: 1.5px solid #000;
+}
+
+.text{
+  text-align: center;
+}
+.text_p{
+  font-size: 12px;
+}
+.text_h5{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+}
+.text_copy{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.link{
+  text-decoration: none;
+  color: #000;
+}
+
+
+
+
+/*-----------------------
+Smatphone
+-----------------------*/
+@media (max-width:767px) {
+
+
+  .titolo{
+   visibility: visible;
+   text-align: center;
+   margin: auto;
+  }
+
+
+
+ }
+
+
+
+ .clearfix:after {
+   visibility: hidden;
+   display: block;
+   font-size: 0;
+   content: " ";
+   clear: both;
+   height: 0;
+ }
+
+ * html .clearfix {
+   zoom: 1;
+ }
+
+ *:first-child+html .clearfix {
+   zoom: 1;
+ }

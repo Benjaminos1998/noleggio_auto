@@ -6,6 +6,7 @@ import { RegistrazioneComponent } from './componenti/registrazione/registrazione
 import { UtenteComponent } from './componenti/utente/utente.component';
 import { AutoComponent } from './componenti/auto/auto.component';
 import { HomeComponent } from './componenti/home/home.component';
+import { NoleggioComponent } from './componenti/noleggio/noleggio.component';
 
 const routes: Routes = [
   {path:'',component:DashboardComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:'dashboard',component: DashboardComponent},
   {path:'auto',component:AutoComponent},
   {path:'home',component:HomeComponent},
+  {path:'noleggio',component:NoleggioComponent},
 
 
 ];

@@ -1,90 +1,87 @@
-<mat-toolbar color="warn" class="mat-toolbar">
-  <button mat-icon-button (click)="isExpanded = !isExpanded" class="example-icon"
-    aria-label="Example icon-button with menu icon" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Noleggio Auto</span>
-  <span class="example-spacer"></span>
-  <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" mat-raised-button>
-    Login
-  </button>
+<html>
+<!-- Header -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary header clearfix">
+  <div class="container-fluid">
+    <div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel"> Accedi al tuo account </h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="form-floating mb-3">
-              <input matInput type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-                required ngModel>
-              <label for="floatingInput">Indirizzo Email</label>
+    </div>
+
+    <a class="navbar-brand" href="#"> <img src="assets\images\icon2.png" alt="Icona Autonoleggio"></a>
+    <h1 class="titolo">AutoNoleggio</h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="http://localhost:4200/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="http://localhost:4200/auto">Parco Auto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="http://localhost:4200/noleggio">Prenota Auto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="http://localhost:4200/home">Termini e Condizioni</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="http://localhost:4200/home">Q&A</a>
+        </li>
+
+      </ul>
+
+      <div class="login">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle color_button" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Login
+          </button>
+
+          <form class="dropdown-menu ">
+            <div class="mb-3 prova">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">Non condividere la tua mail con nessuno</div>
             </div>
-            <div class="form-floating mb-3">
-              <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-              <label for="floatingPassword">Password</label>
+            <div class="mb-3 prova ">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
             </div>
-            <div class="checkbox mb-3">
-              <label>
-                <input type="checkbox" value="remember-me"> Ricordarmi
-              </label>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input prova1" id="exampleCheck1">
+              <label class="form-check-label prova" for="exampleCheck1">Ricordami</label>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button class="w-100 btn btn-lg btn-dark" type="submit">Accedi</button>
-            <hr class="my-4">
-            <small class="text-body-secondary"></small>
-          </div>
-        </form>
+            <button type="submit" class="btn btn-primary prova2 ">Accedi</button>
+          </form>
+
+        </div>
       </div>
+
+      <div class="registrazione">
+        <div>
+          <button class="btn btn-secondary color_button" type="button">
+            Registrati
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
-  <button class="btn btn-dark" role="listitem" routerLink="registrazione" [routerLinkActive]="'active'"
-    mat-raised-button>
-    Registrazione
-  </button>
-</mat-toolbar>
+</nav>
 
 
 <mat-sidenav-container class="example-container" autosize>
-  <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
-    (mouseleave)="mouseleave()">
-    <mat-nav-list>
-      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
-        <span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
-        <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}"
-          *ngIf="isExpanded || isShowing">expand_more</mat-icon>
-        <mat-icon>home</mat-icon>
-      </mat-list-item>
-      <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-        <a mat-list-item href="http://localhost:4200/">Dashboard</a>
-        <a mat-list-item href="">Prenota Noleggio</a>
-        <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Termini e Condizioni</span>
-          <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}"
-            *ngIf="isExpanded || isShowing">expand_more</mat-icon>
-        </mat-list-item>
-        <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
-          <mat-list-item>SubSubmenu Item 1</mat-list-item>
-          <mat-list-item>SubSubmenu Item 2</mat-list-item>
-        </div>
-      </div>
-    </mat-nav-list>
-    <mat-nav-list>
-    </mat-nav-list>
-  </mat-sidenav>
-
 
   <div class="example-sidenav-content">
     <!-- Codice delle card delle automobili -->
 
     <div class="row">
       <div class="col-md-4 mb-4" *ngFor="let automobile of auto">
-        <div class="card-title"> <h2> {{automobile.modello}}</h2></div>
+        <div class="card-title">
+          <h2> {{automobile.modello}}</h2>
+        </div>
         <div class="card">
           <!-- <img [src]="getCarImage(automobile.modello)" class="card-img-top" alt="Immagine non disponibile">-->
           <img [src]=" getCarImage(automobile.modello)" class="card-img-top" alt="Immagine non disponibile">
@@ -126,3 +123,44 @@
   <button mat-raised-button color="primary" (click)="aggiungiAuto()">Aggiungi Auto</button>
 
 </div>
+
+
+
+
+<!-- Footer -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="row text">
+      <div class="col-md-4">
+        <h5 class="text_h5">Contatti</h5>
+        <p class="text_p">Indirizzo: Via Autonoleggio, 123</p>
+        <p class="text_p">Telefono: 0123456789</p>
+        <p class="text_p">Email: info@autonoleggio.com</p>
+      </div>
+      <div class="col-md-4">
+        <h5 class="text_h5">Link Utili</h5>
+        <ul class="list-unstyled">
+          <li><a class="link" href="http://localhost:4200/home">Home</a></li>
+          <li><a class="link" href="http://localhost:4200/auto">Parco Auto</a></li>
+          <li><a class="link" href="http://localhost:4200/noleggio">Prenota Auto</a></li>
+          <li><a class="link" href="http://localhost:4200/home">Termini e Condizioni</a></li>
+          <li><a class="link" href="http://localhost:4200/home">Q&A</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5 class="text_h5">Social</h5>
+        <ul class="list-unstyled">
+          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <p class="text-center text_copy">© 2023 Autonoleggio. Tutti i diritti riservati.</p>
+  </div>
+</footer>
+
+
+</html>
