@@ -1,33 +1,28 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
 
-  /*
-Logica per la gestione del menu
-*/
+  images = [
+    'assets/images/image.jpg',
+    'assets/images/image1.jpg',
+    'assets/images/image2.jpg',
+    'assets/images/image3.jpg',
 
-@ViewChild('sidenav') sidenav?: MatSidenav;
-isExpanded = true;
-showSubmenu: boolean = false;
-isShowing = false;
-showSubSubMenu: boolean = false;
+  ];
 
-mouseenter() {
-  if (!this.isExpanded) {
-    this.isShowing = true;
+  bgImage = '';
+
+  constructor(){
+    this.selectRandomImage();
   }
-}
 
-mouseleave() {
-  if (!this.isExpanded) {
-    this.isShowing = false;
+  selectRandomImage(){
+    this.bgImage = this.images[Math.floor(Math.random() * this.images.length)];
   }
-}
 
 }

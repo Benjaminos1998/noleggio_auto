@@ -1,99 +1,219 @@
-.example-spacer {
-  flex: 1 1 auto;
+/*------------------
+General
+-------------------*/
+html {
+  background-color: #e7e5e5;
+  height: auto
 }
 
-.mat-toolbar {
-  color: black;
+p {
+  font-size: 18px;
 }
 
-.example-container {
+/*------------------
+Header
+-------------------*/
+
+.header {
+  background-color: #d8ccbb;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  border-bottom: 1.5px solid black;
+}
+.color_button{
+  background-color: #333;
+  border-color: #333;
+}
+
+.prova {
+  margin: 5px;
+}
+
+.prova1 {
+  margin-left: 1px;
+}
+
+.prova2 {
+  margin-left: 35px;
+  background-color: #000;
+  border-color: #000;
+}
+
+
+.login {
+  padding: 5px;
+}
+
+.registrazione {
+  padding: 5px;
+}
+
+.titolo{
+  visibility: hidden;
+}
+
+
+/*-----------------------
+Cover
+-----------------------*/
+.cover{
+  margin-top: 75px;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
   height: 500px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-.example-sidenav-content {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.example-sidenav {
-  user-select: none;
-}
-
-.full-width {
+.cover_filter{
+  background: #000;
   width: 100%;
-}
-
-.menu-button {
-  transition: 300ms ease-in-out;
-  transform: rotate(0deg);
-}
-
-.menu-button.rotated {
-  transform: rotate(180deg);
-}
-
-.submenu {
-  overflow-y: hidden;
-  transition: transform 300ms ease;
-  transform: scaleY(0);
-  transform-origin: top;
-  padding-left: 30px;
-}
-
-.submenu.expanded {
-  transform: scaleY(1);
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  opacity: 0.5;
 }
 
 
-
-/* Contenuto sidenav-content */
-
-
-
-/* Stili per il layout della riga */
-.elementor-row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -15px;
-  /* Spaziatura tra le colonne */
+.cover_caption{
+  display: table;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.cover_caption_copy{
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: #fff;
 }
 
-/* Stili per le colonne */
-.elementor-column {
-  width: 50%;
-  /* La larghezza desiderata per ogni colonna */
-  padding: 15px;
-  /* Spaziatura interna delle colonne */
-  box-sizing: border-box;
-}
-
-/* Stili per l'immagine e il titolo del primo box */
-.elementor-element-0efde60 .elementor-image-box-content h3 {
+.button_cover{
+  display: inline-block;
+  background: #fff;
   color: #000;
-  font-size: 18px;
-  /* Aggiungi altri stili desiderati */
+  padding: 15px 30px;
+  border-radius: 3px;
+  text-decoration: none; /* Elimino la sottoliniatura*/
 }
 
-/* Stili per il testo del primo box */
-.elementor-element-5fa6783 p {
-  color: #333;
-  font-size: 14px;
-  /* Aggiungi altri stili desiderati */
+.style_h3{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  font-size: 24px;
+  margin: 5px;
 }
 
-/* Stili per l'immagine e il titolo del secondo box */
-.elementor-element-db0630e .elementor-image-box-content h3 {
+
+/*-----------------------
+Title tipologia
+-----------------------*/
+
+.tipologia{
+  background-color: #e7e5e5;
+
+}
+
+.tipologia_h2{
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin: 20px;
+}
+
+/*-----------------------
+Cards
+-----------------------*/
+.cards{
+  max-width: 1200px;
+  margin: 25px auto;
+}
+.card{
+  width: 30%;
+  margin: 0.5% 1.5%;
+  background: #fff;
+  float: left;
+  background-color: #d8ccbb;
+  border: 1.5px solid black;
+
+}
+
+.card_image{
+  width: 100%;
+  height: auto;
+}
+
+.card_copy{
+  padding: 5px 20px;
+}
+
+.card_copy h3{
+  margin-bottom: 0;
+}
+
+/*-----------------------
+Footer
+-----------------------*/
+.footer{
+  background-color: #d8ccbb;
   color: #000;
-  font-size: 18px;
-  /* Aggiungi altri stili desiderati */
+  border-top: 1.5px solid #000;
 }
 
-/* Stili per il testo del secondo box */
-.elementor-element-362773c p {
-  color: #333;
-  font-size: 14px;
-  /* Aggiungi altri stili desiderati */
+.text{
+  text-align: center;
+}
+.text_p{
+  font-size: 12px;
+}
+.text_h5{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+}
+.text_copy{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.link{
+  text-decoration: none;
+  color: #000;
+}
+
+
+/*-----------------------
+Smatphone
+-----------------------*/
+@media (max-width:767px) {
+
+
+ .titolo{
+  visibility: visible;
+  text-align: center;
+  margin: auto;
+ }
+
+
+
+}
+
+
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+* html .clearfix {
+  zoom: 1;
+}
+
+*:first-child+html .clearfix {
+  zoom: 1;
 }

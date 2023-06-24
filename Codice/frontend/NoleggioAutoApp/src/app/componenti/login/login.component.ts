@@ -28,16 +28,16 @@ export class LoginComponent {
     });
 
 
-    this.loginService
-      .loginUtente(this.apiServerUrl,this.authRequest,headers)
-      .subscribe((result) => {
-        if(result!=null){
-          this.error=false;
-          this.logged=true;
-          localStorage.setItem('token');
-        }
-      }
-      )
+    // this.loginService
+    //   .loginUtente(this.apiServerUrl,this.authRequest,headers)
+    //   .subscribe((result) => {
+    //     if(result!=null){
+    //       this.error=false;
+    //       this.logged=true;
+    //       localStorage.setItem('token');
+    //     }
+    //   }
+    //   )
 
 
 
