@@ -1,11 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
 import { environmet } from 'src/app/environments/environment';
-import { RegistrazioneService } from 'src/app/servizi/registrazione.service';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UtenteService } from 'src/app/servizi/utente.service';
 
 @Component({
   selector: 'app-registrazione',
@@ -13,61 +10,36 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./registrazione.component.css'],
 })
 export class RegistrazioneComponent {
-  // private apiServerUrl = environmet.apiBaseUrl + 'api/auth/registrazione';
 
-  // nuovoUtente = {
-  //   nome: '',
-  //   cognome: '',
-  //   dataDiNascita: '',
-  //   numeroPatente: '',
-  //   email: '',
-  //   password: '',
-  // };
 
-  // constructor(
-  //   private http: HttpClient,
-  //   private registrazioneService: RegistrazioneService,
-  //   private router: Router,
-  //   private modalService: NgbModal
-  // ) {}
-  // ngOnInit(): void {}
 
-  // registraUtente(registrazioneForm: NgForm): void {
-  //   let headers: HttpHeaders = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //   });
+  private apiServerUrl = environmet.apiBaseUrl + 'api/auth';
 
-  //   this.registrazioneService
-  //     .registrazioneUtente(this.apiServerUrl, this.nuovoUtente, headers)
-  //     .subscribe((result) => {
-  //       if (result != null) {
-  //         this.modalService.dismissAll();
-  //         this.router.navigateByUrl('/home');
-  //       } else {
-  //         alert('username già utilizzato');
-  //       }
-  //     });
-  // }
 
-  // @ViewChild('sidenav') sidenav?: MatSidenav;
-  // isExpanded = true;
-  // showSubmenu: boolean = false;
-  // isShowing = false;
-  // showSubSubMenu: boolean = false;
+  utente ={
+    nome:'',
+    cognome:'',
+    dataDiNascita:Date,
+    numeroPatente:'',
+    email:'',
+    password:''
+  }
 
-  // mouseenter() {
-  //   if (!this.isExpanded) {
-  //     this.isShowing = true;
-  //   }
-  // }
 
-  // mouseleave() {
-  //   if (!this.isExpanded) {
-  //     this.isShowing = false;
-  //   }
-  // }
+  constructor(private utenteService:UtenteService, private http:HttpClient, private router:Router){}
 
-  // open(content: any) {
-  //   this.modalService.open(content);
-  // }
+  nuovoUtente(){
+    this.utenteService
+      .addUtente(this.apiServerUrl +'/registrazione',this.utente)
+      .subscribe(
+        result => {
+          if(result!=null){
+            this.router.navigateByUrl('/dashboard')
+          }else{
+            alert("username già utilizzato")
+          }
+        }
+      )
+  }
+
 }
