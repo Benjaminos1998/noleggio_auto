@@ -3,7 +3,7 @@ General
 -------------------*/
 html {
   background-color: #e7e5e5;
-  height: auto
+  height: auto;
 }
 
 p {
@@ -56,29 +56,30 @@ Header
   visibility: hidden;
 }
 
-
-
 /*-----------------------
 Cards
 -----------------------*/
-.content{
+
+
+.larghezza{
   margin-top: 78px;
-  margin-bottom: 1px;
+  margin-bottom: 3px;
 }
 
-
 .card{
-  border: 1.5px solid black;
+  border-bottom: 3px solid black;
   margin: 10px;
   float: left;
   width: 23%;
+  height: 300px;
   align-items: center;
-  height: auto;
 }
 .card-body{
-  border-top: 1px solid black;
+  border-top: 1.5px solid black;
+  border-left:  1.5px solid black;
+  border-right:  1.5px solid black;
+  background-color: #d8ccbb;
 }
-
 .card-title{
   text-align: center;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -88,6 +89,7 @@ Cards
 .card-text{
   font-size: 12px;
 }
+
 
 
 

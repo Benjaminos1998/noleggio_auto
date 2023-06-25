@@ -6,7 +6,8 @@
 
     </div>
 
-    <a class="navbar-brand" href="#"> <img src="assets\images\icon2.png" alt="Icona Autonoleggio"></a>
+    <a class="navbar-brand" href="http://localhost:4200/home"> <img src="assets\images\icon2.png"
+        alt="Icona Autonoleggio"></a>
     <h1 class="titolo">AutoNoleggio</h1>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +63,7 @@
       <div class="registrazione">
         <div>
           <button class="btn btn-secondary color_button" type="button">
-            Registrati
+            <a style="text-decoration: none; color:#fff" href="http://localhost:4200/registrazione">Registrati</a>
           </button>
         </div>
       </div>
@@ -72,67 +73,38 @@
 </nav>
 
 
-<section class="content clearfix">
-  <div class="card">
-    <img src="assets/images/ferrari.jpg" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
-    </div>
-  </div>
-  <div class="card">
-    <img src="assets/images/ferrari.jpg" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
-    </div>
-  </div>
-  <div class="card">
-    <img src="assets/images/ferrari.jpg" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
-    </div>
-  </div>
-  <div class="card">
-    <img src="assets/images/ferrari.jpg" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
-    </div>
-  </div>
-  <div class="card">
-    <img src="assets/images/BMW.jpg" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
-    </div>
-  </div>
-  <div class="card">
-    <img src="assets/images/alfaromeo.png" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
-    </div>
-  </div>
-  <div class="card">
-    <img src="assets/images/ferrari.jpg" style="width: 60%; height:50% " class="card-img-top" alt="Ferrari">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#"  style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
-    </div>
-  </div>
+<!-- Modulo Filtro -->
+
+<select class="form-select larghezza" aria-label="Default select example" (change)="onFilterChange($event)">
+  <option value="0" selected>Filtra tra le Auto</option>
+  <option value="1">Tutte</option>
+  <option value="2">Utilitaria</option>
+  <option value="3">Business</option>
+  <option value="4">Luxury</option>
+</select>
 
 
+<!-- Modulo Card -->
+<section>
+  <div class="row">
+    <div class="col">
+      <!-- Contenuto della sezione delle card -->
+      <div class="prova-auto-auto" *ngFor="let automobile of filteredCars">
+        <div class="card">
+          <img [src]="getCarImage(automobile.modello)" style="width: 60%; height:50% " class="card-img-top"
+            alt="Immagine Auto">
+          <div class="card-body">
+            <h5 class="card-title">{{automobile.modello}}</h5>
+            <p class="card-text"><strong>{{automobile.tipoAuto}}:</strong> Some quick example text to build on the card
+              title and make up the bulk of the card's
+              content.</p>
+            <a href="#" style="background-color: #000; border:#000" class="btn btn-primary">Noleggio Auto</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-
 
 <!-- Footer -->
 
