@@ -9,7 +9,7 @@ import { HomeComponent } from './componenti/home/home.component';
 import { NoleggioComponent } from './componenti/noleggio/noleggio.component';
 
 const routes: Routes = [
-  {path:'',component:DashboardComponent},
+  {path:'',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'registrazione',component:RegistrazioneComponent},
   {path:'dashboard',component: DashboardComponent},

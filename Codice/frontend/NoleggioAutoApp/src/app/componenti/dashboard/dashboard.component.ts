@@ -8,25 +8,23 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class DashboardComponent {
 
-  /*
-Logica per la gestione del menu
-*/
 
-  @ViewChild('sidenav') sidenav?: MatSidenav;
-  isExpanded = true;
-  showSubmenu: boolean = false;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
+  images = [
+    'assets/images/image.jpg',
+    'assets/images/image1.jpg',
+    'assets/images/image2.jpg',
+    'assets/images/image3.jpg',
 
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
+  ];
+
+  bgImage = '';
+
+  constructor(){
+    this.selectRandomImage();
   }
 
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
+  selectRandomImage(){
+    this.bgImage = this.images[Math.floor(Math.random() * this.images.length)];
   }
+
 }

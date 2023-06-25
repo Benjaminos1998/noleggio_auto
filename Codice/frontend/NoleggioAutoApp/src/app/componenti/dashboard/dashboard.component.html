@@ -1,98 +1,229 @@
-<mat-toolbar color="warn" class="mat-toolbar">
-  <button mat-icon-button (click)="isExpanded = !isExpanded" class="example-icon"
-    aria-label="Example icon-button with menu icon" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Noleggio Auto</span>
-  <span class="example-spacer"></span>
-  <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" mat-raised-button>
-    Login
-  </button>
+<html>
+<nav class="navbar navbar-expand-lg bg-body-tertiary header clearfix">
+  <div class="container-fluid">
+    <div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form #loginForm="ngForm" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel"> Accedi al tuo account </h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="form-floating mb-3">
-              <input matInput type="email" name="email" class="form-control" id="floatingInput"
-                placeholder="name@example.com" required>
-              <label for="floatingInput">Indirizzo Email</label>
+    </div>
+
+    <a class="navbar-brand" href="http://localhost:4200/dashboard"> <img src="assets\images\icon2.png" alt="Icona Autonoleggio"></a>
+    <h1 class="titolo">AutoNoleggio</h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="http://localhost:4200/dashboard">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="http://localhost:4200/auto">Parco Auto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="http://localhost:4200/noleggio">Prenota Auto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="http://localhost:4200/dashboard">Termini e Condizioni</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="http://localhost:4200/dashboard">Q&A</a>
+        </li>
+      </ul>
+
+      <div class="dropdown color_account">
+        <button class="btn btn-secondary dropdown-toggle color_button" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <div class="home_utente">
+            <div>
+              <a style="text-decoration: none; color:#fff" href="">
+                <span class="material-symbols-outlined">
+                person
+                </span>
+                <p style="font-size: 14px; color: #000;">Account</p>
+              </a>
             </div>
-            <div class="form-floating mb-3">
-              <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password"
-                required>
-              <label for="floatingPassword">Password</label>
-            </div>
-            <div class="checkbox mb-3">
-              <label>
-                <input type="checkbox" value="remember-me"> Ricordarmi
-              </label>
-            </div>
           </div>
-          <div class="modal-footer">
-            <button class="w-100 btn btn-lg btn-dark" type="submit">Accedi</button>
-            <hr class="my-4">
-            <small class="text-body-secondary"></small>
-          </div>
-        </form>
+        </button>
       </div>
+
+
     </div>
   </div>
+</nav>
 
-  <button class="btn btn-dark" role="listitem" routerLink="registrazione" [routerLinkActive]="'active'"
-    mat-raised-button>
-    Registrazione
-  </button>
-</mat-toolbar>
 
-<mat-sidenav-container class="example-container" autosize>
-  <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
-    (mouseleave)="mouseleave()" ngDraggable>
-    <mat-nav-list>
-      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
-        <span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
-        <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}"
-          *ngIf="isExpanded || isShowing">expand_more</mat-icon>
-        <mat-icon>home</mat-icon>
-      </mat-list-item>
-      <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-        <a mat-list-item href="http://localhost:4200/auto">Parco Auto</a>
-        <a mat-list-item href="">Prenota Noleggio</a>
-        <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
-          <span class="full-width" *ngIf="isExpanded || isShowing">Termini e Condizioni</span>
-          <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}"
-            *ngIf="isExpanded || isShowing">expand_more</mat-icon>
-        </mat-list-item>
-        <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
-          <mat-list-item>SubSubmenu Item 1</mat-list-item>
-          <mat-list-item>SubSubmenu Item 2</mat-list-item>
+
+<!-- Cover-->
+
+<div class="main-content">
+  <section class="cover" [style.background-image]="'url(' + bgImage + ')'">
+    <div class="cover_filter"></div>
+    <div class="cover_caption">
+      <div class="cover_caption_copy">
+        <h1> Primary message of the Home</h1>
+        <h2>Subtitle of the home page</h2>
+        <a class="button_cover" href="">Call to action</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Prima sezione: Tipologia Auto -->
+  <div class="tipologia">
+    <h2 class="tipologia_h2"><strong> Prenota l'auto dei tuoi desideri</strong></h2>
+  </div>
+
+
+
+  <section class="cards clearfix">
+
+    <!-- Utilitaria Card-->
+    <div class="card">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="assets\images\FiatPanda.jpg" class="d-block w-100" alt="Fiat Panda">
+          </div>
+          <div class="carousel-item">
+            <img src="assets\images\OpelCorsa.png" class="d-block w-100" alt="Opel Corsa">
+          </div>
+          <div class="carousel-item">
+            <img src="assets\images\Hyundai.jpg" class="d-block w-100" alt="Hyndai i20">
+          </div>
         </div>
       </div>
-    </mat-nav-list>
-    <mat-nav-list>
-    </mat-nav-list>
-  </mat-sidenav>
-  <div class="example-sidenav-content">
+      <div class="card_copy">
+        <h3 class="style_h3"><strong>Utilitaria</strong></h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit fuga facere commodi unde cum temporibus
+          fugit eligendi aperiam error facilis modi enim repellendus non consectetur, quaerat beatae culpa, repudiandae
+          dolorem?</p>
+      </div>
+    </div>
+    <!-- Business Card-->
+    <div class="card">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="" alt="Mercedes">
+          </div>
+          <div class="carousel-item">
+            <img src="" class="d-block w-100" alt="Audi">
+          </div>
+          <div class="carousel-item">
+            <img src="" class="d-block w-100" alt="BMW">
+          </div>
+          <div class="carousel-item">
+            <img src="" class="d-block w-100" alt="AlfaRomeo">
+          </div>
+        </div>
+      </div>
+      <div class="card_copy">
+        <h3 class="style_h3"><strong>Business</strong></h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit fuga facere commodi unde cum temporibus
+          fugit eligendi aperiam error facilis modi enim repellendus non consectetur, quaerat beatae culpa, repudiandae
+          dolorem?</p>
+      </div>
+    </div>
+    <!-- Luxury Card-->
+    <div class="card">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="" alt="Ferrari">
+          </div>
+          <div class="carousel-item">
+            <img src="" class="d-block w-100" alt="Lamborghini">
+          </div>
+          <div class="carousel-item">
+            <img src="" class="d-block w-100" alt="Porsche">
+          </div>
+          <div class="carousel-item">
+            <img src="" class="d-block w-100" alt="Maserati">
+          </div>
+        </div>
+      </div>
+      <div class="card_copy">
+        <h3 class="style_h3"><strong>Luxury</strong></h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit fuga facere commodi unde cum temporibus
+          fugit eligendi aperiam error facilis modi enim repellendus non consectetur, quaerat beatae culpa, repudiandae
+          dolorem?</p>
+      </div>
+    </div>
+
+  </section>
 
 
-
-    <mat-grid-list cols="2" rowHeight="2:1">
-      <mat-grid-tile>
-
-        <h1>Ciao</h1>
-
-      </mat-grid-tile>
-      <mat-grid-tile>2</mat-grid-tile>
-      <mat-grid-tile>3</mat-grid-tile>
-      <mat-grid-tile>4</mat-grid-tile>
-    </mat-grid-list>
-
-
+  <!-- Seconda sezione: Tipologia Noleggio -->
+  <div class="tipologia">
+    <h2 class="tipologia_h2"><strong>Puoi scegleire tra tre diversi tipi di noleggio</strong></h2>
   </div>
-</mat-sidenav-container>
+
+  <section class="cards clearfix">
+
+    <div class="card">
+      <div class="card_copy">
+        <h3 class="style_h3"><strong>Car Sharing</strong></h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit fuga facere commodi unde cum temporibus
+          fugit eligendi aperiam error facilis modi enim repellendus non consectetur, quaerat beatae culpa, repudiandae
+          dolorem?</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card_copy">
+        <h3 class="style_h3"><strong>Breve Termine</strong></h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit fuga facere commodi unde cum temporibus
+          fugit eligendi aperiam error facilis modi enim repellendus non consectetur, quaerat beatae culpa, repudiandae
+          dolorem?</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card_copy">
+        <h3 class="style_h3"><strong>Lungo Termine</strong></h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit fuga facere commodi unde cum temporibus
+          fugit eligendi aperiam error facilis modi enim repellendus non consectetur, quaerat beatae culpa, repudiandae
+          dolorem?</p>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<!-- Footer -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="row text">
+      <div class="col-md-4">
+        <h5 class="text_h5">Contatti</h5>
+        <p class="text_p">Indirizzo: Via Autonoleggio, 123</p>
+        <p class="text_p">Telefono: 0123456789</p>
+        <p class="text_p">Email: info@autonoleggio.com</p>
+      </div>
+      <div class="col-md-4">
+        <h5 class="text_h5">Link Utili</h5>
+        <ul class="list-unstyled">
+          <li><a class="link" href="http://localhost:4200/home">Home</a></li>
+          <li><a class="link" href="http://localhost:4200/auto">Parco Auto</a></li>
+          <li><a class="link" href="http://localhost:4200/noleggio">Prenota Auto</a></li>
+          <li><a class="link" href="http://localhost:4200/home">Termini e Condizioni</a></li>
+          <li><a class="link" href="http://localhost:4200/home">Q&A</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5 class="text_h5">Social</h5>
+        <ul class="list-unstyled">
+          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <p class="text-center text_copy">© 2023 Autonoleggio. Tutti i diritti riservati.</p>
+  </div>
+</footer>
+
+
+
+
+</html>
