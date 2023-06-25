@@ -14,10 +14,17 @@ export class NoleggioService {
     return this.http.get<Noleggio[]>(url);
   }
 
-  public getUtenteVip(url: string): Observable<Noleggio> {
+  public getNoleggioById(url:string) :Observable<Noleggio> {
     return this.http.get<Noleggio>(url);
   }
-  public addUtenteVip(url: string, body: {}) {
-    return this.http.post(url, body);
+
+  public addNoleggio(url:string,body:Noleggio) : Observable<any> {
+    return this.http.post(url,body);
   }
+
+  public deleteNoleggio(url:string) : Observable<any> {
+    return this.http.delete(url);
+  }
+
+
 }

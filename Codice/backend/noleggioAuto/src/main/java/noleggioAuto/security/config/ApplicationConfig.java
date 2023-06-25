@@ -11,19 +11,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import noleggioAuto.repository.UserRepository;
-
+import noleggioAuto.repository.UtenteRepository;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-	private final UserRepository userRepository;
+	private final UtenteRepository utenteRepository;
 	
 	@Bean
 	public UserDetailsService userDetailsService() {
-		return username -> this.userRepository.findByEmail(username)
+		return username -> this.utenteRepository.findByEmail(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 	}
 

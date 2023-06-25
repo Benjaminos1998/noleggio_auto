@@ -5,7 +5,7 @@
 
     </div>
 
-    <a class="navbar-brand" href="http://localhost:4200/dashboard"> <img src="assets\images\icon2.png" alt="Icona Autonoleggio"></a>
+    <a class="navbar-brand" href="http://localhost:4200/home"> <img src="assets\images\icon2.png" alt="Icona Autonoleggio"></a>
     <h1 class="titolo">AutoNoleggio</h1>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="http://localhost:4200/dashboard">Home</a>
+          <a class="nav-link active" aria-current="page" href="http://localhost:4200/home">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="http://localhost:4200/auto">Parco Auto</a>
@@ -23,37 +23,54 @@
           <a class="nav-link active" href="http://localhost:4200/noleggio">Prenota Auto</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="http://localhost:4200/dashboard">Termini e Condizioni</a>
+          <a class="nav-link active" href="http://localhost:4200/home">Termini e Condizioni</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="http://localhost:4200/dashboard">Q&A</a>
+          <a class="nav-link active" href="http://localhost:4200/home">Q&A</a>
         </li>
+
       </ul>
 
-      <div class="dropdown color_account">
-        <button class="btn btn-secondary dropdown-toggle color_button" type="button" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          <div class="home_utente">
-            <div>
-              <a style="text-decoration: none; color:#fff" href="">
-                <span class="material-symbols-outlined">
-                person
-                </span>
-                <p style="font-size: 14px; color: #000;">Account</p>
-              </a>
+      <div class="login">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle color_button" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Login
+          </button>
+
+          <form class="dropdown-menu ">
+            <div class="mb-3 prova">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">Non condividere la tua mail con nessuno</div>
             </div>
-          </div>
-        </button>
+            <div class="mb-3 prova ">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input prova1" id="exampleCheck1">
+              <label class="form-check-label prova" for="exampleCheck1">Ricordami</label>
+            </div>
+            <button type="submit" class="btn btn-primary prova2 ">Accedi</button>
+          </form>
+
+        </div>
       </div>
 
+      <div class="registrazione">
+        <div>
+          <button class="btn btn-secondary color_button" type="button">
+            <a style="text-decoration: none; color:#fff" href="http://localhost:4200/registrazione">Registrati</a>
+          </button>
+        </div>
+      </div>
 
     </div>
   </div>
 </nav>
 
 
-
-<!-- Cover-->
 
 <div class="main-content">
   <section class="cover" [style.background-image]="'url(' + bgImage + ')'">
@@ -66,6 +83,10 @@
       </div>
     </div>
   </section>
+
+
+
+
 
 
   <!-- Prima sezione: Tipologia Auto -->
@@ -222,8 +243,5 @@
     <p class="text-center text_copy">© 2023 Autonoleggio. Tutti i diritti riservati.</p>
   </div>
 </footer>
-
-
-
 
 </html>
