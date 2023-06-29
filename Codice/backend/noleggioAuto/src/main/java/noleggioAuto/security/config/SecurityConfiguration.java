@@ -25,7 +25,7 @@ public class SecurityConfiguration {
 		.csrf()
 		.disable()
 		.authorizeHttpRequests()
-		.requestMatchers("/api/auth/**","/api/auto/parcoAuto")
+		.requestMatchers("/api/auth/**","/api/auto/**")
 		.permitAll()
 		.anyRequest()
 		.authenticated()

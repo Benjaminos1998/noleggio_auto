@@ -15,7 +15,7 @@ Header
 -------------------*/
 
 .header {
-  background-color: #b5e8c8;
+  background-color: #d8ccbb;
   position: fixed;
   top: 0;
   left: 0;
@@ -29,20 +29,31 @@ Header
   border-color: #333;
 }
 
+.prova {
+  margin: 5px;
+}
+
+.prova1 {
+  margin-left: 1px;
+}
+
+.prova2 {
+  margin-left: 35px;
+  background-color: #000;
+  border-color: #000;
+}
+
+
+.login {
+  padding: 5px;
+}
+
+.registrazione {
+  padding: 5px;
+}
+
 .titolo{
   visibility: hidden;
-}
-
-
-
-.material-symbols-outlined{
-  color: #000;
-}
-
-.color_account{
-  border: 1px solid red;
-  background: #b5e8c8;
-
 }
 
 
@@ -126,7 +137,7 @@ Cards
   margin: 0.5% 1.5%;
   background: #fff;
   float: left;
-  background-color: #b5e8c8;
+  background-color: #d8ccbb;
   border: 1.5px solid black;
 
 }
@@ -148,7 +159,7 @@ Cards
 Footer
 -----------------------*/
 .footer{
-  background-color: #b5e8c8;
+  background-color: #d8ccbb;
   color: #000;
   border-top: 1.5px solid #000;
 }

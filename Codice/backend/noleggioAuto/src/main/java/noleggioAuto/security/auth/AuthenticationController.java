@@ -25,19 +25,22 @@ public class AuthenticationController {
 	public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
 		try {
 			return ResponseEntity.ok(service.register(request));
-		}catch(EmailUtenteException e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Errore durante la registrazione. Email già in uso");
-		}catch(PatenteUtenteException e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Errore durante la registrazione. Patente già in uso");
-		}catch(PasswordNonValidaException e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Errore durante la registrazione. Password troppo corta.");
-		}catch(EtaUtenteException e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Errore durante la registrazione. L'età minima per registrarsi è di 18 anni.");
-		}catch(UtenteException e) {
+		} catch (EmailUtenteException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("Errore durante la registrazione. Email già in uso");
+		} catch (PatenteUtenteException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("Errore durante la registrazione. Patente già in uso");
+		} catch (PasswordNonValidaException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("Errore durante la registrazione. Password troppo corta.");
+		} catch (EtaUtenteException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("Errore durante la registrazione. L'età minima per registrarsi è di 18 anni.");
+		} catch (UtenteException e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Errore durante la registrazione");
 		}
-		
-		
+
 	}
 
 	@PostMapping("/login")

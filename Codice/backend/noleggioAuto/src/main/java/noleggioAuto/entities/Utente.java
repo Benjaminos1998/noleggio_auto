@@ -107,7 +107,7 @@ public class Utente implements UserDetails {
 		return "Utente {" + "id=" + this.idUtente + ", nome='" + this.nome + '\'' + ", cognome='" + this.cognome + '\''
 				+ ", username='" + this.email + '\'' + ", password='" + this.password + '\'' + ", numeroPunti="
 				+ this.numeroPunti + ", dataDiNascita=" + this.dataDiNascita + ", numeroPatente='" + this.numeroPatente
-				+ '\'' + ", eta=" + getEta() + '}';
+				+ '\'' + ", eta=" + getEta(this.dataDiNascita) + '}';
 	}
 
 	@Override
