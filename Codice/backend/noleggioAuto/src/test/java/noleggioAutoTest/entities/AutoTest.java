@@ -1,13 +1,26 @@
-//package noleggioAutoTest.entities;
-//
-//import static org.junit.Assert.*;
-//
-//import org.junit.Test;
-//
-//import noleggioAuto.entities.Auto;
-//
-//public class AutoTest {
-//
+package noleggioAutoTest.entities;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import noleggioAuto.entities.Auto;
+import noleggioAuto.entities.TipologiaAuto;
+
+public class AutoTest {
+
+	
+	
+	@Test
+	public void testAuto() {
+		Auto auto = new Auto( 1, "CA234AS", "Ferrari", TipologiaAuto.Luxury);
+		assertEquals((long) 1, auto.getIdAuto());
+		assertEquals(1, auto.getTarga());
+		assertEquals(1, auto.getModello());
+		assertEquals(1, auto.getTipoAuto());
+	}
+	
+	
 //	/**
 //	 * Test per il costruttore di Auto senza argomenti
 //	 */
@@ -42,4 +55,4 @@
 //		Auto auto = new Auto("CA123DA", "Panda");
 //		assertEquals("Panda Targa: CA123DA", auto.toString());
 //	}
-//}
+}
