@@ -193,4 +193,8 @@ public class NoleggioService {
 			throw new IllegalArgumentException(
 					"La data di fine noleggio deve essere successiva alla data di inizio noleggio");
 	}
+	
+	public Noleggio save (Noleggio n) {
+		return noleggioRepository.save(n);
+	}
 }

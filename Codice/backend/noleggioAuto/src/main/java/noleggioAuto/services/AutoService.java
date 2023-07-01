@@ -78,6 +78,10 @@ public class AutoService {
 			throw new AutoPresenteException();
 		this.autoRepository.save(auto);
 	}
+	
+	public Auto save(Auto a) {
+		return autoRepository.save(a);
+	}
 
 	/**
 	 * Metodo che cancella un automobile
