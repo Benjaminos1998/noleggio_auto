@@ -18,8 +18,8 @@ public class NoleggioTest {
 
 	@Test
 	public void test2() {
-		Noleggio n1 = new Noleggio();
-		assertNull(n1.getIdNoleggio());
+		Noleggio n1 = new Noleggio(null, null, 10, null, null, null);
+		assertNull(n1.getId());
 	}
 
 	@Test
