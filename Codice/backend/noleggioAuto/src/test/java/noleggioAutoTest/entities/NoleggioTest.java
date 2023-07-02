@@ -1,20 +1,14 @@
 package noleggioAutoTest.entities;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import noleggioAuto.entities.Noleggio;
 import noleggioAuto.entities.TipologiaNoleggio;
 
 public class NoleggioTest {
-
-//	@Test
-//	public void testCreaNoleggio() {
-//		Noleggio n = new Noleggio();
-//		n.idNoleggio = 1;
-//		assertEquals(n.getIdNoleggio(), n.idNoleggio);
-//	}
 
 	@Test
 	public void test2() {

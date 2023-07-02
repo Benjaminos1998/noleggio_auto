@@ -3,9 +3,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -76,12 +73,8 @@ public class NoleggioIntegrationTest {
 		assertNotNull(existingnole);
 	}
 	
-	void shouldFetchNoleggiTest() {
 		
-		List<Noleggio> list = restTemplate.getForObject(baseUrl, List.class);
 		
-		assertThat(list.size()).isEqualTo(2);
-	}
 	
 	@Test
 	void shouldDeleteNoleggiTest() {
