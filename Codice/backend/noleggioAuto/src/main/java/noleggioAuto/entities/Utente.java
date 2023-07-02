@@ -119,5 +119,13 @@ public class Utente implements UserDetails {
 		Utente utente = (Utente) o;
 		return this.numeroPatente.equals(utente.numeroPatente);
 	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public long getId () {
+		return this.idUtente;
+	}
 
 }

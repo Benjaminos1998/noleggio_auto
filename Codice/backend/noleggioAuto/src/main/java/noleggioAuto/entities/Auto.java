@@ -77,5 +77,17 @@ public class Auto {
 		return "Auto [idAuto=" + this.idAuto + ", targa=" + this.targa + ", modello=" + this.modello + ", tipoAuto=" + this.tipoAuto
 				+ ", inUso=" + this.inUso + "]";
 	}
+	
+	public long getId () {
+		return this.idAuto;
+	}
+	
+	public String getModello () {
+		return this.modello;
+	}
+	
+	public String getTarga () {
+		return this.targa;
+	}
 
 }

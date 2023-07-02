@@ -62,5 +62,9 @@ public class UtenteService {
 		}
 		this.utenteRepository.deleteById(idUtente);
 	}
+	
+	public Utente save (Utente u) {
+		return utenteRepository.save(u);
+	}
 
 }

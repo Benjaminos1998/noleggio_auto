@@ -29,7 +29,7 @@ public class Noleggio {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idNoleggio;
+	public Long idNoleggio;
 	@Column(name = "data_inizio")
 	private LocalDate dataInizio;
 	@Column(name = "data_fine")
@@ -38,7 +38,7 @@ public class Noleggio {
 	private double prezzo;
 	@Column(name = "tipologia_noleggio")
 	@Enumerated(EnumType.STRING)
-	private TipologiaNoleggio tipologiaNoleggio;
+	public TipologiaNoleggio tipologiaNoleggio;
 	@ManyToOne
 	private Auto auto;
 	@ManyToOne
@@ -82,6 +82,14 @@ public class Noleggio {
 			return false;
 		Noleggio noleggio = (Noleggio) o;
 		return this.idNoleggio == noleggio.idNoleggio;
+	}
+	
+	public TipologiaNoleggio getTipoNoleggio() {
+		return this.tipologiaNoleggio;
+	}
+	
+	public long getId () {
+		return this.idNoleggio;
 	}
 
 }
