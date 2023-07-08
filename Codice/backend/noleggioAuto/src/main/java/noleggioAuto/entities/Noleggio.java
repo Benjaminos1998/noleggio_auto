@@ -68,13 +68,6 @@ public class Noleggio {
 	}
 
 	@Override
-	public String toString() {
-		return "Noleggio{" + "idNoleggio=" + this.idNoleggio + ", dataInizio=" + this.dataInizio + ", dataFine="
-				+ this.dataFine + ", prezzo=" + this.prezzo + ", tipologiaNoleggio=" + this.tipologiaNoleggio
-				+ ", auto=" + this.auto.getTarga() + ", utente =" + this.utente.getEmail() + '}';
-	}
-
-	@Override
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
