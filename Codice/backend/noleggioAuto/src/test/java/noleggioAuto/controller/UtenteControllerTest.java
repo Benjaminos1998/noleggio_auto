@@ -1,5 +1,4 @@
-package noleggioAutoTest.controller;
-
+package noleggioAuto.controller;
 import static org.hamcrest.CoreMatchers.is;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,31 +9,38 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import noleggioAuto.controller.AutoController;
-import noleggioAuto.entities.Auto;
-import noleggioAuto.services.AutoService;
+import noleggioAuto.controller.UtenteController;
+import noleggioAuto.entities.Utente;
+import noleggioAuto.services.UtenteService;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 
 import org.springframework.http.MediaType;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebMvcTest(AutoController.class)	
-public class AutoControllerTest {
+@WebMvcTest(UtenteController.class)	
+public class UtenteControllerTest {
 	
 	@MockBean
-    private AutoService autoService;
+    private UtenteService utenteService;
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -44,13 +50,17 @@ public class AutoControllerTest {
 	
 	@BeforeEach
 	void setup () {
-
+		Utente e = new Utente();
+		Utente b = new Utente();
+		Utente c = new Utente();
 	}
 	@Test
-	void addAutoTest() throws Exception{
-		String uri = "/auto";
-		Auto u = new Auto((long)1, uri, uri, null); 
-		Mockito.when(autoService.getAutoById(any())).thenReturn(u);
+	void addUtenteTest() throws Exception{
+		String uri = "/utente";
+		Utente u = new Utente(); 
+		u.idUtente = (long) 1L;
+		utenteService.getUtente(u.idUtente);
+		Mockito.when(utenteService.getUtente(any())).thenReturn(u);
 
 		mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
 			        .content(objectMapper.writeValueAsString(u)))
@@ -59,32 +69,39 @@ public class AutoControllerTest {
 	}
 	@Test
 	void deleteUtenteTest() throws Exception {
+		String uri = "/utente";
+		Utente u = new Utente();
+		u.idUtente = (long)1L;
 		
-		Mockito.doNothing().when(autoService).deleteAuto(anyLong());
-		this.mockMvc.perform(delete("/auto/{id}", 1L))
+		Mockito.doNothing().when(utenteService).deleteUtente(anyLong());
+		this.mockMvc.perform(delete("/utente/{id}", 1L))
 		.andExpect(status().isNoContent());
 	}
 	@Test
-	void getAllAutoTest() throws Exception {
-		Auto e = new Auto((long)1, null, null, null);
-		Auto b = new Auto((long)2, null, null, null);
-		Auto c = new Auto((long)3, null, null, null);
-		List<Auto> list = new ArrayList<>();
+	void getAllUtentiTest() throws Exception {
+		Utente e = new Utente();
+		Utente b = new Utente();
+		Utente c = new Utente();
+		List<Utente> list = new ArrayList<>();
 		list.add(e);
 		list.add(b);
 		list.add(c);
 		
-		Mockito.when(autoService.getAllAuto()).thenReturn(list);
-		this.mockMvc.perform(get("/parcoauto"))
+		Mockito.when(utenteService.getUtenti()).thenReturn(list);
+		this.mockMvc.perform(get("/utenti"))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("$.size()", is(list.size())));
 	}
+	
 	@Test
-	void getAutoTest() throws Exception{
-		    Auto e = new Auto((long)1, null, null, null);
-			when(autoService.getAutoById(anyLong())).thenReturn(e);
+	void getUtenteTest() throws Exception{
+		    Utente e = new Utente();
+		    e.idUtente = (long)1L;
+			when(utenteService.getUtente(anyLong())).thenReturn(e);
 			
-			this.mockMvc.perform(get("/auto/{id}", 1L))
-				.andExpect(status().isOk());
+			this.mockMvc.perform(get("/movies/{id}", 1L))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.username", is(e.getUsername())));
 	}
+
 }

@@ -1,4 +1,4 @@
-package noleggioAutoTest.controller;
+package noleggioAuto.controller;
 import static org.hamcrest.CoreMatchers.is;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,22 +9,29 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import noleggioAuto.controller.NoleggioController;
 import noleggioAuto.entities.Noleggio;
 import noleggioAuto.services.NoleggioService;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 
 import org.springframework.http.MediaType;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,7 +54,7 @@ public class NoleggioControllerTest {
 	}
 	@Test
 	void addNoleggioTest() throws Exception{
-		String uri = "/noleggi";
+		String uri = "api/noleggi";
 		Noleggio u = new Noleggio(null, null, 0, null, null, null);
 		Mockito.when(noleggioService.getNoleggioById(any())).thenReturn(u);
 
@@ -58,9 +65,11 @@ public class NoleggioControllerTest {
 	}
 	@Test
 	void deleteNoleggioTest() throws Exception {
+		String uri = "/noleggio";
+		Noleggio u = new Noleggio(null, null, 0, null, null, null); 
 		
 		Mockito.doNothing().when(noleggioService).deleteNoleggio(anyLong());
-		this.mockMvc.perform(delete("/noleggio/{id}", 1L))
+		this.mockMvc.perform(delete("/deleteNoleggio/{id}", 1L))
 		.andExpect(status().isNoContent());
 	}
 	@Test
