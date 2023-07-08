@@ -65,10 +65,10 @@ public class AutoRepoTest {
 		autoRepository.save(a);
 		autoRepository.save(b);
 		
-		List<Auto> list = autoRepository.findAutoByTargaList("ABCD321");
+		Optional<Auto> list = autoRepository.findAutoByTarga("ABCD321");
 		
 		assertNotNull(list);
-		assertThat(list.size()).isEqualTo(2);
+		assertThat(list.get()).isEqualTo(1);
 	}
     
    void deleteAutoTest() {

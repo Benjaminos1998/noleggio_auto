@@ -3,8 +3,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
@@ -16,11 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.web.client.RestTemplate;
 
-import noleggioAuto.entities.Auto;
-import noleggioAuto.entities.Noleggio;
 import noleggioAuto.entities.Utente;
-import noleggioAuto.repository.AutoRepository;
-import noleggioAuto.repository.NoleggioRepository;
 import noleggioAuto.repository.UtenteRepository;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
