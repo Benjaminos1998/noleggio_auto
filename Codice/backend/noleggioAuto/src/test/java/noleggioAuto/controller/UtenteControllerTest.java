@@ -1,4 +1,4 @@
-package noleggioAutoTest.controller;
+package noleggioAuto.controller;
 import static org.hamcrest.CoreMatchers.is;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

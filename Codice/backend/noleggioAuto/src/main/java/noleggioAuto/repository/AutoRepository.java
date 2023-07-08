@@ -12,8 +12,6 @@ import noleggioAuto.entities.Auto;
 public interface AutoRepository extends JpaRepository<Auto, Long> {
 
 	@Query
-	Optional<Auto> findAutoByTarga(String targa);
-	@Query
-	List<Auto> findAutoByTargaList(String targa);
+	List<Auto> findAutoByTarga(String targa);
 
 }

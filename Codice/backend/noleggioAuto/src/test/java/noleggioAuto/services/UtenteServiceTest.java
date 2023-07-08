@@ -71,9 +71,9 @@ public class UtenteServiceTest {
 		
 		Mockito.when(utenteRepository.findAll()).thenReturn(list);
 		
-		List<Utente> auto = utenteService.getUtenti();
-		assertEquals(3, auto.size());
-		assertNotNull(auto);
+		List<Utente> utente = utenteService.getUtenti();
+		assertEquals(3, utente.size());
+		assertNotNull(utente);
 	}
 	
 	@Test

@@ -1,5 +1,6 @@
 package noleggioAuto.services;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -40,8 +41,8 @@ public class AutoServiceTest {
 	private Auto b;
 	@BeforeEach
 	void setup() {
-		a = new Auto((long)1, "Ferrari", null, null);
-		b = new Auto((long)2, "Porsche", null, null);
+		a = new Auto((long)1L, "Ferrari", null, null);
+		b = new Auto((long)2L, "Porsche", null, null);
 	}
 	
         void addAutoTest() {
@@ -52,7 +53,7 @@ public class AutoServiceTest {
 		
 		assertNotNull(newauto);
 		assertThat(newauto.getModello()).isEqualTo("Ferrari");
-		assertThat(newauto.getId()).isEqualTo("1");
+		assertThat(newauto.getId()).isEqualTo("1L");
 	}
 	
 	@Test
@@ -86,7 +87,7 @@ public class AutoServiceTest {
 		
 		autoService.deleteAuto(autoId);
 		
-		verify(autoRepository, times(1)).delete(a);
+		verify(autoRepository, times(1)).deleteById(a.getId());
 		
 	}
 }

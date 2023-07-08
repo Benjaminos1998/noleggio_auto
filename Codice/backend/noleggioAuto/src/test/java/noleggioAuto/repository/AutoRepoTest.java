@@ -68,7 +68,7 @@ public class AutoRepoTest {
 		List<Auto> list = autoRepository.findAutoByTargaList("ABCD321");
 		
 		assertNotNull(list);
-		assertThat(list.size()).isEqualTo(1);
+		assertThat(list.size()).isEqualTo(2);
 	}
     
    void deleteAutoTest() {
