@@ -63,7 +63,6 @@ package noleggioAuto.repository;
  */
 
 import noleggioAuto.entities.Noleggio;
-import noleggioAuto.repository.NoleggioRepository;
 import noleggioAuto.services.NoleggioService;
 
 import org.junit.jupiter.api.Test;

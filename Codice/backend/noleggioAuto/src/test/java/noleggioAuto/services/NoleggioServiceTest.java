@@ -84,7 +84,7 @@ public class NoleggioServiceTest {
 		when(noleggioRepository.findById(anyLong())).thenReturn(Optional.of(a));
 		doNothing().when(noleggioRepository).delete(any(Noleggio.class));
 		
-		noleggioService.deleteNoleggio(noleggioId);
+		this.noleggioService.deleteNoleggio(noleggioId);
 		
 		verify(noleggioRepository, times(1)).delete(a);
 		

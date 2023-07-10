@@ -73,6 +73,7 @@ public class AutoIntegrationTest {
 	
 	void shouldFetchNoleggiTest() {
 		
+		@SuppressWarnings("unchecked")
 		List<Auto> list = restTemplate.getForObject(baseUrl, List.class);
 		
 		assertThat(list.size()).isEqualTo(2);

@@ -20,7 +20,7 @@ import noleggioAuto.repository.NoleggioRepository;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class NoleggioIntegrationTest {
 	@LocalServerPort
-	private int port;
+	private int port; 
 	
 	private String baseUrl = "http://localhost";
 	
@@ -76,6 +76,7 @@ public class NoleggioIntegrationTest {
 	
 	void shouldFetchNoleggiTest() {
 		
+		@SuppressWarnings("unchecked")
 		List<Noleggio> list = restTemplate.getForObject(baseUrl, List.class);
 		
 		assertThat(list.size()).isEqualTo(2);

@@ -81,8 +81,9 @@ public class UtenteIntegrationTest {
 	
 	void shouldFetchUtentiTest() {
 		
+		@SuppressWarnings("unchecked")
 		List<Utente> list = restTemplate.getForObject(baseUrl, List.class);
-		
+		 
 		assertThat(list.size()).isEqualTo(3);
 	}
 	

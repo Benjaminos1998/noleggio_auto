@@ -11,6 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import noleggioAuto.repository.UtenteRepository;
 import noleggioAuto.security.config.JwtService;
 import noleggioAuto.entities.Utente;
+import noleggioAuto.exception.EmailUtenteException;
+import noleggioAuto.exception.PatenteUtenteException;
+
 import java.time.LocalDate;
 import java.util.Optional;
 
