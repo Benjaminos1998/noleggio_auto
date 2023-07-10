@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import noleggioAuto.repository.UtenteRepository;
 import noleggioAuto.security.config.JwtService;
-
+import noleggioAuto.entities.Utente;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -99,7 +99,7 @@ public class AuthenticationTest {
 
     @Test
     public void testAuthenticate_InvalidEmail() {
-        AuthenticationRequest request = new AuthenticationRequest("invalidEmail@example.com", "password");
+        AuthenticationRequest request = new AuthenticationRequest();
 
         when(utenteRepository.findByEmail(request.getEmail())).thenReturn(Optional.empty());
 

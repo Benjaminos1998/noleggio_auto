@@ -1,5 +1,5 @@
 package noleggioAuto.controller;
-import static org.hamcrest.CoreMatchers.is;
+/*import static org.hamcrest.CoreMatchers.is;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -101,4 +101,161 @@ public class UtenteControllerTest {
 				.andExpect(jsonPath("$.username", is(e.getUsername())));
 	}
 
+}*/
+
+import noleggioAuto.DTO.UtenteDTO;
+import noleggioAuto.entities.Utente;
+import noleggioAuto.exception.*;
+import noleggioAuto.services.UtenteService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
+public class UtenteControllerTest {
+
+    @Mock
+    private UtenteService utenteService;
+
+    @Mock
+    private ModelMapper modelMapper;
+
+    @InjectMocks
+    private UtenteController utenteController;
+
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    public void testGetUtenti_EmptyList() {
+        List<Utente> utenti = new ArrayList<>();
+
+        when(utenteService.getUtenti()).thenReturn(utenti);
+
+        ResponseEntity<?> response = utenteController.getUtenti();
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals("La lista Utenti è vuota", response.getBody());
+    }
+
+    @Test
+    public void testGetUtenti_NonEmptyList() {
+        List<Utente> utenti = new ArrayList<>();
+        utenti.add(new Utente());
+
+        when(utenteService.getUtenti()).thenReturn(utenti);
+
+        ResponseEntity<?> response = utenteController.getUtenti();
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(utenti, response.getBody());
+    }
+
+    @Test
+    public void testGetUtenteById_ValidId() throws UtenteNonTrovatoException {
+        Utente utente = new Utente();
+        utente.idUtente=1L;
+
+        when(utenteService.getUtente(1L)).thenReturn(utente);
+
+        ResponseEntity<?> response = utenteController.getUtenteById(1L);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(utente, response.getBody());
+    }
+
+    @Test
+    public void testGetUtenteById_InvalidId() throws UtenteNonTrovatoException {
+        when(utenteService.getUtente(2L)).thenThrow(new UtenteNonTrovatoException());
+
+        ResponseEntity<?> response = utenteController.getUtenteById(2L);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals("Utente con id 2 non è stato trovato.", response.getBody());
+    }
+
+    @Test
+    public void testAddUtente_ValidUtente() throws EmailUtenteException, PasswordNonValidaException, PatenteUtenteException,
+            EtaUtenteException, UtenteException {
+        UtenteDTO utenteDTO = new UtenteDTO();
+        utenteDTO.setNome("John");
+        utenteDTO.setCognome("Doe");
+        utenteDTO.setEmail("john.doe@example.com");
+        utenteDTO.setPassword("password");
+        utenteDTO.setDataDiNascita("1990-01-01");
+        utenteDTO.setNumeroPatente("ABC123");
+
+        Utente utente = new Utente();
+        utente.setNome(utenteDTO.getNome());
+        utente.setCognome(utenteDTO.getCognome());
+        utente.setEmail(utenteDTO.getEmail());
+        utente.setPassword(utenteDTO.getPassword());
+        utente.setDataDiNascita(utenteDTO.getDataDiNascita());
+        utente.setNumeroPatente(utenteDTO.getNumeroPatente());
+
+        when(modelMapper.map(utenteDTO, Utente.class)).thenReturn(utente);
+        doNothing().when(utenteService).addUtente(utente.getNome(), utente.getCognome(), utente.getEmail(),
+                utente.getPassword(), utente.getDataDiNascita(), utente.getNumeroPatente());
+
+        ResponseEntity<?> response = utenteController.addUtente(utenteDTO);
+
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(utente, response.getBody());
+        verify(utenteService).addUtente(utente.getNome(), utente.getCognome(), utente.getEmail(),
+                utente.getPassword(), utente.getDataDiNascita(), utente.getNumeroPatente());
+    }
+
+    @Test
+    public void testAddUtente_EmailUtenteException() throws EmailUtenteException, PasswordNonValidaException,
+            PatenteUtenteException, EtaUtenteException, UtenteException {
+        UtenteDTO utenteDTO = new UtenteDTO();
+        utenteDTO.setNome("John");
+        utenteDTO.setCognome("Doe");
+        utenteDTO.setEmail("john.doe@example.com");
+        utenteDTO.setPassword("password");
+        utenteDTO.setDataDiNascita("1990-01-01");
+        utenteDTO.setNumeroPatente("ABC123");
+
+        when(modelMapper.map(utenteDTO, Utente.class)).thenReturn(new Utente());
+        doThrow(new EmailUtenteException()).when(utenteService).addUtente(any(), any(), any(), any(), any(), any());
+
+        ResponseEntity<?> response = utenteController.addUtente(utenteDTO);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Errore durante la creazione dell'utente: Username già inserito.", response.getBody());
+    }
+
+    @Test
+    public void testAddUtente_PasswordNonValidaException() throws EmailUtenteException, PasswordNonValidaException,
+            PatenteUtenteException, EtaUtenteException, UtenteException {
+        UtenteDTO utenteDTO = new UtenteDTO();
+        utenteDTO.setNome("John");
+        utenteDTO.setCognome("Doe");
+        utenteDTO.setEmail("john.doe@example.com");
+        utenteDTO.setPassword("pass");
+        utenteDTO.setDataDiNascita("1990-01-01");
+        utenteDTO.setNumeroPatente("ABC123");
+
+        when(modelMapper.map(utenteDTO, Utente.class)).thenReturn(new Utente());
+        doThrow(new PasswordNonValidaException()).when(utenteService).addUtente(any(), any(), any(), any(), any(), any());
+
+        ResponseEntity<?> response = utenteController.addUtente(utenteDTO);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Errore durante la creazione dell'utente: La password deve avere almeno 8 caratteri. ",
+                response.getBody());
+    }
 }
+

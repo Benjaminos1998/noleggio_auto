@@ -1,91 +1,128 @@
 package noleggioAuto.controller;
 
-import static org.hamcrest.CoreMatchers.is;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import noleggioAuto.entities.Auto;
-import noleggioAuto.services.AutoService;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.MediaType;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import noleggioAuto.services.AutoService;
+import noleggioAuto.entities.Auto;
+import noleggioAuto.exception.AutoException;
+import noleggioAuto.exception.AutoNonTrovataException;
+import noleggioAuto.exception.AutoPresenteException;
+import noleggioAuto.exception.TargaAutoNonValidaException;
 
-@WebMvcTest(AutoController.class)	
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 public class AutoControllerTest {
-	
-	@MockBean
+
+    @Mock
     private AutoService autoService;
 
-	@Autowired
-	private MockMvc mockMvc;
-	
-	@Autowired
-	private ObjectMapper objectMapper;
-	
-	@BeforeEach
-	void setup () {
+    @InjectMocks
+    private AutoController autoController;
 
-	}
-	@Test
-	void addAutoTest() throws Exception{
-		String uri = "/addAuto";
-		Auto u = new Auto((long)1, uri, uri, null); 
-		Mockito.when(autoService.getAutoById(any())).thenReturn(u);
+    public void setup() {
+        MockitoAnnotations.openMocks(this);
+    }
 
-		mockMvc.perform(post(uri).contentType(MediaType.APPLICATION_JSON)
-			        .content(objectMapper.writeValueAsString(u)))
-			        .andExpect(status().isCreated())
-			        .andDo(print());
-	}
-	@Test
-	void deleteAutoTest() throws Exception {
-		String uri = "/auto";
-		Auto u = new Auto((long)1L, uri, uri, null);
-		
-		Mockito.doNothing().when(autoService).deleteAuto(anyLong());
-		this.mockMvc.perform(delete("/auto/{id}", 1L))
-		.andExpect(status().isNoContent());
-	}
-	@Test
-	void getAllAutoTest() throws Exception {
-		Auto e = new Auto((long)1, null, null, null);
-		Auto b = new Auto((long)2, null, null, null);
-		Auto c = new Auto((long)3, null, null, null);
-		List<Auto> list = new ArrayList<>();
-		list.add(e);
-		list.add(b);
-		list.add(c);
-		
-		Mockito.when(autoService.getAllAuto()).thenReturn(list);
-		this.mockMvc.perform(get("/api/auto/parcoauto"))
-		.andExpect(status().isOk())
-		.andExpect(jsonPath("$.size()", is(list.size())));
-	}
-	
-	@Test
-	void getAutoTest() throws Exception{
-		Auto e = new Auto((long)1L, null, null, null); 
-			when(autoService.getAutoById(anyLong())).thenReturn(e);
-			
-			this.mockMvc.perform(get("/auto/{id}", 1L))
-				.andExpect(status().isOk());
-	}
+    @Test
+    public void testGetAutoById_ValidId() {
+        Auto auto = new Auto((long)1, null, null, null);
+
+        when(autoService.getAutoById(1L)).thenReturn(auto);
+
+        ResponseEntity<?> response = autoController.getAutoById(1L);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(auto, response.getBody());
+    }
+
+    @Test
+    public void testGetAutoById_InvalidId() {
+        when(autoService.getAutoById(2L)).thenThrow(new AutoNonTrovataException());
+
+        ResponseEntity<?> response = autoController.getAutoById(2L);
+
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals("Auto con id 2 non trovata", response.getBody());
+    }
+
+    @Test
+    public void testGetAllAuto() {
+        List<Auto> autos = new ArrayList<>();
+        autos.add(new Auto((long)1, null, null, null));
+
+        when(autoService.getAllAuto()).thenReturn(autos);
+
+        List<Auto> result = autoController.getAllAuto();
+
+        assertEquals(autos, result);
+    }
+
+    @Test
+    public void testAddAuto_ValidAuto() {
+        Auto auto = new Auto((long)1, null, null, null);
+
+        ResponseEntity<?> response = autoController.addAuto(auto);
+
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(auto, response.getBody());
+        verify(autoService).addAuto(auto);
+    }
+
+    @Test
+    public void testAddAuto_InvalidTarga() {
+        Auto auto = new Auto((long)1, null, null, null);
+        when(autoService.addAuto(auto)).thenThrow(new TargaAutoNonValidaException());
+
+        ResponseEntity<?> response = autoController.addAuto(auto);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Errore nell'inserimento della targa...", response.getBody());
+    }
+
+    @Test
+    public void testAddAuto_DuplicateTarga() {
+        Auto auto = new Auto((long)1, null, null, null);
+        when(autoService.addAuto(auto)).thenThrow(new AutoPresenteException());
+
+        ResponseEntity<?> response = autoController.addAuto(auto);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Impossibile inserire un auto con una targa già in uso.", response.getBody());
+    }
+
+    @Test
+    public void testAddAuto_GenericException() {
+        Auto auto = new Auto((long)1, null, null, null);
+        when(autoService.addAuto(auto)).thenThrow(new AutoException());
+
+        ResponseEntity<?> response = autoController.addAuto(auto);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Errore nella creazione dell'automobile.", response.getBody());
+    }
+
+    @Test
+    public void testDeleteAuto_ValidId() {
+        autoController.deleteAuto(1L);
+
+        verify(autoService).deleteAuto(1L);
+    }
+
+    @Test
+    public void testDeleteAuto_InvalidId() {
+        assertThrows(AutoNonTrovataException.class, () -> autoController.deleteAuto(2L));
+    }
 }
