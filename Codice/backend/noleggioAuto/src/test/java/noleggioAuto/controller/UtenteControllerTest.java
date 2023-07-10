@@ -41,6 +41,8 @@ public class UtenteControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
+	private ObjectMapper objectMapper;
+	
 	@BeforeEach
 	void setup () {
 		Utente e = new Utente();
