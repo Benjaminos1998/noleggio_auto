@@ -5,7 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.client.MockMvcWebTestClient;
+import org.springframework.web.context.WebApplicationContext;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -25,10 +28,11 @@ import java.util.List;
 import org.springframework.http.MediaType;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebMvcTest(UtenteController.class)	
+@SpringBootTest
 public class UtenteControllerTest {
 	
 	@MockBean
@@ -37,15 +41,14 @@ public class UtenteControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
-	@Autowired
-	private ObjectMapper objectMapper;
-	
 	@BeforeEach
 	void setup () {
 		Utente e = new Utente();
 		Utente b = new Utente();
 		Utente c = new Utente();
 	}
+
+	
 	@Test
 	void addUtenteTest() throws Exception{
 		String uri = "/utente";
@@ -91,7 +94,7 @@ public class UtenteControllerTest {
 		    e.idUtente = (long)1L;
 			when(utenteService.getUtente(anyLong())).thenReturn(e);
 			
-			this.mockMvc.perform(get("/movies/{id}", 1L))
+			this.mockMvc.perform(get("/utente/{id}", 1L))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.username", is(e.getUsername())));
 	}

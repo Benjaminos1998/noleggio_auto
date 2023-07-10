@@ -83,7 +83,7 @@ public class NoleggioControllerTest {
 		Noleggio u = new Noleggio(null, null, 0, null, null, null); 
 			when(noleggioService.getNoleggioById(anyLong())).thenReturn(u);
 			
-			this.mockMvc.perform(get("/auto/{id}", 1L))
+			this.mockMvc.perform(get("/noleggio/{id}", 1L))
 				.andExpect(status().isOk());
 	}
 }
