@@ -51,11 +51,11 @@ public class Noleggio {
 	}
 
 	public Noleggio(LocalDate dataInizio, LocalDate dataFine, double prezzo, TipologiaNoleggio tipologiaNoleggio,
-			Auto auto, Utente utenteRegistrato) {
+			Auto auto, Utente utente) {
 		this(dataInizio, dataFine, prezzo);
 		this.tipologiaNoleggio = tipologiaNoleggio;
 		this.auto = auto;
-		this.utente = utenteRegistrato;
+		this.utente = utente;
 	}
 
 	public static int durataNoleggio(Noleggio noleggio) {
@@ -67,12 +67,6 @@ public class Noleggio {
 			throw new IllegalArgumentException("Hai inserito un prezzo non valido");
 	}
 
-	@Override
-	public String toString() {
-		return "Noleggio{" + "idNoleggio=" + this.idNoleggio + ", dataInizio=" + this.dataInizio + ", dataFine="
-				+ this.dataFine + ", prezzo=" + this.prezzo + ", tipologiaNoleggio=" + this.tipologiaNoleggio
-				+ ", auto=" + this.auto.getTarga() + ", utente =" + this.utente.getEmail() + '}';
-	}
 
 	@Override
 	public boolean equals(Object o) {

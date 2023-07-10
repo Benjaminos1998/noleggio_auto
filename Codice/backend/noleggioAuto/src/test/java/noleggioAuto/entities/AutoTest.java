@@ -59,7 +59,7 @@ public class AutoTest {
 	}
 	
 	@Test
-	public void TestEquals() {
+	public void testEquals() {
 		Auto auto = new Auto((long) 1, "CA123AS", "Ferrari", TipologiaAuto.Utilitaria, false);
 		Auto auto2 = new Auto((long) 1, "CA123AS", "Ferrari", TipologiaAuto.Utilitaria, false);
 		
@@ -77,7 +77,7 @@ public class AutoTest {
 	}
 	
 	@Test
-	public void TestEquals2() {
+	public void testEquals2() {
 		Auto auto = new Auto((long) 1, "CA123AS", "Ferrari", TipologiaAuto.Utilitaria, false);
 		Auto auto2 = new Auto((long) 2, "CA123AF", "Ferrari", TipologiaAuto.Utilitaria, false);
 		
@@ -93,7 +93,7 @@ public class AutoTest {
 
 	
 	@Test
-	public void TestEquals3() {
+	public void testEquals3() {
 		Auto auto = new Auto((long) 1, "CA123AS", "Ferrari", TipologiaAuto.Utilitaria, false);
 		Auto auto2 = new Auto((long) 1, "CA123AF", "Ferrari", TipologiaAuto.Utilitaria, false);
 		
