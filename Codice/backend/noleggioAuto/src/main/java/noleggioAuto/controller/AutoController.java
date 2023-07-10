@@ -40,7 +40,6 @@ public class AutoController {
 	public List<Auto> getAllAuto() {
 		List<Auto> automobili = this.autoService.getAllAuto();
 		return automobili;
-		
 	}
 
 	@PostMapping("/addAuto")
