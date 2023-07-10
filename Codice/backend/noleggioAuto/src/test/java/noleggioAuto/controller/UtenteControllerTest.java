@@ -116,6 +116,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -194,7 +195,7 @@ public class UtenteControllerTest {
         utenteDTO.setCognome("Doe");
         utenteDTO.setEmail("john.doe@example.com");
         utenteDTO.setPassword("password");
-        utenteDTO.setDataDiNascita("1990-01-01");
+        utenteDTO.setDataDiNascita(LocalDate.of(1990, 1, 1));
         utenteDTO.setNumeroPatente("ABC123");
 
         Utente utente = new Utente();
@@ -225,7 +226,7 @@ public class UtenteControllerTest {
         utenteDTO.setCognome("Doe");
         utenteDTO.setEmail("john.doe@example.com");
         utenteDTO.setPassword("password");
-        utenteDTO.setDataDiNascita("1990-01-01");
+        utenteDTO.setDataDiNascita(LocalDate.of(1990, 1, 1));
         utenteDTO.setNumeroPatente("ABC123");
 
         when(modelMapper.map(utenteDTO, Utente.class)).thenReturn(new Utente());
@@ -245,7 +246,7 @@ public class UtenteControllerTest {
         utenteDTO.setCognome("Doe");
         utenteDTO.setEmail("john.doe@example.com");
         utenteDTO.setPassword("pass");
-        utenteDTO.setDataDiNascita("1990-01-01");
+        utenteDTO.setDataDiNascita(LocalDate.of(1990, 1, 1));
         utenteDTO.setNumeroPatente("ABC123");
 
         when(modelMapper.map(utenteDTO, Utente.class)).thenReturn(new Utente());

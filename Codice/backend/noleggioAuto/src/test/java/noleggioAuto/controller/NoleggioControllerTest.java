@@ -90,6 +90,7 @@ import noleggioAuto.exception.AutoNonDisponibilePerIlNoleggioException;
 import noleggioAuto.exception.NoleggioException;
 import noleggioAuto.exception.UtenteNonDisponeDelNoleggioException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,8 +158,8 @@ public class NoleggioControllerTest {
     public void testAddNoleggio_ValidNoleggio() throws NoleggioException, AutoNonDisponibilePerIlNoleggioException,
             UtenteNonDisponeDelNoleggioException {
         NoleggioDTO noleggioDTO = new NoleggioDTO();
-        noleggioDTO.setDataInizio("2023-07-01");
-        noleggioDTO.setDataFine("2023-07-05");
+        noleggioDTO.setDataInizio(LocalDate.of(2003, 7, 1));  
+        noleggioDTO.setDataFine(LocalDate.of(2003, 7, 5));
         noleggioDTO.setPrezzo(100.0);
         noleggioDTO.setIdAuto(1L);
         noleggioDTO.setIdUtenteRegistrato(1L);
@@ -177,8 +178,8 @@ public class NoleggioControllerTest {
     public void testAddNoleggio_AutoNonDisponibilePerIlNoleggioException() throws NoleggioException,
             AutoNonDisponibilePerIlNoleggioException, UtenteNonDisponeDelNoleggioException {
         NoleggioDTO noleggioDTO = new NoleggioDTO();
-        noleggioDTO.setDataInizio("2023-07-01");
-        noleggioDTO.setDataFine("2023-07-05");
+        noleggioDTO.setDataInizio(LocalDate.of(2003, 7, 1));  
+        noleggioDTO.setDataFine(LocalDate.of(2003, 7, 5));
         noleggioDTO.setPrezzo(100.0);
         noleggioDTO.setIdAuto(1L);
         noleggioDTO.setIdUtenteRegistrato(1L);
