@@ -37,6 +37,8 @@ public class AutoTest {
 		Auto.controlloTarga(auto.getTarga());
 		Auto.controlloTipologiaAuto("Business");
 		
+		assertEquals((long) 1, auto.getId());
+		
 	}
 
 	@Test
@@ -54,7 +56,54 @@ public class AutoTest {
 		Auto.controlloTarga(auto.getTarga());
 		Auto.controlloTipologiaAuto("Utilitaria");
 		
-
+	}
+	
+	@Test
+	public void TestEquals() {
+		Auto auto = new Auto((long) 1, "CA123AS", "Ferrari", TipologiaAuto.Utilitaria, false);
+		Auto auto2 = new Auto((long) 1, "CA123AS", "Ferrari", TipologiaAuto.Utilitaria, false);
+		
+		assertEquals(true, auto.getTarga().equals(auto2.getTarga()));
+		assertEquals(true, auto.getIdAuto().equals(auto2.getIdAuto()));
+		
+		Object o = new Auto((long) 1, "CA123AS", "Ferrari", TipologiaAuto.Utilitaria, false);
+		
+		
+		assertEquals(true, auto.equals(o));
+		assertEquals(true, auto.equals(auto2));
+		
+		
+		
+	}
+	
+	@Test
+	public void TestEquals2() {
+		Auto auto = new Auto((long) 1, "CA123AS", "Ferrari", TipologiaAuto.Utilitaria, false);
+		Auto auto2 = new Auto((long) 2, "CA123AF", "Ferrari", TipologiaAuto.Utilitaria, false);
+		
+		assertEquals(false, auto.getTarga().equals(auto2.getTarga()));
+		assertEquals(false, auto.getIdAuto().equals(auto2.getIdAuto()));
+		
+		assertEquals(false, auto.equals(auto2));
+		
+		Object o = new Object();
+		assertEquals(false, auto2.equals(o));
+		
 	}
 
+	
+	@Test
+	public void TestEquals3() {
+		Auto auto = new Auto((long) 1, "CA123AS", "Ferrari", TipologiaAuto.Utilitaria, false);
+		Auto auto2 = new Auto((long) 1, "CA123AF", "Ferrari", TipologiaAuto.Utilitaria, false);
+		
+		assertEquals(false, auto.getTarga().equals(auto2.getTarga()));
+		assertEquals(true, auto.getIdAuto().equals(auto2.getIdAuto()));
+		
+		assertEquals(false, auto.equals(auto2));
+		
+		Object o = new Object();
+		assertEquals(false, auto2.equals(o));
+		
+	}
 }
