@@ -107,7 +107,7 @@ public class UtenteTest {
 	
 	
 	@Test
-	public void TestEquals() {
+	public void testEquals() {
 		Utente utente = new Utente((long) 1, "Mario", "Rossi", "rossi@gmaill.com", "password", 0, LocalDate.of(1990, 12, 1), "numeroPatente",Utente.getEta(LocalDate.of(1990, 12, 1)), Ruolo.UTENTE, false);
 		Utente utente2 = new Utente((long) 1, "Mario", "Rossi", "rossi@gmaill.com", "password", 0, LocalDate.of(1990, 12, 1), "numeroPatente",Utente.getEta(LocalDate.of(1990, 12, 1)), Ruolo.UTENTE, false);
 		
@@ -118,7 +118,7 @@ public class UtenteTest {
 	}
 	
 	@Test
-	public void TestEquals2() {
+	public void testEquals2() {
 		Utente utente = new Utente((long) 1, "Mario", "Rossi", "rossi@gmaill.com", "password", 0, LocalDate.of(1990, 12, 1), "numeroPatente",Utente.getEta(LocalDate.of(1990, 12, 1)), Ruolo.UTENTE, false);
 		Utente utente2 = new Utente((long) 2, "Mario", "Rossi", "rossi@gmaill.com", "password", 0, LocalDate.of(1990, 12, 1), "numeroPatente2",Utente.getEta(LocalDate.of(1990, 12, 1)), Ruolo.UTENTE, false);
 		

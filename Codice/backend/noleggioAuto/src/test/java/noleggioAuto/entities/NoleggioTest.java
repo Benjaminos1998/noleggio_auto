@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class NoleggioTest {
 	@Test
-	public void Test() {
+	public void test() {
 		Noleggio noleggio = new Noleggio(LocalDate.of(1990, 12, 1), LocalDate.of(1990, 12, 10), 10);
 
 		assertEquals(LocalDate.of(1990, 12, 1), noleggio.getDataInizio());
@@ -21,7 +21,7 @@ public class NoleggioTest {
 	}
 
 	@Test
-	public void Test2() {
+	public void test2() {
 		Auto auto = new Auto();
 		Utente utente = new Utente();
 		Noleggio noleggio = new Noleggio(LocalDate.of(1990, 12, 1), LocalDate.of(1990, 12, 10), 0,
@@ -42,7 +42,7 @@ public class NoleggioTest {
 	}
 
 	@Test
-	public void Test3() {
+	public void test3() {
 		Auto auto = new Auto();
 		Utente utente = new Utente();
 
@@ -63,7 +63,7 @@ public class NoleggioTest {
 	}
 
 	@Test
-	public void Test4() {
+	public void test4() {
 		Auto auto = new Auto();
 		Utente utente = new Utente();
 
@@ -93,7 +93,7 @@ public class NoleggioTest {
 	}
 
 	@Test
-	public void Test5() {
+	public void test5() {
 
 		Auto auto = new Auto();
 		Utente utente = new Utente();
