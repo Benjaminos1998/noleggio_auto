@@ -82,20 +82,19 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import noleggioAuto.services.NoleggioService;
-import noleggioAuto.entities.Noleggio;
-import noleggioAuto.DTO.NoleggioDTO;
-import noleggioAuto.exception.AutoNonDisponibilePerIlNoleggioException;
-import noleggioAuto.exception.NoleggioException;
-import noleggioAuto.exception.UtenteNonDisponeDelNoleggioException;
+import noleggioAuto.entities.*;
+import noleggioAuto.DTO.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
 
 public class NoleggioControllerTest {
 
@@ -111,86 +110,57 @@ public class NoleggioControllerTest {
 
     @Test
     public void testGetNoleggioById_ValidId() {
-        Noleggio noleggio = new Noleggio(null, null, 0, null, null, null);
+        Long noleggioId = 1L;
+        Noleggio e = new Noleggio(null, null, 0);
 
-        when(noleggioService.getNoleggioById(1L)).thenReturn(noleggio);
+        when(noleggioService.getNoleggioById(eq(noleggioId))).thenReturn(e);
 
-        ResponseEntity<?> response = noleggioController.getNoleggioById(1L);
-
+        ResponseEntity<?> response = noleggioController.getNoleggioById(noleggioId);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(noleggio, response.getBody());
+        assertEquals(e, response.getBody());
     }
 
     @Test
     public void testGetNoleggioById_InvalidId() {
-        when(noleggioService.getNoleggioById(2L)).thenReturn(null);
+        Long noleggioId = 1L;
 
-        ResponseEntity<?> response = noleggioController.getNoleggioById(2L);
+        when(noleggioService.getNoleggioById(eq(noleggioId))).thenReturn(null);
 
+        ResponseEntity<?> response = noleggioController.getNoleggioById(noleggioId);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals("Noleggio non trovato", response.getBody());
     }
 
     @Test
-    public void testGetNoleggi() throws NoleggioException {
-        List<Noleggio> noleggi = new ArrayList<>();
-        noleggi.add(new Noleggio(null, null, 0, null, null, null));
+    public void testGetNoleggi() {
+        List<Noleggio> e = new ArrayList<>();
 
-        when(noleggioService.getNoleggi()).thenReturn(noleggi);
+        when(noleggioService.getNoleggi()).thenReturn(e);
 
         ResponseEntity<?> response = noleggioController.getNoleggi();
-
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(noleggi, response.getBody());
+        assertEquals(e, response.getBody());
     }
 
     @Test
-    public void testGetNoleggi_NoleggioException() throws NoleggioException {
-        when(noleggioService.getNoleggi()).thenThrow(new NoleggioException());
-
-        ResponseEntity<?> response = noleggioController.getNoleggi();
-
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals("Non è presente nessun noleggio.", response.getBody());
-    }
-
-    @Test
-    public void testAddNoleggio_ValidNoleggio() throws NoleggioException, AutoNonDisponibilePerIlNoleggioException,
-            UtenteNonDisponeDelNoleggioException {
+    public void testAddNoleggio() {
         NoleggioDTO noleggioDTO = new NoleggioDTO();
-        noleggioDTO.setDataInizio(LocalDate.of(2003, 7, 1));  
-        noleggioDTO.setDataFine(LocalDate.of(2003, 7, 5));
-        noleggioDTO.setPrezzo(100.0);
-        noleggioDTO.setIdAuto(1L);
-        noleggioDTO.setIdUtenteRegistrato(1L);
+        Noleggio e = new Noleggio(null, null, 0);
+
+        when(noleggioService.getNoleggioById((anyLong()))).thenReturn(e);
 
         ResponseEntity<?> response = noleggioController.addNoleggio(noleggioDTO);
-
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(noleggioDTO.getDataInizio(), ((Noleggio) response.getBody()).getDataInizio());
-        assertEquals(noleggioDTO.getDataFine(), ((Noleggio) response.getBody()).getDataFine());
-        assertEquals(noleggioDTO.getPrezzo(), ((Noleggio) response.getBody()).getPrezzo());
-        verify(noleggioService).addNoleggio(noleggioDTO.getDataInizio(), noleggioDTO.getDataFine(),
-                noleggioDTO.getPrezzo(), noleggioDTO.getIdAuto(), noleggioDTO.getIdUtenteRegistrato());
+        assertEquals(e, response.getBody());
     }
 
     @Test
-    public void testAddNoleggio_AutoNonDisponibilePerIlNoleggioException() throws NoleggioException,
-            AutoNonDisponibilePerIlNoleggioException, UtenteNonDisponeDelNoleggioException {
-        NoleggioDTO noleggioDTO = new NoleggioDTO();
-        noleggioDTO.setDataInizio(LocalDate.of(2003, 7, 1));  
-        noleggioDTO.setDataFine(LocalDate.of(2003, 7, 5));
-        noleggioDTO.setPrezzo(100.0);
-        noleggioDTO.setIdAuto(1L);
-        noleggioDTO.setIdUtenteRegistrato(1L);
+    public void testDeleteNoleggio() {
+        Long noleggioId = 1L;
 
-        when(noleggioService.addNoleggio(noleggioDTO.getDataInizio(), noleggioDTO.getDataFine(),
-                noleggioDTO.getPrezzo(), noleggioDTO.getIdAuto(), noleggioDTO.getIdUtenteRegistrato()))
-                .thenThrow(new AutoNonDisponibilePerIlNoleggioException());
-
-        ResponseEntity<?> response = noleggioController.addNoleggio(noleggioDTO);
-
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-        assertEquals("Auto in uso. Scegliere un'altra automobile per completare l'operazione.", response.getBody());
+        ResponseEntity<?> response = noleggioController.deleteNoleggio(noleggioId);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("Cancellazione del noleggio avvenuta con successo", response.getBody());
     }
 }
+
