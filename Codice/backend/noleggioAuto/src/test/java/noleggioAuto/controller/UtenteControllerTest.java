@@ -5,7 +5,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
+
+import com.mysql.cj.util.TestUtils;
+
+import noleggioAuto.DTO.UtenteDTO;
+import noleggioAuto.services.UtenteService;
 
 @ExtendWith(MockitoExtension.class)
  class UtenteControllerTest{

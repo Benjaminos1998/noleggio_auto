@@ -56,6 +56,7 @@ public class Utente implements UserDetails {
 	private LocalDate dataDiNascita;
 	@Column(name = "numero_patente")
 	private String numeroPatente;
+	
 	@Column(name = "età")
 	private int eta;
 	@Enumerated(EnumType.STRING)

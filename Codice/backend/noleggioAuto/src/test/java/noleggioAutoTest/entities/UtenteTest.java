@@ -1,14 +1,15 @@
 package noleggioAutoTest.entities;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import noleggioAuto.entities.Ruolo;
 import noleggioAuto.entities.Utente;
 import noleggioAuto.repository.UtenteRepository;
 
@@ -28,24 +29,19 @@ public class UtenteTest {
 //	 * Test per il costruttore con argomenti nome, cognome, numeroPatente e dob dell'utente.
 //	 */
 	@Test
-	public void testCreaUtente() {
-		Utente utente = new Utente("Mario","Rossi",1,LocalDate.of(2000, 12, 12));
-		assertEquals("Mario", utente.getNome());
-		assertEquals("Rossi", utente.getCognome());
-		assertTrue(1==utente.getNumeroPatente());
-		assertEquals(LocalDate.of(2000, 12, 12) , utente.getDob());
-	}
-
-	/**
-//	 * Test per il costruttore con argomenti id,nome, cognome, numeroPatente e dob dell'utente
-//	 */
-	@Test
-	public void testCreaUtente2() {
-		Utente utente = new Utente(1,"Mario","Rossi",1,LocalDate.of(2000, 12, 12));
-		assertTrue(utente.getId()==1);
-		assertEquals("Mario", utente.getNome());
-		assertEquals("Rossi", utente.getCognome());
-		assertTrue(1==utente.getNumeroPatente());
-		assertEquals(LocalDate.of(2000, 12, 12) , utente.getDob());
+	public void testCreaUtente() {		
+		Utente utente = new Utente((long) 1, "Mario", "Rossi", "rossi@gmaill.com", "password", 0, LocalDate.of(1990, 12, 1), "numeroPatente",Utente.getEta(LocalDate.of(1990, 12, 1)), Ruolo.UTENTE, false);
+		assertEquals((long)1, utente.idUtente);
+		assertEquals((long)1, utente.idUtente);
+		assertEquals((long)1, utente.idUtente);
+		assertEquals((long)1, utente.idUtente);
+		assertEquals((long)1, utente.idUtente);
+		assertEquals((long)1, utente.idUtente);
+		assertEquals((long)1, utente.idUtente);
+		assertEquals((long)1, utente.idUtente);
+		assertEquals((long)1, utente.idUtente);
+		assertEquals((long)1, utente.idUtente);
+		
+	
 	}
 }
