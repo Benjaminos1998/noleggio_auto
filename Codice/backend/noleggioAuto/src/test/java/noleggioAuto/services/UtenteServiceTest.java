@@ -46,7 +46,7 @@ public class UtenteServiceTest {
 		a.nome = "Oronzo";
 		b.nome = "Canà";
 	}
-	
+	@Test
         void addUtenteTest() {
 		
 		when(utenteRepository.save(any(Utente.class))).thenReturn(a);

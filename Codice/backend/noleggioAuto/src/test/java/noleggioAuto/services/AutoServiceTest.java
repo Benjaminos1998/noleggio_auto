@@ -40,7 +40,7 @@ public class AutoServiceTest {
 		a = new Auto((long)1, "Ferrari", null, null);
 		b = new Auto((long)2, "Porsche", null, null);
 	}
-	
+	@Test
         void addAutoTest() {
 		
 		when(autoRepository.save(any(Auto.class))).thenReturn(a);

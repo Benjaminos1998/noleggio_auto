@@ -44,7 +44,7 @@ public class NoleggioServiceTest {
 		a.idNoleggio = (long)1;
 		b.idNoleggio = (long)2;
 	}
-	
+	@Test
         void addNoleggioTest() {
 		
 		when(noleggioRepository.save(any(Noleggio.class))).thenReturn(a);
