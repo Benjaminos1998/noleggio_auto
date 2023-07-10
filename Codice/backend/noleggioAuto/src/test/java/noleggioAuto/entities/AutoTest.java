@@ -1,29 +1,60 @@
 package noleggioAuto.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import noleggioAuto.entities.Auto;
-import noleggioAuto.entities.TipologiaAuto;
 
 public class AutoTest {
 
-@Test
-	public void testAuto() {
-		Auto auto = new Auto((long)1L, "ABCDE1234", "Ferrari", TipologiaAuto.Luxury);
-		assertEquals("ABCDE1234", auto.getTarga());
+	@Test
+	public void testCostruttore() {
+		Auto auto = new Auto((long) 1, "CA234AS", "Ferrari", TipologiaAuto.Luxury);
+		assertEquals((long) 1, auto.getIdAuto());
+		assertEquals("CA234AS", auto.getTarga());
 		assertEquals("Ferrari", auto.getModello());
-		assertEquals(1, auto.getId(), 0);
+		assertEquals(TipologiaAuto.Luxury, auto.getTipoAuto());
+		Auto.controlloTipologiaAuto("Luxury");
 
 	}
-
 
 	@Test
-    public void testAuto2() {
-		Auto auto = new Auto((long)1, "DA123DE", "Bmw", TipologiaAuto.Business);
-		auto.controlloTarga(auto.getTarga());
-		assertEquals(1, auto.getId(), 0);
- 	    assertEquals("DA123DE", auto.getTarga());
-		assertEquals("Bmw", auto.getModello());
+	public void testCostruttore2() {
+		Auto auto = new Auto();
+		auto.setIdAuto((long) 1);
+		auto.setTarga("CA123AS");
+		auto.setModello("Ferrari");
+		auto.setTipoAuto(TipologiaAuto.Business);
+		auto.setInUso(true);
+
+		assertEquals(1, auto.getIdAuto());
+		assertEquals("CA123AS", auto.getTarga());
+		assertEquals("Ferrari", auto.getModello());
+		assertEquals(TipologiaAuto.Business, auto.getTipoAuto());
+		
+		assertEquals(true, auto.isInUso());
+
+		Auto.controlloTarga(auto.getTarga());
+		Auto.controlloTipologiaAuto("Business");
+		
 	}
+
+	@Test
+	public void testCostruttore3() {
+		Auto auto = new Auto((long) 1, "CA123AS", "Ferrari", TipologiaAuto.Utilitaria, false);
+
+		assertEquals(1, auto.getIdAuto());
+		assertEquals("CA123AS", auto.getTarga());
+		assertEquals("Ferrari", auto.getModello());
+		assertEquals(TipologiaAuto.Utilitaria, auto.getTipoAuto());
+		
+		assertEquals(false, auto.isInUso());
+
+
+		Auto.controlloTarga(auto.getTarga());
+		Auto.controlloTipologiaAuto("Utilitaria");
+		
+
+	}
+
 }
