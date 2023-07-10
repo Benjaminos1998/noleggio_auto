@@ -72,11 +72,6 @@ public class Auto {
 		Auto auto = (Auto) o;
 		return this.idAuto == auto.idAuto && this.targa.equals(auto.targa);
 	}
-
-	public String toString() {
-		return "Auto [idAuto=" + this.idAuto + ", targa=" + this.targa + ", modello=" + this.modello + ", tipoAuto=" + this.tipoAuto
-				+ ", inUso=" + this.inUso + "]";
-	}
 	
 	public long getId () {
 		return this.idAuto;
