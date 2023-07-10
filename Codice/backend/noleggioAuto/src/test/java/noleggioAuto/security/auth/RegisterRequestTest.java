@@ -65,5 +65,16 @@ public class RegisterRequestTest {
 		assertEquals(LocalDate.of(1990, 12, 1), registerRequest.getDataDiNascita());
 		assertEquals("numeroPatente", registerRequest.getNumeroPatente());
 		
+		
+		RegisterRequest registerRequest1 = new RegisterRequest("Mario", "Rossi","rossi@gmaill.com", "password", LocalDate.of(1990, 12, 1), "numeroPatente");		
+		RegisterRequest registerRequest2 = new RegisterRequest("Luca", "Verdi","rossi@gmaill.com", "password", LocalDate.of(1990, 12, 1), "numeroPatente");
+		
+		assertEquals(true, registerRequest.equals(registerRequest1));
+		assertEquals(false, registerRequest.equals(registerRequest2));
+		
+		assertEquals(registerRequest.hashCode(), registerRequest1.hashCode());
+		
+		assertEquals(registerRequest.toString(), registerRequest1.toString());
+		
 	}
 }

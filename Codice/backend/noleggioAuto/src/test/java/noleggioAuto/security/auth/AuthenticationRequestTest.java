@@ -35,5 +35,14 @@ public class AuthenticationRequestTest {
 		assertEquals("rossi@gmaill.com", authenticationRequest.getEmail());
 		assertEquals("password", authenticationRequest.getPassword());
 		
+		
+		AuthenticationRequest authenticationRequest1 = new AuthenticationRequest("rossi@gmaill.com", "password");
+		AuthenticationRequest authenticationRequest2 = new AuthenticationRequest("verdi@gmaill.com", "password1");
+		
+		assertEquals(authenticationRequest.toString(), authenticationRequest1.toString());
+		assertEquals(authenticationRequest.hashCode(), authenticationRequest1.hashCode());
+		assertEquals(true,authenticationRequest.equals(authenticationRequest1));
+		assertEquals(false,authenticationRequest.equals(authenticationRequest2));
+		
 	}
 }
